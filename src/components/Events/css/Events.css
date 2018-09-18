@@ -1,0 +1,222 @@
+.u-form-group-pink button{
+    width:50%;
+    background-color: #f55692;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 14px 0px 14px 0px;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+/* Datepicker */
+.SingleDatePicker {
+    display: block !important
+}
+
+._fhlaevk {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    letter-spacing: 1px !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    text-transform: undefined !important;
+    color: #484848 !important;
+    padding-top: undefined !important;
+    padding-bottom: undefined !important;
+    font-weight: 800 !important;
+}
+
+._djxl322 {
+    display: table !important;
+    position: relative !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+._ni9axhe {
+    display: table-cell !important;
+    vertical-align: middle !important;
+}
+
+._iv990q {
+    line-height: 36px !important;
+    letter-spacing: normal !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    text-transform: undefined !important;
+    color: #ffffff !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    font-weight: bold !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    position: absolute;
+    top: -100px;
+}
+
+._tpbrp {
+    padding: 20px 20px;
+    font-size: 32px;
+}
+
+.event-small-category {
+    word-wrap: break-word !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    letter-spacing: normal !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    text-transform: uppercase;
+    padding-top: 10px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    color: rgb(57, 87, 106);
+}
+
+.event-small-title {
+    overflow-wrap: break-word !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    letter-spacing: normal !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 800 !important;
+    margin: 0px !important;
+    text-transform: uppercase;
+}
+
+.event-title-large {
+    font-size: 14px !important;
+    line-height: 22px !important;
+    letter-spacing: normal !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    color: rgb(72, 72, 72) !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+
+
+}
+
+._3uc7cf {
+    cursor: pointer !important;
+    display: inline-block !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+    background: transparent !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: rgb(0, 132, 137) !important;
+    border-image: initial !important;
+    border-radius: 4px !important;
+    padding: 14px !important;
+    text-decoration: none !important;
+    color: rgb(0, 132, 137);
+    font-weight: bold;
+}
+
+.big-form {
+    height: 50px;
+}
+
+.Dropdown-control {
+    height: 50px;
+    padding-top: 10px;
+    font-family: Helvetica Neue;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.Dropdown-placeholder.is-selected {
+    font-family: Helvetica Neue;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+}
+
+.rdatez {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px 5px 20px 5px;
+}
+
+.pagination >.active > a {
+    background-color: #FF5A5F;
+    border-color: #FF5A5F
+}
+
+._1ejbzasf {
+    background-color: rgb(255, 255, 255) !important;
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 1px 1px 1px !important;
+    text-align: center !important;
+    line-height: 1 !important;
+    position: relative !important;
+    cursor: pointer !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding: 8px 16px !important;
+    border-radius: 50% !important;
+    border-width: initial !important;
+    border-style: none !important;
+    border-color: initial !important;
+    border-image: initial !important;
+}
+
+.navtab-view {
+    background-color: white;
+    padding: 8px 8px;
+    border-radius: 3px;
+    border: 1px solid white;
+    margin-right: 10px;
+}
+
+
+.fa-2x {
+    font-size: 1.5em;
+}
+
+.navtab-view.active {
+    background-color: rgb(255, 90, 95);
+    border: 1px solid rgb(255, 90, 95);
+    color: white
+}
+
+
+._12cyg0af {
+    cursor: pointer !important;
+    display: inline-block !important;
+    margin: 0px !important;
+    position: relative !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    -webkit-transition-property: background, border-color, color !important;
+    -moz-transition-property: background, border-color, color !important;
+    transition-property: background, border-color, color !important;
+    -webkit-transition-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+    -webkit-transition-timing-function: ease-out !important;
+    transition-timing-function: ease-out !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+    letter-spacing: normal !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-weight: 800 !important;
+    border-width: 2px !important;
+    border-style: solid !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    min-width: 77.66563145999496px !important;
+    box-shadow: none !important;
+    background: #FF5A5F !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+}
+
+
+

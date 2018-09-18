@@ -1,0 +1,100 @@
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 1px solid #d88;
+    width: 100%;
+}
+
+button {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.filter-panel {
+    background-color: #FFE2FB;
+    width:100%;
+    padding:20px;
+}
+.btn {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    color:#FFFFFF;
+    background-color: #f55692;
+    width:100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.btn:active {
+    background-color: #a22;
+}
+
+.btn:focus {
+    background-color: #b44;
+}
+
+.input-field {
+    height:40px;
+    display: inline-block;
+    width:100%;
+}
+
+.date-container {
+    display: inline-block;
+    width:50%;
+}
+
+.grey-text {
+    color: #dd8888;
+}
+
+.slide-pane__content {
+    padding: 0px;
+}
+
+#map {
+    margin-top:0px;
+    max-height:200px;
+}
+
+.clock-btn {
+    display: inline-block;
+    background-color: Transparent;
+    background-image: url(/assets/images/clock.png);
+    width:34px;
+    height:34px;
+    color:#FFFFFF;
+    margin-left:-34px;
+    padding:10px;
+    border-color:Transparent;
+}
+
+.calendar-btn {
+    display: inline-block;
+    background-color: Transparent;
+    background-image: url(/assets/images/calendar.png);
+    width:34px;
+    height:34px;
+    color:#FFFFFF;
+    margin-left:-34px;
+    padding:10px;
+    border-color:Transparent;
+}
+
+.location-btn {
+    display: inline-block;
+    background-color: Transparent;
+    background-image: url(/assets/images/map.png);
+    width:34px;
+    height:34px;
+    color:#FFFFFF;
+    margin-left:-34px;
+    padding:10px;
+    border-color:Transparent;
+}

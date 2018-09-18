@@ -1,0 +1,263 @@
+/* Modal popup */
+
+.styles_modal__gNwvD{
+    width: 1000px;
+}
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 100px;
+    background: #f1f1f1;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 20px;
+    text-align: right;
+    z-index: 1;
+}
+
+.popup.active {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+    -webkit-transition-timing-function: cubic-bezier(.4,0,.5,1);
+    -moz-transition-timing-function: cubic-bezier(.4,0,.5,1);
+    transition-timing-function: cubic-bezier(.4,0,.5,1);
+}
+
+.popup p {
+    margin: 0 0 20px;
+    text-align: left;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 3px;
+    color: #ffffff;
+    position: relative;
+    cursor: pointer;
+}
+
+.button.yes {
+    background: rgb(26, 188, 156);
+    margin-left: 6px;
+}
+
+.button.yes:hover {
+    background: rgb(29, 200, 166);
+}
+
+.button.no {
+    background: rgb(216, 73, 90);
+}
+
+.button.no:hover {
+    background: rgb(231, 79, 97);
+}
+
+.button:before {
+    content: "";
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%)translateY(-50%)scale(0);
+    border-radius: 50%;
+    z-index: 10;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+    -webkit-transition-timing-function: cubic-bezier(.4,0,.5,1);
+    -moz-transition-timing-function: cubic-bezier(.4,0,.5,1);
+    transition-timing-function: cubic-bezier(.4,0,.5,1);
+}
+
+.yes:before {
+    background: rgba(26, 188, 156, 1);
+}
+
+.no:before {
+    background: rgb(216, 73, 90);
+}
+
+.button.active:before {
+    transform: translateX(-50%)translateY(-50%)scale(1);
+}
+
+/* YES NO REPLY */
+
+.yes-reply,.no-reply {
+    display: none;
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    top: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+/* YES REPLY */
+
+.yes-reply.active,.no-reply.active {
+    display: block;
+}
+
+.yes-reply:before, .yes-reply:after,.no-reply:before, .no-reply:after {
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s;
+    -webkit-transition-timing-function: cubic-bezier(.4,0,.5,1);
+    -moz-transition-timing-function: cubic-bezier(.4,0,.5,1);
+    transition-timing-function: cubic-bezier(.4,0,.5,1);
+}
+
+.yes-reply:before {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 10px;
+    background: white;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    top: 54px;
+    left: 26px;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    transform-origin: top left;
+}
+
+.yes-reply:after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 10px;
+    background: white;
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    transform: rotate(225deg);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    top: 61px;
+    left: 33px;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    transform-origin: top left;
+}
+
+.yes-reply.active:before {
+    width: 50px;
+}
+
+.yes-reply.active:after {
+    width: 30px;
+}
+
+/* NO REPLY */
+
+.no-reply:before,.no-reply:after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 10px;
+    background: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    transform-origin: top left;
+}
+
+.no-reply:before {
+    -webkit-transform: rotate(-45deg)translateX(-50%)translateY(-50%);
+    -moz-transform: rotate(-45deg)translateX(-50%)translateY(-50%);
+    transform: rotate(-45deg)translateX(-50%)translateY(-50%);
+}
+
+.no-reply:after {
+    -webkit-transform: rotate(45deg)translateX(-50%)translateY(-50%);
+    -moz-transform: rotate(45deg)translateX(-50%)translateY(-50%);
+    transform: rotate(45deg)translateX(-50%)translateY(-50%);
+}
+
+.no-reply.active:before,.no-reply.active:after {
+    width: 50px;
+}
+
+.styles_closeButton__20ID4 {
+    display: none;
+}
+
+.error-message{
+    color: darkred;
+}
+._hauh0a {
+    background-color: #ffffff !important;
+    padding: 16px 20px 20px 0px !important;
+    z-index: 4 !important;
+    border-top: 1px solid #EBEBEB !important;
+    position: fixed;
+    bottom: 0px;
+    height: 80px;
+    width: 100%
+}
+
+._qy64md {
+    cursor: pointer !important;
+    display: inline-block !important;
+    margin: 0px !important;
+    position: relative !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    -webkit-transition-property: background, border-color, color !important;
+    -moz-transition-property: background, border-color, color !important;
+    transition-property: background, border-color, color !important;
+    -webkit-transition-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+    -webkit-transition-timing-function: ease-out !important;
+    transition-timing-function: ease-out !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+    letter-spacing: normal !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    text-transform: undefined !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-weight: 800 !important;
+    border-width: 2px !important;
+    border-style: solid !important;
+    min-width: 77.66563145999496px !important;
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+    box-shadow: none !important;
+    background: #FF5A5F !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+}
+
+.event-description {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+    letter-spacing: normal !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    text-transform: undefined !important;
+    color: #484848 !important;
+    text-align: left;
+}
