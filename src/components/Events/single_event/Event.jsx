@@ -5,8 +5,6 @@ import Auth from "../../../modules/Auth";
 import {browserHistory} from "react-router";
 import eventController from "../../../controllers/eventController";
 import {Link} from "react-router";
-import Helpers from "../../../modules/Helpers";
-
 
 
 // Showing one event details
@@ -143,9 +141,10 @@ class Event extends React.Component {
                         <div className="button no transition" style={{float: 'right'}}
                              onClick={this.onCloseConfirmModal}>Cancel
                         </div>
-                        <div className="error-message" style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
+                        <div className="error-message"
+                             style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
                             {
-                                this.state.error ?(
+                                this.state.error ? (
                                     <div>{this.state.error}. Please try again</div>
                                 ) : (
                                     <div></div>
@@ -161,18 +160,29 @@ class Event extends React.Component {
                                     {this.readImage(event.fields.image)}
                                 </Link>
                             </div>
-                            <div className="col-md-8 the-artist the-artist-horizontal events-page-list pad0 m-bot60" style={{paddingLeft: '10px', marginTop: '20px'}}>
+                            <div className="col-md-8 the-artist the-artist-horizontal events-page-list pad0 m-bot60"
+                                 style={{paddingLeft: '10px', marginTop: '20px'}}>
                                 <h3 className="_12ei9u44">{event.fields.event_title}</h3>
-                                <p className='event-description' style={{paddingBottom: '10px', paddingTop: '10px'}}>Participants: {event.fields.num_participants}</p>
-                                <p style={{textAlign: 'left', padding: '20px 0px 20px 0px', color: '#484848', fontWeight: 'bold'}}>Description</p>
-                                <p className='event-description' style={{paddingBottom: '20px', borderBottom: '1px solid #ccc'}}>
+                                <p className='event-description' style={{
+                                    paddingBottom: '10px',
+                                    paddingTop: '10px'
+                                }}>Participants: {event.fields.num_participants}</p>
+                                <p style={{
+                                    textAlign: 'left',
+                                    padding: '20px 0px 20px 0px',
+                                    color: '#484848',
+                                    fontWeight: 'bold'
+                                }}>Description</p>
+                                <p className='event-description'
+                                   style={{paddingBottom: '20px', borderBottom: '1px solid #ccc'}}>
                                     {event.fields.event_desc}
                                 </p>
                                 <div style={{height: '20px'}}></div>
 
                                 {
                                     (this.state.isParticipated || this.state.confirmEvent) ? (
-                                        <span style={{textAlign: 'right', paddingTop: '40px'}}> This event has been added <Link to="/my_schedule" style={{textDecoration: 'underline'}}>your schedule</Link></span>
+                                        <span style={{textAlign: 'right', paddingTop: '40px'}}> This event has been added <Link
+                                            to="/my_schedule" style={{textDecoration: 'underline'}}>your schedule</Link></span>
                                     ) : (
                                         <div></div>
                                     )
@@ -180,15 +190,15 @@ class Event extends React.Component {
 
 
                                 {/*<div className="button-share-events col-md-12 pad0">*/}
-                                    {/*<button type="button" className="btn btn-info">*/}
-                                        {/*<i className="fab fa-twitter"></i> Twitt*/}
-                                    {/*</button>*/}
-                                    {/*<button type="button" className="btn btn-primary">*/}
-                                        {/*<i className="far fa-thumbs-up"></i> Like*/}
-                                    {/*</button>*/}
-                                    {/*<button type="button" className="btn btn-danger">*/}
-                                        {/*<i className="fab fa-google-plus-g"></i>*/}
-                                    {/*</button>*/}
+                                {/*<button type="button" className="btn btn-info">*/}
+                                {/*<i className="fab fa-twitter"></i> Twitt*/}
+                                {/*</button>*/}
+                                {/*<button type="button" className="btn btn-primary">*/}
+                                {/*<i className="far fa-thumbs-up"></i> Like*/}
+                                {/*</button>*/}
+                                {/*<button type="button" className="btn btn-danger">*/}
+                                {/*<i className="fab fa-google-plus-g"></i>*/}
+                                {/*</button>*/}
                                 {/*</div>*/}
                             </div>
                         </div>
@@ -205,8 +215,9 @@ class Event extends React.Component {
 
                         ) : (
                             <div className="_hauh0a">
-                                <div style={{width: '108px', float: 'right', paddingBottom: '20px' }}>
-                                    <button type="button" className="schedule-button" onClick={this.onOpenConfirmModal}>Register
+                                <div style={{width: '108px', float: 'right', paddingBottom: '20px'}}>
+                                    <button type="button" className="schedule-button"
+                                            onClick={this.onOpenConfirmModal}>Register
                                     </button>
                                 </div>
                             </div>

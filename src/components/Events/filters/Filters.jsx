@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import { render } from 'react-dom';
 import Modal from 'react-modal';
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
