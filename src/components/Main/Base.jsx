@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 import Auth from '../../modules/Auth';
 import "../Main/css/Index.css";
+import $ from 'jquery';
 
 const styles = {
     navbar: {
@@ -18,31 +19,31 @@ class Base extends React.Component {
         }
     }
 
-    // componentDidMount() {
-    //     if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
-    //         $('#bs-example-navbar-collapse-1').removeClass("in")
-    //     }
-    //
-    //     $('#content').click(function () {
-    //         if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
-    //             $('#bs-example-navbar-collapse-1').removeClass("in")
-    //         }
-    //
-    //     });
-    // }
-    //
-    // componentWillUnmount() {
-    //     if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
-    //         $('#bs-example-navbar-collapse-1').removeClass("in")
-    //     }
-    //
-    //     $('#content').click(function () {
-    //         if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
-    //             $('#bs-example-navbar-collapse-1').removeClass("in")
-    //         }
-    //
-    //     });
-    // }
+    componentDidMount() {
+        if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+            $('#bs-example-navbar-collapse-1').removeClass("in")
+        }
+
+        $('#content').click(function () {
+            if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+                $('#bs-example-navbar-collapse-1').removeClass("in")
+            }
+
+        });
+    }
+
+    componentWillUnmount() {
+        if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+            $('#bs-example-navbar-collapse-1').removeClass("in")
+        }
+
+        $('#content').click(function () {
+            if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+                $('#bs-example-navbar-collapse-1').removeClass("in")
+            }
+
+        });
+    }
 
     render() {
         const {children} = this.props;
