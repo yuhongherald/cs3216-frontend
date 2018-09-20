@@ -77,6 +77,7 @@ eventController.createEvent = (data) => {
 };
 
 eventController.participateEvent = (data) => {
+    console.log(data);
     let response = axios.post(endPoint + '/api/v1/event/participate/', {
         eid: data.eid,
         op_type: data.op_type
@@ -111,6 +112,39 @@ eventController.getNearbyEvents = (data) => {
         }
     });
 };
+
+eventController.getParticipants = (data) => {
+    return axios.get(endPoint + '/api/v1/event/participators/', {
+        params: data
+    })
+        .then(response => {
+            return response.data;
+        })
+
+        .catch(err => {
+            return {
+                status: 'failed',
+                desc: err
+            }
+        });
+}
+
+eventController.getClickRecords = (data) => {
+   return axios.post(endPoint + '/api/v1/event/history_record/', {
+        eid: data.eid
+    })
+        .then(function (response) {
+            // handle success
+            return response.data
+        })
+        .catch(function (error) {
+            // handle error
+            return {
+                status: 'failed',
+                desc: error
+            }
+        });
+}
 
 
 export default eventController;

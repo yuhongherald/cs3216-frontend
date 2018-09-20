@@ -25,10 +25,6 @@ class Schedule extends React.Component {
     render() {
         return (
             <div>
-                <div className="sticky-header">
-                    <h1 className="text-center">Schedule</h1>
-                    {this.getDropdown()}
-                </div>
                 {this.getSchedule()}
             </div>
         )
@@ -81,6 +77,10 @@ class Schedule extends React.Component {
                     <Tab className="btn tab">{this.createEventSummary()}</Tab>
                 </TabList>
                 <span className="tab-container">
+                    <div className="sticky-header">
+                        <h1 className="text-center">Schedule</h1>
+                        {this.getDropdown()}
+                    </div>
                     <TabPanel className="createdEvents">
                         <br />
                         {this.createEventTemplate()}
@@ -119,7 +119,7 @@ class Schedule extends React.Component {
 
     createEventSummary() {
         return <div className="eventBanner">
-            <span className="eventLabel">
+            <span className="eventLabel event-title-large">
                 CS3216<br />
                 30 Sep<br />
                 Sun
@@ -166,6 +166,8 @@ class Schedule extends React.Component {
                                 </div>
                             </div>
                             <button className="exit-btn"></button>
+                            <h3>Ticket details</h3>
+            <img src="/assets/images/QR.png"/>
         </div>;
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Filters from '../../Events/filters/Filters.jsx';
 import EventsByPage from '../../Common/EventsByPage.jsx';
 import '../css/Index.css';
 import {Link} from 'react-router';

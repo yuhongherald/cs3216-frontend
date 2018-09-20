@@ -45,10 +45,8 @@ class Index extends React.Component {
     resetFilters() {
         this.setState({
             filters: {
-                address: '',
-                event_type: '',
-                event_start_date: '',
-                event_end_date: ''
+                page_limit: 10,
+                page_num: 1
             },
             gotFilters: false,
             events: false
@@ -256,7 +254,7 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                                    value={this.state.startDate} required/>
+                                                                    value={this.state.startDate} style={{width: '160px'}} required/>
                                                     </div>
                                                     <div className="_1k6rf4u" style={{width: '50%'}}>
                                                         <div>
@@ -266,7 +264,7 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                                    value={this.state.endDate} required/>
+                                                                    value={this.state.endDate} style={{width: '165px'}} required/>
                                                     </div>
 
 

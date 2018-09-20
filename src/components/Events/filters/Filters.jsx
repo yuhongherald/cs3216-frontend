@@ -126,7 +126,7 @@ class Filters extends React.Component {
         ];
 
         return <div ref={ref => this.el = ref}>
-            <p onClick={() => this.setState({ isPaneOpen: true })}><i className="fas fa-filter" style={{
+            <p onClick={() => this.setState({ isPaneOpen: true })}><i className="fas fa-search" style={{
                 marginRight: '10px',
                 fontSize: '16px',
                 color: "rgb(255, 90, 95)",

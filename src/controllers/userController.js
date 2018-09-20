@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 axios.defaults.withCredentials = true;
 
 let endPoint = "http://54.169.251.138";
@@ -64,6 +65,38 @@ userController.confirmAccount = (data) => {
             }
         })
     return response;
+}
+
+userController.eventParticipated = () => {
+    return axios.get(endPoint + '/api/v1/user/events_participated/')
+        .then(function (response) {
+            // handle success
+            return response.data
+        })
+        .catch(function (error) {
+            // handle error
+            return {
+                status: 'failed',
+                desc: error.message
+            }
+        });
+
+}
+
+userController.eventCreated = () => {
+    return axios.get(endPoint + '/api/v1/user/events_created/')
+        .then(function (response) {
+            // handle success
+            return response.data
+        })
+        .catch(function (error) {
+            // handle error
+            return {
+                status: 'failed',
+                desc: error.message
+            }
+        });
+
 }
 
 export default userController;

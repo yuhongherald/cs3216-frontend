@@ -218,10 +218,10 @@ class CreateEvent extends React.Component {
                                 <div className="form-group">
                                     <label className="control-label">START DATE
                                         <span>*</span>
-                                    </label>
-                                    <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                value={this.state.startDate} required/>
+                                    </label>    
                                 </div>
+                                <ReactDatez position="right" name="dateInput" handleChange={this.changeStartDate}
+                                                value={this.state.startDate} required/>
                             </div>
 
                             <div className="col-md-3 col-phone">
@@ -248,10 +248,11 @@ class CreateEvent extends React.Component {
                             <div className="col-md-3 col-phone">
                                 <div className="form-group">
                                     <label className="control-label">END DATE
-                                    </label>
-                                    <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                value={this.state.endDate}/>
+                                        <span>*</span>
+                                    </label>   
                                 </div>
+                                <ReactDatez name="dateInput" handleChange={this.changeEndDate}
+                                                value={this.state.endDate}/>
                             </div>
 
 

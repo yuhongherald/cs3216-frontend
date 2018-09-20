@@ -1,3 +1,13 @@
+.tab:focus {
+    /*background-color:#aef;*/
+    background-image: linear-gradient(to bottom right, #ededff , #fff, #ededff);
+}
+
+.tab:active {
+    background-color: #eef;
+    /*background-color:#9df;*/
+}
+
 
 .tab {
     height:120px;
@@ -11,10 +21,20 @@
     vertical-align: middle;
     touch-action: manipulation;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 12px solid transparent;
+    border-right-width: 6px;
+    border-left-width: 6px;
+    border-radius: 0px;
     white-space: nowrap;
     color:#FFFFFF;
-    background-color: #f55692;
+    /*background-color: #f55692;*/
+    /*background-image:url(/assets/images/stamp.png);*/
+    background-position: 40% 40%;
+    /*background-repeat: no-repeat;*/
+    /*background-color:#aef;*/
+    background-image: linear-gradient(to bottom right, #ededff , #fff, #ededff);
+    background-size: 120px 90px;
+    margin:-2px;
 }
 
 .tabList {
@@ -24,12 +44,22 @@
     margin-bottom: 0px;
 }
 
-.tab[aria-selected="true"] {
-    background-color: #f55692;
+.tab div span {
+    /*background-color: #f55692;*/
+    background-image: linear-gradient(to bottom right, lightsalmon , gold, lightsalmon);
 }
 
-.tab[aria-selected="false"] {
-    background-color: #fdd;
+.tab[aria-selected="true"] div {
+    opacity: 1.0;
+}
+
+.tab[aria-selected="false"] div span {
+    /*background-color: #fdd;*/
+    background-image: linear-gradient(to bottom right, #fec498, #dd9, #fec498);
+}
+
+.tab[aria-selected="false"] div {
+    opacity: 0.8;
 }
 
 /*Use relative styling for the 2 icons*/
@@ -41,11 +71,13 @@
     /*Need to stretch image*/
     width: 100%;
     height: 100%;
-    color:turquoise;
+    /*color:turquoise;*/
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     padding: 0px;
+    border: 1px solid #fff;
+    border-radius:4px;
 }
 
 .dateLabel {
@@ -73,6 +105,9 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .eventContent {
@@ -92,12 +127,36 @@
 }
 
 .participantContainer {
-    background-color:turquoise;
+    background-color:paleturquoise;
     height: 40px;
     border: solid 1px #b44;
-    border-radius: 4px;
+    border-radius: 20px;
     vertical-align: top;
     margin: 10px;
+}
+
+.participantContainer span {
+    display: inline-block;
+    height: 40px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.participantContainer span span {
+    height: 30px;
+    width: 30px;
+    vertical-align: center;
+    margin: 2px;
+    /*padding-top: 10px;*/
+    /*padding-bottom: 10px;*/
+}
+
+.participantContainer span div {
+    display: inline-block;
+    height: 30px;
+    margin: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .eventDetails {
@@ -146,16 +205,19 @@
     position: sticky;
     display: inline-block;
     width: 80%;
-    top: 160px;
+    top: 60px;
+    height: 90vh;
     vertical-align: top;
-    background-color: #fff4f4;
+    background-image: linear-gradient(to bottom right, #fff0da , #fff4f4, #fff0da);
+    /*background-color: #fff4f4;*/
 }
 
-.sticky-header {
+.sticky-header { /* not used */
     position: -webkit-sticky; /* Safari */
     position: sticky;
-    top: 60px;
+    top: 0;
     z-index: 1;
+    background-color: white;
 }
 
 .clock-icon {
@@ -195,6 +257,7 @@
     background-image: url(/assets/images/edit.png);
     background-color: transparent;
     width:34px;
+    height:34px !important;
     height:100%;
     color:#FFFFFF;
     margin-left:-34px;
@@ -247,10 +310,10 @@
     width:20px;
     height:20px;
     color:#FFFFFF;
-    margin-left:-20px;
+    margin-left: 0px;
     padding:10px;
     border-color:Transparent;
-    horiz-align: center;
+    border-radius:50%;
 
     background-size: cover;
     background-repeat: no-repeat;
@@ -263,10 +326,10 @@
     width:20px;
     height:20px;
     color:#FFFFFF;
-    margin-left:-20px;
-    horiz-align: center;
+    margin-left: 0px;
     padding:10px;
     border-color:Transparent;
+    border-radius:50%;
 
     background-size: contain;
     background-repeat: no-repeat;
@@ -276,11 +339,13 @@
 .delete-icon {
     display: inline-block;
     background-image: url(/assets/images/trash-can.png);
-    width:20px;
-    height:20px;
+    background-color: transparent;
+    width:30px;
+    height:30px;
+    margin:4px;
+    float: right;
     color:#FFFFFF;
-    margin-right: 0;
-    horiz-align: center;
+    margin-right: 4px;
     padding:10px;
     border-color:Transparent;
 
@@ -291,10 +356,31 @@
 
 .participantName {
     display: inline-block;
-    width: 35%;
+    width: 40%;
+    margin-left: -10px;
 }
 
 .participantNumber {
     display: inline-block;
-    width: 35%;
+    width: 40%;
+    margin-left: -10px;
+}
+
+.width-20 {
+    display: inline-block;
+    width: 20%;
+}
+
+.width-80 {
+    display: inline-block;
+    width: 80%;
+}
+
+.padded-btn {
+    border-width: 10px;
+    border-color: transparent;
+}
+
+#tabList {
+    background-color: #444;
 }

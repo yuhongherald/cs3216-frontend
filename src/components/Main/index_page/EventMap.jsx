@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 import {compose, withProps} from "recompose";
 import InfoBox from "react-google-maps/lib/components/addons/InfoBox";
-import marker from "../../../static/assets/images/marker.png";
+import marker from "../../../../static/assets/images/marker.png";
 import eventController from "../../../controllers/eventController";
 
 

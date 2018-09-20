@@ -79,6 +79,15 @@
     text-align: center;
 }
 
+.icon-title:hover {
+    text-decoration: underline;
+    color: #FF5A5F;
+}
+
+.icon-link {
+    color: #333 !important;
+}
+
 .border-top-bottom {
     border-bottom-width: 2px;
     border-bottom-style: solid;

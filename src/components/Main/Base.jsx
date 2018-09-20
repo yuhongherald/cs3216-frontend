@@ -7,7 +7,7 @@ const styles = {
     navbar: {
         color: '#FF5A5F',
         paddingTop: '10px'
-    },
+    }
 };
 
 class Base extends React.Component {
@@ -19,13 +19,30 @@ class Base extends React.Component {
     }
 
     componentDidMount() {
+        if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+            $('#bs-example-navbar-collapse-1').removeClass("in")
+        }
 
+        $('#content').click(function () {
+            if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+                $('#bs-example-navbar-collapse-1').removeClass("in")
+            }
+
+        });
     }
 
-    componentWillMount() {
+    componentWillUnmount() {
+        if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+            $('#bs-example-navbar-collapse-1').removeClass("in")
+        }
 
+        $('#content').click(function () {
+            if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+                $('#bs-example-navbar-collapse-1').removeClass("in")
+            }
+
+        });
     }
-
 
     render() {
         const {children} = this.props;
@@ -34,7 +51,6 @@ class Base extends React.Component {
             <div>
                 <div id="navigation-header">
                     <nav className="navbar navbar-default"  style={{paddingBottom: '10px'}} role="navigation">
-
                         <div className="container">
                             <div className="navbar-header">
                                 <button type="button" className="navbar-toggle" data-toggle="collapse"
@@ -60,8 +76,8 @@ class Base extends React.Component {
                                         <i className="fas fa-user" aria-hidden="true"></i>
                                         {Auth.getUserData().username}
                                     </li>
-                                    <li><Link to={`/schedule`}> My schedule</Link></li>
-                                    <li><Link to={`/manage`}> Manage events</Link></li>
+                                    <li><Link to={`/my-schedule`}> My schedule</Link></li>
+                                    <li><Link to={`/manage-events`}> Manage events</Link></li>
                                     <li><Link to={`/events/new`}>
                                         <button className="create-event">Create events</button>
                                     </Link></li>
@@ -76,7 +92,7 @@ class Base extends React.Component {
                             )}
                         </div>
                     </nav>
-                    <div>
+                    <div id="content">
                         {children}
                     </div>
                 </div>

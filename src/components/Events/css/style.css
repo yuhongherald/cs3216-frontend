@@ -3208,7 +3208,7 @@ figure.figure2.hover:after {
         padding-bottom: 10px;
     }
     .collapse.in{
-        display:block !important;
+        display:block ;
     }
     /*END Navbar.jsx Collapse Edit*/
 }
@@ -3219,7 +3219,7 @@ figure.figure2.hover:after {
 	}
 
     .collapse {
-        display: block!important;
+        display: block;
     }
     .container{
         padding: 0px;

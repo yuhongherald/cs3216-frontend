@@ -11,7 +11,6 @@ class EventsByCategory extends React.Component {
         this.state = {
             events: true
         }
-
     }
 
 

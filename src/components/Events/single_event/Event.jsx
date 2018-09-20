@@ -4,6 +4,9 @@ import '../css/Event.css';
 import Auth from "../../../modules/Auth";
 import {browserHistory} from "react-router";
 import eventController from "../../../controllers/eventController";
+import {Link} from "react-router";
+import Helpers from "../../../modules/Helpers";
+
 
 
 // Showing one event details
@@ -14,12 +17,17 @@ class Event extends React.Component {
         this.state = {
             event: false,
             openConfirmModal: false,
-            error: false
+            error: false,
+            isParticipated: false,
+            confirmEvent: false,
+            views: false
         }
         this.onOpenConfirmModal = this.onOpenConfirmModal.bind(this);
         this.onCloseConfirmModal = this.onCloseConfirmModal.bind(this);
         this.onClickConfirm = this.onClickConfirm.bind(this);
         this.getData = this.getData.bind(this);
+        this.readImage = this.readImage.bind(this);
+        this.getClicks = this.getClicks.bind(this);
     }
 
     onOpenConfirmModal() {
@@ -42,9 +50,12 @@ class Event extends React.Component {
         };
 
         eventController.getEvent(data).then(response => {
-            if (response.status === 'success') {
+            console.log(response);
+            if (response.status == 'success') {
+
                 this.setState({
-                    event: response.event
+                    event: JSON.parse(response.event),
+                    isParticipated: response.is_participated
                 });
             }
             else {
@@ -54,6 +65,25 @@ class Event extends React.Component {
             }
         });
     }
+
+    getClicks() {
+        let data = {
+            eid: this.props.params.eventID
+        };
+        eventController.getClickRecords(data).then(response => {
+            if (response.status === 'success') {
+                this.setState({
+                    views: response.views_count,
+                });
+            }
+            else {
+                this.setState({
+                    error: response.desc
+                });
+            }
+        });
+    }
+
 
     onClickConfirm() {
         let postData = {
@@ -63,6 +93,10 @@ class Event extends React.Component {
         eventController.participateEvent(postData).then(response => {
             if (response.status === 'success') {
                 this.onCloseConfirmModal();
+                this.getData();
+                this.setState({
+                    confirmEvent: true
+                })
             }
             else {
                 this.setState({
@@ -72,9 +106,22 @@ class Event extends React.Component {
         });
     }
 
+    readImage(file) {
+        return (
+            <img className="_154ar5hp" id="marqueeImage"
+                 alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
+                 sizes="100vw"
+                 src={`http://54.169.251.138/media/${file}`}
+                 height="300px"
+                 srcSet="">
+            </img>
+        )
+    }
+
 
     componentWillMount() {
-        this.getData()
+        this.getData();
+        this.getClicks();
     }
 
 
@@ -82,6 +129,7 @@ class Event extends React.Component {
 
         if (this.state.event) {
             let event = this.state.event;
+            console.log(event);
             return (
                 <div id="section-aboutus" className="section-eventsdetails">
                     <Modal open={this.state.openConfirmModal} onClose={this.onCloseConfirmModal} center
@@ -108,20 +156,28 @@ class Event extends React.Component {
                     </Modal>
                     <div>
                         <div>
-                            <div className="_2o6ibk"><img className="_154ar5hp" id="marqueeImage"
-                                                          alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
-                                                          sizes="100vw"
-                                                          src="https://cigaguides.thinknewr.com/wp-content/uploads/sites/2/2018/06/Event-Blogging-Strategies.jpg"
-                                                          height="300px"
-                                                          srcSet="">
-                            </img>
+                            <div className="_2o6ibk">
+                                <Link to={`/events/${event.pk}`}>
+                                    {this.readImage(event.fields.image)}
+                                </Link>
                             </div>
-                            <div className="col-md-8 the-artist the-artist-horizontal events-page-list pad0 m-bot60" style={{paddingLeft: '10px'}}>
-                                    <p style={{textAlign: 'left', padding: '20px 0px 20px 0px', color: '#484848', fontWeight: 'bold'}}>Description</p>
-                                <p className='event-description'>
-                                    Spend a unforgettable holiday in the enchanting surroundings of the town of Cisternino (reachable from the near airports of Bari and Brindisi). Trullo Edera offers a heaven of peace and tranquillity, set in an elevated position with a stunning view.
-
+                            <div className="col-md-8 the-artist the-artist-horizontal events-page-list pad0 m-bot60" style={{paddingLeft: '10px', marginTop: '20px'}}>
+                                <h3 className="_12ei9u44">{event.fields.event_title}</h3>
+                                <p className='event-description' style={{paddingBottom: '10px', paddingTop: '10px'}}>Participants: {event.fields.num_participants}</p>
+                                <p style={{textAlign: 'left', padding: '20px 0px 20px 0px', color: '#484848', fontWeight: 'bold'}}>Description</p>
+                                <p className='event-description' style={{paddingBottom: '20px', borderBottom: '1px solid #ccc'}}>
+                                    {event.fields.event_desc}
                                 </p>
+                                <div style={{height: '20px'}}></div>
+
+                                {
+                                    (this.state.isParticipated || this.state.confirmEvent) ? (
+                                        <span style={{textAlign: 'right', paddingTop: '40px'}}> This event has been added <Link to="/my_schedule" style={{textDecoration: 'underline'}}>your schedule</Link></span>
+                                    ) : (
+                                        <div></div>
+                                    )
+                                }
+
 
                                 {/*<div className="button-share-events col-md-12 pad0">*/}
                                     {/*<button type="button" className="btn btn-info">*/}
@@ -137,12 +193,26 @@ class Event extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="_hauh0a">
-                        <div style={{width: '108px', float: 'right', paddingBottom: '20px' }}>
-                            <button type="button" className="_qy64md" onClick={this.onOpenConfirmModal}>Register
-                            </button>
-                        </div>
-                    </div>
+
+                    {
+                        (this.state.isParticipated || this.state.confirmEvent) ? (
+                            <div className="_hauh0a">
+                                <div style={{width: '130px', float: 'right', paddingBottom: '20px'}}>
+                                    <button type="button" className="_qy64md green">Participating
+                                    </button>
+                                </div>
+                            </div>
+
+                        ) : (
+                            <div className="_hauh0a">
+                                <div style={{width: '108px', float: 'right', paddingBottom: '20px' }}>
+                                    <button type="button" className="schedule-button" onClick={this.onOpenConfirmModal}>Register
+                                    </button>
+                                </div>
+                            </div>
+                        )
+                    }
+
                 </div>
             )
         }
@@ -153,7 +223,13 @@ class Event extends React.Component {
         }
         else {
             return (
-                <div>Loading</div>
+                <div style={{height: '1000px'}}>
+                    <div className="guru-loader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             )
         }
 

@@ -3,6 +3,7 @@ import '../Events/css/Events.css';
 import eventController from '../../controllers/eventController.js';
 import Pagination from "react-js-pagination";
 import {Link} from 'react-router';
+import Helpers from "../../modules/Helpers";
 
 
 class EventsByPage extends React.Component {
@@ -121,7 +122,6 @@ class EventsByPage extends React.Component {
     }
 
     componentWillMount() {
-        console.log(this.state.events);
         this.getData();
     }
 
@@ -137,7 +137,13 @@ class EventsByPage extends React.Component {
 
         if(!this.state.events){
             return (
-                <div></div>
+                <div style={{height: '1000px'}}>
+                    <div className="guru-loader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             )
 
         }
@@ -145,7 +151,13 @@ class EventsByPage extends React.Component {
             if (!this.state.mapView) {
                 let events;
                 if (this.props.eventLimit === 'null') {
-                    events = this.state.events;
+                    if (this.props.events && this.state.events) {
+                        events = this.props.events;
+                    }
+                    else {
+                        events = this.state.events;
+                    }
+
                 }
                 else {
                     events = this.state.events.slice(0, this.props.eventLimit);
@@ -164,7 +176,8 @@ class EventsByPage extends React.Component {
                                 <div className="events-text">
                                     <Link to={`/events/${event.pk}`}><h3
                                         style={{textTransform: 'uppercase'}}>{event.fields.event_title}</h3></Link>
-                                    <p><span>Date:</span> {event.fields.event_start_date}</p>
+                                    <p><span>Participants: </span>{event.fields.num_participants}</p>
+                                    <p><span>Date:</span> {Helpers.dateConvert(event.fields.event_start_date)}</p>
                                     <p><span><i className="fas fa-map-marker-alt"
                                                 style={{
                                                     fontSize: '14px',
@@ -239,17 +252,23 @@ class EventsByPage extends React.Component {
         }
         else if (!this.state.events[0] && this.state.events) {
             return (
-                <div>No event</div>
+                <div style={{height: '1000px', color: 'rgb(255, 90, 95)'}}>Oops! We cannot find any event</div>
             )
         }
         else if (this.state.error) {
             return (
-                <div>{this.state.error}</div>
+                <div style={{height: '1000px', color: 'rgb(255, 90, 95)'}}>{this.state.error}</div>
             )
         }
         else {
             return (
-                <div>Loading</div>
+                <div style={{height: '1000px'}}>
+                    <div className="guru-loader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             )
         }
 

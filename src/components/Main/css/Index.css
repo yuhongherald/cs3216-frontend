@@ -9,10 +9,6 @@
 }
 
 .create-event {
-
-}
-
-.create-event {
     margin: 0 auto;
     text-align: center;
     background-color: #FF5A5F;
@@ -25,3 +21,5 @@
 .ReactModal__Overlay.ReactModal__Overlay--after-open.slide-pane__overlay {
     z-index: 99;
 }
+
+

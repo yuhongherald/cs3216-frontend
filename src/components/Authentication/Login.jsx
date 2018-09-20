@@ -43,7 +43,6 @@ class Login extends React.Component {
                 });
                 Auth.authenticateUser(this.state.user);
                 hashHistory.goBack();
-                ;
             }
             else {
                 this.setState({
@@ -106,16 +105,31 @@ class Login extends React.Component {
 
     render() {
 
+        let googleLogin = {
+            display: 'inline-block',
+            background: 'rgb(209, 72, 54)',
+            color: 'rgb(255, 255, 255)',
+            width: '140px',
+            paddingTop: '10px',
+            paddingBottom: '10px',
+            borderRadius: '2px',
+            border: '1px solid transparent',
+            fontSize: '12px',
+            fontWeight: 'bold',
+            fontFamily: 'Roboto',
+            opacity: '1.0 !important'
+        }
+
         const FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
         const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
         return (
             <div>
-                <h3 style={{textAlign: 'center', 'color': 'rgb(209, 72, 54)', margin: '40px 0px 40px 0px'}}>Please log
+                <h3 style={{textAlign: 'center', 'color': 'rgb(255, 90, 95)', margin: '40px 0px 40px 0px'}}>Please log
                     in</h3>
                 <div className="login-box">
-                    <div className="lb-header">
-                        <Link to="/login" className="active" id="login-box-link">Login</Link>
-                        <Link to="/signup" id="signup-box-link">Sign Up</Link>
+                    <div className="lb-header" style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
+                        <Link to="/login" className="active" id="login-box-link" style={{'textAlign': 'left', width: '35%'}}>Login</Link>
+                        <Link to="/signup" id="signup-box-link" style={{'textAlign': 'left', width: '50%'}}>Sign Up</Link>
                     </div>
                     <div className="social-login">
                         <FacebookLogin
@@ -124,13 +138,19 @@ class Login extends React.Component {
                             callback={this.responseFacebook}
                         />
 
+                        <div className="or" style={{display: 'inline-block'}}>OR</div>
+
                         <GoogleLogin
                             clientId={GOOGLE_CLIENT_ID}
                             buttonText="Login with Google"
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
+                            style={googleLogin}
                         />
+
                     </div>
+
+
 
                     <form className="email-login">
                         <div className="field-line">
@@ -144,7 +164,7 @@ class Login extends React.Component {
 
                         <div className="field-line">
                             <TextField className="u-form-group"
-                                       label="password"
+                                       label="Password"
                                        type="password"
                                        name="password"
                                        value={this.state.user.password}
@@ -157,9 +177,9 @@ class Login extends React.Component {
                         </div>
 
 
-                        <div className="u-form-group">
-                            <a href="#" className="forgot-password">Forgot password?</a>
-                        </div>
+                        {/*<div className="u-form-group">*/}
+                            {/*<a href="#" className="forgot-password">Forgot password?</a>*/}
+                        {/*</div>*/}
 
                     </form>
 

@@ -152,13 +152,12 @@ class Signup extends React.Component {
                         }
                     </Modal>
                     <div className = "login-box" >
-                        <div className="lb-header">
-                            <Link to="/login" id="login-box-link"> Login </Link>
-                            <Link to="/signup" className="active" id="signup-box-link">Sign Up</Link>
-
-                        </div>
+                        <div className="lb-header" style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
+                            <Link to="/login"  id="login-box-link" style={{'textAlign': 'left', width: '35%'}}>Login</Link>
+                            <Link to="/signup" className="active" id="signup-box-link" style={{'textAlign': 'left', width: '50%'}}>Sign Up</Link>
+                         </div>
                         <form className="email-login">
-                            <h2 className="card-heading">Sign up</h2>
+                            <h2 className="card-heading" style={{textAlign: 'left', paddingLeft: '20px', color: 'rgb(255, 90, 95)'}}>Sign up</h2>
                             <div className="field-line">
                                 <TextField
                                     label="Full Name"

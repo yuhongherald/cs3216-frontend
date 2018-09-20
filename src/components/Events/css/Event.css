@@ -1,8 +1,9 @@
 /* Modal popup */
 
-.styles_modal__gNwvD{
+.styles_modal__gNwvD {
     width: 1000px;
 }
+
 .popup {
     position: absolute;
     top: 50%;
@@ -24,9 +25,9 @@
     -webkit-transition: .5s;
     -moz-transition: .5s;
     transition: .5s;
-    -webkit-transition-timing-function: cubic-bezier(.4,0,.5,1);
-    -moz-transition-timing-function: cubic-bezier(.4,0,.5,1);
-    transition-timing-function: cubic-bezier(.4,0,.5,1);
+    -webkit-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+    -moz-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+    transition-timing-function: cubic-bezier(.4, 0, .5, 1);
 }
 
 .popup p {
@@ -67,15 +68,15 @@
     height: 800px;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%)translateY(-50%)scale(0);
+    transform: translateX(-50%) translateY(-50%) scale(0);
     border-radius: 50%;
     z-index: 10;
     -webkit-transition: .5s;
     -moz-transition: .5s;
     transition: .5s;
-    -webkit-transition-timing-function: cubic-bezier(.4,0,.5,1);
-    -moz-transition-timing-function: cubic-bezier(.4,0,.5,1);
-    transition-timing-function: cubic-bezier(.4,0,.5,1);
+    -webkit-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+    -moz-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+    transition-timing-function: cubic-bezier(.4, 0, .5, 1);
 }
 
 .yes:before {
@@ -87,12 +88,12 @@
 }
 
 .button.active:before {
-    transform: translateX(-50%)translateY(-50%)scale(1);
+    transform: translateX(-50%) translateY(-50%) scale(1);
 }
 
 /* YES NO REPLY */
 
-.yes-reply,.no-reply {
+.yes-reply, .no-reply {
     display: none;
     position: absolute;
     z-index: 20;
@@ -104,17 +105,17 @@
 
 /* YES REPLY */
 
-.yes-reply.active,.no-reply.active {
+.yes-reply.active, .no-reply.active {
     display: block;
 }
 
-.yes-reply:before, .yes-reply:after,.no-reply:before, .no-reply:after {
+.yes-reply:before, .yes-reply:after, .no-reply:before, .no-reply:after {
     -webkit-transition: .5s;
     -moz-transition: .5s;
     transition: .5s;
-    -webkit-transition-timing-function: cubic-bezier(.4,0,.5,1);
-    -moz-transition-timing-function: cubic-bezier(.4,0,.5,1);
-    transition-timing-function: cubic-bezier(.4,0,.5,1);
+    -webkit-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+    -moz-transition-timing-function: cubic-bezier(.4, 0, .5, 1);
+    transition-timing-function: cubic-bezier(.4, 0, .5, 1);
 }
 
 .yes-reply:before {
@@ -165,7 +166,7 @@
 
 /* NO REPLY */
 
-.no-reply:before,.no-reply:after {
+.no-reply:before, .no-reply:after {
     content: "";
     position: absolute;
     width: 0px;
@@ -182,18 +183,18 @@
 }
 
 .no-reply:before {
-    -webkit-transform: rotate(-45deg)translateX(-50%)translateY(-50%);
-    -moz-transform: rotate(-45deg)translateX(-50%)translateY(-50%);
-    transform: rotate(-45deg)translateX(-50%)translateY(-50%);
+    -webkit-transform: rotate(-45deg) translateX(-50%) translateY(-50%);
+    -moz-transform: rotate(-45deg) translateX(-50%) translateY(-50%);
+    transform: rotate(-45deg) translateX(-50%) translateY(-50%);
 }
 
 .no-reply:after {
-    -webkit-transform: rotate(45deg)translateX(-50%)translateY(-50%);
-    -moz-transform: rotate(45deg)translateX(-50%)translateY(-50%);
-    transform: rotate(45deg)translateX(-50%)translateY(-50%);
+    -webkit-transform: rotate(45deg) translateX(-50%) translateY(-50%);
+    -moz-transform: rotate(45deg) translateX(-50%) translateY(-50%);
+    transform: rotate(45deg) translateX(-50%) translateY(-50%);
 }
 
-.no-reply.active:before,.no-reply.active:after {
+.no-reply.active:before, .no-reply.active:after {
     width: 50px;
 }
 
@@ -201,9 +202,10 @@
     display: none;
 }
 
-.error-message{
+.error-message {
     color: darkred;
 }
+
 ._hauh0a {
     background-color: #ffffff !important;
     padding: 16px 20px 20px 0px !important;
@@ -234,7 +236,7 @@
     font-size: 16px !important;
     line-height: 22px !important;
     letter-spacing: normal !important;
-    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
     text-transform: undefined !important;
     padding-top: 12px !important;
     padding-bottom: 12px !important;
@@ -245,9 +247,13 @@
     padding-right: 8px !important;
     padding-left: 8px !important;
     box-shadow: none !important;
-    background: #FF5A5F !important;
+    background: #FF5A5F;
     border-color: transparent !important;
     color: #ffffff !important;
+}
+
+._qy64md.green {
+    background-color: #008489
 }
 
 .event-description {
@@ -256,8 +262,28 @@
     font-size: 16px !important;
     line-height: 22px !important;
     letter-spacing: normal !important;
-    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
     text-transform: undefined !important;
     color: #484848 !important;
     text-align: left;
+}
+
+.the-artist-horizontal h3 {
+    font-weight: 800 !important;
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    line-height: 36px !important;
+    letter-spacing: normal !important;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    text-transform: uppercase !important;
+    color: #008489 !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    text-align: left;
+    font-size: 24px;
+    text-align: left
+}
+
+.rdatez input {
+    border: none
 }
