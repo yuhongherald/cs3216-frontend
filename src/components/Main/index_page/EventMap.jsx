@@ -4,6 +4,7 @@ import {compose, withProps} from "recompose";
 import InfoBox from "react-google-maps/lib/components/addons/InfoBox";
 import marker from "../../../static/assets/images/marker.png";
 import eventController from "../../../controllers/eventController";
+import {Link} from "react-router";
 
 
 const MyMapComponent = compose(
@@ -33,9 +34,20 @@ const MyMapComponent = compose(
                         enableEventPropagation: true
                     }}>
                         <div style={{backgroundColor: `white`, opacity: 0.75, padding: `12px`}}>
-                            <div style={{fontSize: `14px`, fontColor: `#08233B`}}>
-                                {props.events[index].fields.event_title}
+                            <div style={{fontSize: `14px`, fontColor: `#008489`}}>
+                                <Link to={`/events/${props.events[index].pk}`}>{props.events[index].fields.event_title}</Link>
                             </div>
+                            <p style={{fontSize: `10px`, fontColor: `#ccc`}}><i className="fas fa-map-marker-alt"
+                                style={{
+                                    fontSize: '10px',
+                                    padding: '2px 3px 2px 3px',
+                                    color: 'rgb(0, 132, 137)',
+                                    borderRadius: '50%',
+                                    backgroundColor: 'white',
+                                    border: '1px solid #ccc',
+                                    margin: '0px 13px 0px 5px'
+
+                                }}></i>{props.events[index].fields.address}</p>
                         </div>
                     </InfoBox>}
                 </Marker>
@@ -131,14 +143,16 @@ export default class EventMap extends Component {
 
     render() {
         return (
-            <MyMapComponent
-                defaultCenter={this.state.center}
-                toToggleOpen={this.toToggleOpen.bind(this)}
-                toToggleClose={this.toToggleClose.bind(this)}
-                locations={this.state.locations}
-                cur_open={this.state.cur_open}
-                events={this.state.events}
-            />
+            <div>
+                <MyMapComponent
+                    defaultCenter={this.state.center}
+                    toToggleOpen={this.toToggleOpen.bind(this)}
+                    toToggleClose={this.toToggleClose.bind(this)}
+                    locations={this.state.locations}
+                    cur_open={this.state.cur_open}
+                    events={this.state.events}
+                />
+            </div>
         );
     }
 }

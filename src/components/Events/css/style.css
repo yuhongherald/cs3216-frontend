@@ -160,7 +160,7 @@ li {
   	position: absolute;
   	top: 3px;
   	left: 2px;
-  	border: 2px solid #f55692;
+  	border: 2px solid #FF5A5F;
   	border-top: none;
   	border-right: none;
   	background: transparent;
@@ -450,7 +450,7 @@ figure.figure2.hover:after {
 }
 .top-address{
     border-right: 1px solid #b2b2b2;
-    color: #f55692;
+    color: #FF5A5F;
     font-size: 13px; /* Edited */
     padding-left: 28px;
     padding-right: 40px;
@@ -588,7 +588,7 @@ figure.figure2.hover:after {
   	position: absolute;
 }
 .swiper-pagination-bullet-active {
-    background: #f55692;
+    background: #FF5A5F;
 }
 /*====================
  *   05.SEARCH BAR   *
@@ -626,7 +626,7 @@ figure.figure2.hover:after {
     border: none !important;
 }
 .searchbar-column > label{
-    color: #f55692;
+    color: #FF5A5F;
     margin-left: 12px;
 }
 .searchbar-column > .bootstrap-select > button > span {
@@ -645,8 +645,8 @@ figure.figure2.hover:after {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
-    background-color: #f55692 !important;
-    border-color: #f55692 !important;
+    background-color: #FF5A5F !important;
+    border-color: #FF5A5F !important;
     transition: all 0.2s ease;
     font-size: 12px;
     font-family: 'Raleway', sans-serif;
@@ -688,12 +688,12 @@ figure.figure2.hover:after {
     width: 91px;
     height: 163%;
     bottom: 0;
-    border-top: 2px solid #f55692;
+    border-top: 2px solid #FF5A5F;
 }
 #section-aboutus .content-left h2, #section-aboutus .content-right h2{
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    color: #f55692;
+    color: #FF5A5F;
     margin-top: 16px;
 }
 #section-aboutus .content-left p, #section-aboutus .content-right p{
@@ -734,7 +734,7 @@ figure.figure2.hover:after {
     margin: auto;
     right: 0;
     left: 0;
-    border-top: 2px solid #f55692;
+    border-top: 2px solid #FF5A5F;
 }
 #section-upcomingevents > .container > div > p{
     font-family: 'Montserrat', sans-serif;
@@ -764,7 +764,7 @@ figure.figure2.hover:after {
     border: 1px solid #d1d1d2;
 }
 .upcoming-events-carousel > .owl-nav > .owl-prev:hover, .upcoming-events-carousel > .owl-nav > .owl-next:hover{
-    background-color: #f55692;
+    background-color: #FF5A5F;
     border: 1px solid #fff;
 }
 .upcoming-events-carousel > .owl-nav > .owl-next{
@@ -794,7 +794,7 @@ figure.figure2.hover:after {
     font-family: 'Montserrat', sans-serif;
     font-size: 12px; /* Edited */
     color: #fff;
-    background-color: #f55692;
+    background-color: #FF5A5F;
     padding: 5px 10px;
     border-radius: 3px;
     margin-top: -13px;
@@ -815,7 +815,7 @@ figure.figure2.hover:after {
     color: transparent;
 }
 .events-description .icon-border, .events-description .icon-color{
-    color: #f55692;
+    color: #FF5A5F;
 }
 .events-description > .events-text{
     margin-top: 30px;
@@ -841,7 +841,7 @@ figure.figure2.hover:after {
 }
 #section-upcomingevents > .container > .btn-viewallevents > a:hover{
     color: #fff;
-    background-color: #f55692;
+    background-color: #FF5A5F;
     border: 1px solid #fff;
     transition: all 0.2s ease;
 }
@@ -866,7 +866,7 @@ figure.figure2.hover:after {
 }
 .btn-viewallpost > a:hover{
     color: #fff;
-    background-color: #f55692;
+    background-color: #FF5A5F;
     border: 1px solid #fff;
     transition: all 0.2s ease;
 }
@@ -887,20 +887,20 @@ figure.figure2.hover:after {
     display: inline-block;
     width: 30px;
     height: 30px;
-    border: 2px solid #f55692;
+    border: 2px solid #FF5A5F;
     border-radius: 100%;
    /* margin-right: 10px; */ /*space between*/
 } 
 .btn_upcomingevents a i{
     font-size: 15px;
     margin-top: 7px;
-    color: #f55692;
+    color: #FF5A5F;
     font-weight: 800;
     margin-left: 2px;
 }
 .btn_upcomingevents a:hover {
-    background-color:#f55692;
-    border: 1px solid #f55692;
+    background-color:#FF5A5F;
+    border: 1px solid #FF5A5F;
 } 
 .btn_upcomingevents a:hover i{
   	color:#fff;
@@ -918,20 +918,20 @@ figure.figure2.hover:after {
     display: inline-block;
     width: 30px;
     height: 30px;
-    border: 2px solid #f55692;
+    border: 2px solid #FF5A5F;
     border-radius: 100%;
     margin-right: 10px; /*space between*/
 } 
 .btn-artistlive a i{
     font-size: 15px;
     margin-top: 7px;
-    color: #f55692;
+    color: #FF5A5F;
     font-weight: 800;
     margin-left: 2px;
 }
 .btn-artistlive a:hover {
-    background-color:#f55692;
-    border: 1px solid #f55692;
+    background-color:#FF5A5F;
+    border: 1px solid #FF5A5F;
 } 
 .btn-artistlive a:hover i{
   	color:#fff;
@@ -958,7 +958,7 @@ figure.figure2.hover:after {
     margin: auto;
     right: 0;
     left: 0;
-    border-top: 2px solid #f55692;
+    border-top: 2px solid #FF5A5F;
 }
 #section-mapsevents > .container-fluid > div > p{
     font-family: 'Montserrat', sans-serif;
@@ -998,7 +998,7 @@ figure.figure2.hover:after {
     margin: auto;
     right: 0;
     left: 0;
-    border-top: 2px solid #f55692;
+    border-top: 2px solid #FF5A5F;
 }
 #section-latestartist > .container > div > p{
     font-family: 'Montserrat', sans-serif;
@@ -1066,7 +1066,7 @@ figure.figure2.hover:after {
     margin: auto;
     right: 0;
     left: 0;
-    border-top: 2px solid #f55692;
+    border-top: 2px solid #FF5A5F;
 }
 #section-latesteventgallery > .container > div > p{
     font-family: 'Montserrat', sans-serif;
@@ -1097,7 +1097,7 @@ figure.figure2.hover:after {
     box-shadow: -1px 0 15px rgba(0, 0, 0, 0.2);
 }
 .latest-event > .owl-nav > .owl-prev:hover, .latest-event > .owl-nav > .owl-next:hover{
-    background-color: #f55692;
+    background-color: #FF5A5F;
     border: 1px solid #fff;
 }
 
@@ -1136,7 +1136,7 @@ figure.figure2.hover:after {
     width: 91px;
     height: 185%;
     bottom: 0;
-    border-top: 2px solid #f55692;
+    border-top: 2px solid #FF5A5F;
 }
 #section-threecolumns > .container > .row > .latest-comments-blogposts-reviews{
     margin-bottom: 30px;
@@ -1230,7 +1230,7 @@ figure.figure2.hover:after {
     margin: auto;
     right: 0;
     left: 0;
-    border-top: 2px solid #f55692;
+    border-top: 2px solid #FF5A5F;
 }
 #section-genretypes p{
     font-family: 'Montserrat', sans-serif;
@@ -1305,8 +1305,8 @@ figure.figure2.hover:after {
     font-weight: 800;
 }
 .rating-stars a:hover {
-    background-color:#f55692;
-    border: 1px solid #f55692;
+    background-color:#FF5A5F;
+    border: 1px solid #FF5A5F;
 } 
 .rating-stars a:hover i{
   	color:#fff;
@@ -1487,7 +1487,7 @@ figure.figure2.hover:after {
 }
 .artist-live .events-description .events-text span{
     font-family: 'Open Sans', sans-serif;
-    color: #f55692;
+    color: #FF5A5F;
 }
 .artist-live .events-description > a > .btn-icons {
     margin-top: -75px;
@@ -1505,20 +1505,20 @@ figure.figure2.hover:after {
     display: inline-block;
     width: 30px;
     height: 30px;
-    border: 2px solid #f55692;
+    border: 2px solid #FF5A5F;
     border-radius: 100%;
     margin-right: 10px; /*space between*/
 } 
 .btn_artistlive a i{
     font-size: 15px;
     margin-top: 7px;
-    color: #f55692;
+    color: #FF5A5F;
     font-weight: 800;
     margin-left: 2px;
 }
 .btn_artistlive a:hover {
-    background-color:#f55692;
-    border: 1px solid #f55692;
+    background-color:#FF5A5F;
+    border: 1px solid #FF5A5F;
 } 
 .btn_artistlive a:hover i{
   	color:#fff;
@@ -1534,7 +1534,7 @@ figure.figure2.hover:after {
     transition: all 0.2s ease;
 }
 .artist-events-sidebar a:hover{
-    color: #f55692;
+    color: #FF5A5F;
     transition: all 0.2s ease;
     cursor: pointer;
 }
@@ -1669,7 +1669,7 @@ figure.figure2.hover:after {
     color: #202020;
 }
 .events-description-artistdetails .events-text span{
-    color: #f55692;
+    color: #FF5A5F;
 
 }
 .events-description-artistdetails > a > .btn-icons {
@@ -1686,7 +1686,7 @@ figure.figure2.hover:after {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 .events-description-artistdetails .icon-border, .events-description-artistdetails .icon-color {
-    color: #f55692;
+    color: #FF5A5F;
 }
 .events-description-artistdetails .icon-background {
     color: transparent;
@@ -1755,7 +1755,7 @@ figure.figure2.hover:after {
     position: relative;
 }
 .carousel-artistdetails > .owl-nav > .owl-prev:hover, .carousel-artistdetails > .owl-nav > .owl-next:hover{
-    background-color: #f55692;
+    background-color: #FF5A5F;
     border: 1px solid #fff;
 }
 
@@ -1838,7 +1838,7 @@ figure.figure2.hover:after {
     margin: auto;
     right: 0;
     left: 0;
-    border-top: 2px solid #f55692;
+    border-top: 2px solid #FF5A5F;
 }
 #section-lestblog > .container > .content-left > .text-center p{
     font-family: 'Montserrat', sans-serif;
@@ -1904,7 +1904,7 @@ figure.figure2.hover:after {
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
     color: #fff;
-    background-color: #f55692;
+    background-color: #FF5A5F;
     padding: 5px 10px;
     border-radius: 3px;
     margin-top: -13px;
@@ -1922,10 +1922,10 @@ figure.figure2.hover:after {
     color: #fff;
     text-align: center;
     height: 0;
-    border-right: 50px solid #f55692;
+    border-right: 50px solid #FF5A5F;
     border-top: 0px solid transparent;
     border-left: 20px solid transparent;
-    border-bottom: 60px solid #f55692;
+    border-bottom: 60px solid #FF5A5F;
 }
 .text-slider3 .pricing i{
     font-size: 11px;
@@ -1951,7 +1951,7 @@ figure.figure2.hover:after {
 .text-slider3 .address{
     margin-top: 30px;
     margin-left: 20px;
-    color: #f55692;
+    color: #FF5A5F;
 }
 /*Slider Text 4*/
 .swiper-slide > .text-slide {
@@ -1991,7 +1991,7 @@ figure.figure2.hover:after {
     font-family: 'Montserrat', sans-serif;
     font-size: 12px; /* Edited */
     color: #fff;
-    background-color: #f55692;
+    background-color: #FF5A5F;
     padding: 5px 10px;
     border-radius: 3px;
     margin-top: -13px;
@@ -2009,10 +2009,10 @@ figure.figure2.hover:after {
     color: #fff;
     text-align: center;
     height: 0;
-    border-right: 50px solid #f55692;
+    border-right: 50px solid #FF5A5F;
     border-top: 0px solid transparent;
     border-left: 20px solid transparent;
-    border-bottom: 60px solid #f55692;
+    border-bottom: 60px solid #FF5A5F;
 }
 .text-slider4 .pricing i{
     font-size: 11px;
@@ -2038,7 +2038,7 @@ figure.figure2.hover:after {
 .text-slider4 .address{
     margin-top: 30px;
     margin-left: 20px;
-    color: #f55692;
+    color: #FF5A5F;
     font-size: 14px;
 }
 /* 8.2 Content Right*/
@@ -2228,7 +2228,7 @@ figure.figure2.hover:after {
   	transition: all 0.2s ease;
 }
 #section-breadcrumb a:hover, #section-breadcrumb2 a:hover{
-  	color: #f55692;
+  	color: #FF5A5F;
   	transition: all 0.2s ease;
 }
 
@@ -2381,7 +2381,7 @@ figure.figure2.hover:after {
   	margin-top: 7px;
 }
 .sidebar-popularcategories .popularcategories-item h5:hover{
-	color: #f55692;
+	color: #FF5A5F;
 }
 .popularcategories-item input[type="checkbox"] {
     margin-right: 5px;
@@ -2439,7 +2439,7 @@ figure.figure2.hover:after {
     transition: all 0.2s ease;
 }
 .sidebar-tags span:hover{
-	background-color:#f55692;
+	background-color:#FF5A5F;
 	color: #fff;
 	transition: all 0.2s ease;
 }
@@ -2465,7 +2465,7 @@ figure.figure2.hover:after {
     transition: all 0.2s ease;
 }
 .sidebar-tags span:hover{
-	background-color:#f55692;
+	background-color:#FF5A5F;
 	color: #fff;
 	transition: all 0.2s ease;
 }
@@ -2558,12 +2558,12 @@ figure.figure2.hover:after {
     width: 15px;
     height: 15px;
     margin-top: 0px;
-    border: 5px solid #f55692;
+    border: 5px solid #FF5A5F;
     background: #fff;
     cursor: pointer;
 }
 #slider-range .ui-slider-range{
-    background:#f55692;
+    background:#FF5A5F;
 }
 #slider-range .ui-corner-all{
     border-radius:10px;
@@ -2579,7 +2579,7 @@ figure.figure2.hover:after {
     float: right;
 }
 .btn-black:hover{
-    background-color: #f55692;
+    background-color: #FF5A5F;
     color: #fff;
     transition: all 0.2s ease;
 }
@@ -2588,7 +2588,7 @@ figure.figure2.hover:after {
 .pagination > .active > a, .pagination > .active > span, 
 .pagination > .active > a:hover, .pagination > .active > span:hover, 
 .pagination > .active > a:focus, .pagination > .active > span:focus{
-	background-color: #f55692;
+	background-color: rgb(255, 90, 95);
     border: none;
 }
 .pagination > li:first-child > a, .pagination > li:first-child > span{
@@ -2846,7 +2846,7 @@ figure.figure2.hover:after {
     border-radius: 25px;
 }
 .pink{
-    background-color: #f55692;
+    background-color: #FF5A5F;
     border-radius: 3px;
     padding: 3px 5px;
     margin: 0px 5px;
@@ -2871,12 +2871,12 @@ figure.figure2.hover:after {
     .carousel-artistdetails > .owl-nav > .owl-prev{
         margin-left: -17px;
         color: #fff;
-        background-color: #f55692;
+        background-color: #FF5A5F;
     }
     .carousel-artistdetails > .owl-nav > .owl-next{
         margin-right: -17px;
         color: #fff;
-        background-color: #f55692;
+        background-color: #FF5A5F;
     }
 }
 @media only screen and (max-width: 1265px){
@@ -3240,7 +3240,7 @@ figure.figure2.hover:after {
 }
 
 .pink-borderless {
-    background-color: #f55692;
+    background-color: #FF5A5F;
 }
 
 

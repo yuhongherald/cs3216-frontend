@@ -6,6 +6,7 @@ import {Link} from 'react-router';
 import Helpers from "../../modules/Helpers";
 
 
+
 class EventsByPage extends React.Component {
 
     constructor(props) {
@@ -20,7 +21,8 @@ class EventsByPage extends React.Component {
             filters: this.props.filters,
             smallView: this.props.smallView,
             mapView: this.props.mapView,
-            imagePreviewUrl: ''
+            imagePreviewUrl: '',
+            gotFilters: this.props.gotFilters
         };
         this.getData = this.getData.bind(this);
         this.handlePageChange = this.handlePageChange.bind(this);
@@ -57,10 +59,18 @@ class EventsByPage extends React.Component {
 
         eventController.getEvents(data).then(response => {
             if (response.status === 'success') {
-                this.setState({
-                    totalCount: response.total_pages,
-                    events: JSON.parse(response.events)
-                });
+                if (response.events === null) {
+                    this.setState({
+                        totalCount: response.total_pages,
+                        events: []
+                    });
+                }
+                else {
+                    this.setState({
+                        totalCount: response.total_pages,
+                        events: JSON.parse(response.events)
+                    });
+                }
 
 
             }
@@ -126,7 +136,7 @@ class EventsByPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(JSON.stringify(this.props.events) !== JSON.stringify(nextProps.events)) // Check if it's a new user, you can also use some unique property, like the ID
+        if(JSON.stringify(this.props.gotFilters) !== JSON.stringify(nextProps.gotFilters)) // Check if it's a new user, you can also use some unique property, like the ID
         {
             this.getData();
         }

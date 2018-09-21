@@ -9,7 +9,8 @@ import {ReactDatez} from 'react-datez';
 import 'react-datez/dist/css/react-datez.css';
 import EventsByPage from "../../Common/EventsByPage.jsx";
 import EventMap from "./EventMap.jsx";
-import eventController from '../../../controllers/eventController.js';
+import ReactGoogleMapLoader from "react-google-maps-loader";
+import ReactGooglePlacesSuggest from "react-google-places-suggest";
 
 
 class Index extends React.Component {
@@ -28,7 +29,9 @@ class Index extends React.Component {
             },
             startDate: new Date('09/12/2018'),
             endDate: new Date('9/20/2018'),
-            events: false
+            events: false,
+            search: "",
+            value: ""
         };
         this.onInputChange = this.onInputChange.bind(this);
         this.onSelect = this.onSelect.bind(this);
@@ -39,7 +42,20 @@ class Index extends React.Component {
         this.remapEventType = this.remapEventType.bind(this);
         this.submitFilter = this.submitFilter.bind(this);
         this.mapEventType = this.mapEventType.bind(this);
-        this.getData = this.getData.bind(this);
+    }
+
+    handleInputChange(e) {
+        this.setState({search: e.target.value, value: e.target.value})
+    }
+
+    handleSelectSuggest(suggest) {
+        let filters = this.state.filters;
+        console.log(suggest);
+        filters['address'] = suggest.formatted_address;
+        this.setState({
+            search: "",
+            filters: filters
+        })
     }
 
     resetFilters() {
@@ -49,33 +65,16 @@ class Index extends React.Component {
                 page_num: 1
             },
             gotFilters: false,
-            events: false
+            events: false,
+            value: ""
         })
     }
 
-    getData() {
-        let data = this.state.filters;
 
-        eventController.getEvents(data).then(response => {
-            if (response.status === 'success') {
-                this.setState({
-                    totalCount: response.total_pages,
-                    events: JSON.parse(response.events)
-                });
-
-
-            }
-            else {
-                this.setState({
-                    error: response.desc
-                });
-            }
-        });
-
-    }
-
-    submitFilter(){
-        this.getData();
+    submitFilter() {
+        this.setState({
+            gotFilters:  Math.random()
+        })
     }
 
 
@@ -89,6 +88,7 @@ class Index extends React.Component {
         });
     }
 
+
     remapEventType(event) {
         let mapList = {
             "arts": "0",
@@ -96,7 +96,7 @@ class Index extends React.Component {
             "sports": "2",
             "social": "3"
         };
-        if (event in mapList){
+        if (event in mapList) {
             return mapList[event];
         }
     }
@@ -108,10 +108,10 @@ class Index extends React.Component {
             "2": "sports",
             "3": "social"
         };
-        if (event === 'Choose an option'){
+        if (event === 'Choose an option') {
             return event;
         }
-        if (event in mapList){
+        if (event in mapList) {
             return mapList[event];
         }
     }
@@ -217,27 +217,63 @@ class Index extends React.Component {
                                         <div>
                                             <div>
                                                 <div>
-                                                    <div className="_fhlaevk" style={{width: '130px'}} onClick={this.resetFilters} >
-                                                        <p style={{backgroundColor: 'rgb(255, 90, 95)', padding: '5px 0px 5px 10px', color: 'white', borderRadius: '5px', border: '1px solid rgb(255, 90, 95)'}}>
+                                                    <div className="_fhlaevk" style={{width: '130px'}}
+                                                         onClick={this.resetFilters}>
+                                                        <p style={{
+                                                            backgroundColor: 'rgb(255, 90, 95)',
+                                                            padding: '5px 0px 5px 10px',
+                                                            color: 'white',
+                                                            borderRadius: '5px',
+                                                            border: '1px solid rgb(255, 90, 95)'
+                                                        }}>
                                                             Reset filters
-                                                            <i className="fas fa-undo" style={{marginLeft: '10px',
+                                                            <i className="fas fa-undo" style={{
+                                                                marginLeft: '10px',
                                                                 fontSize: '12px',
                                                                 color: "white",
-                                                                padding: '0px 0px'}}
+                                                                padding: '0px 0px'
+                                                            }}
                                                             ></i>
                                                         </p>
                                                     </div>
                                                     <div style={{marginBottom: '8px'}}><label className="_rin72m"
                                                                                               htmlFor="magic-carpet-koan-search-bar">
-                                                        <small className="_fhlaevk" >WHERE</small>
+                                                        <small className="_fhlaevk">WHERE</small>
 
                                                     </label></div>
-                                                    <input type="text" className="form-control big-form"
-                                                           id="formInput113" name="address"
-                                                           onChange={this.onInputChange}
-                                                           value={this.state.filters.address} required
-                                                           style={{marginBottom: '20px'}}
+                                                    {/*<input type="text" className="form-control big-form"*/}
+                                                    {/*id="formInput113" name="address"*/}
+                                                    {/*onChange={this.onInputChange}*/}
+                                                    {/*value={this.state.filters.address} required*/}
+                                                    {/*style={{marginBottom: '20px'}}*/}
+                                                    {/*/>*/}
+
+                                                    <ReactGoogleMapLoader
+                                                        params={{
+                                                            key: "AIzaSyD6VsUPahFrXaNhkUjOeKnlFgPUyT-l36k",
+                                                            libraries: "places,geocode",
+                                                        }}
+                                                        render={googleMaps =>
+                                                            googleMaps && (
+                                                                <div>
+                                                                    <ReactGooglePlacesSuggest
+                                                                        autocompletionRequest={{input: this.state.search}}
+                                                                        googleMaps={googleMaps}
+                                                                        onSelectSuggest={this.handleSelectSuggest.bind(this)}
+                                                                    >
+                                                                        <input
+                                                                            type="text"
+                                                                            value={this.state.value}
+                                                                            placeholder="Search a location"
+                                                                            onChange={this.handleInputChange.bind(this)}
+                                                                        />
+                                                                    </ReactGooglePlacesSuggest>
+                                                                </div>
+                                                            )
+                                                        }
                                                     />
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -254,7 +290,8 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                                    value={this.state.startDate} style={{width: '160px'}} required/>
+                                                                    value={this.state.startDate}
+                                                                    style={{width: '160px'}} required/>
                                                     </div>
                                                     <div className="_1k6rf4u" style={{width: '50%'}}>
                                                         <div>
@@ -264,7 +301,8 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                                    value={this.state.endDate} style={{width: '165px'}} required/>
+                                                                    value={this.state.endDate} style={{width: '165px'}}
+                                                                    required/>
                                                     </div>
 
 
@@ -303,8 +341,9 @@ class Index extends React.Component {
                         <div>
                             <CategoryList/>
 
-                            <div className="col-md-12 artistlist-title" style={{marginBottom: '20px', marginTop: '-20px '}}>
-                                <h3 >Near Me</h3>
+                            <div className="col-md-12 artistlist-title"
+                                 style={{marginBottom: '20px', marginTop: '-20px '}}>
+                                <h3>Near Me</h3>
                             </div>
                             <EventMap/>
                             <Events
@@ -321,6 +360,7 @@ class Index extends React.Component {
                                           filters={this.state.filters}
                                           sortBy={'event_start_date'}
                                           events={this.state.events}
+                                          gotFilters={this.state.gotFilters}
                             />
                         </div>
                     )

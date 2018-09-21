@@ -46,7 +46,6 @@ class AllEvents extends React.Component {
         this.resetFilters = this.resetFilters.bind(this);
         this.remapEventType = this.remapEventType.bind(this);
         this.mapEventType = this.mapEventType.bind(this);
-        this.getData = this.getData.bind(this);
         this.submitFilter = this.submitFilter.bind(this);
         this.getFilterForm = this.getFilterForm.bind(this);
     }
@@ -75,35 +74,15 @@ class AllEvents extends React.Component {
                 page_limit: 10,
                 page_num: 1
             },
-            gotFilters: false,
+            gotFilters: false
         });
-        this.getData();
     }
 
-    getData() {
-        let data = this.state.filters;
-
-        eventController.getEvents(data).then(response => {
-            if (response.status === 'success') {
-                this.setState({
-                    totalCount: response.total_pages,
-                    events: JSON.parse(response.events),
-                    gotFilters: true
-                });
-
-
-            }
-            else {
-                this.setState({
-                    error: response.desc
-                });
-            }
-        });
-
-    }
 
     submitFilter() {
-        this.getData();
+        this.setState({
+            gotFilters: Math.random()
+        })
     }
 
     onChange(event) {
@@ -378,6 +357,7 @@ class AllEvents extends React.Component {
                                                       sortBy={'event_start_date'}
                                                       mapView={this.state.mapView}
                                                       events={this.state.events}
+                                                      gotFilters={this.state.gotFilters}
                                         />
                                     </div>
                                 </div>

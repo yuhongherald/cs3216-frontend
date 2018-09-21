@@ -5,6 +5,7 @@ import {Link} from 'react-router';
 import Modal from 'react-responsive-modal';
 import ParticipantsList from "./ParticipantsList.jsx";
 import Views from "./Views.jsx";
+import Helpers from "../../../modules/Helpers";
 
 class MyEvents extends React.Component {
 
@@ -120,7 +121,7 @@ class MyEvents extends React.Component {
                                     </button>
                                 </p>
                                 <Views eid={event.pk} />
-                                <p><span>Date: </span>{event.fields.event_start_date}</p>
+                                <p><span>Date: </span>{Helpers.dateConvert(event.fields.event_start_date)}</p>
                                 <p><span><i className="fas fa-map-marker-alt"
                                             style={{
                                                 fontSize: '14px',

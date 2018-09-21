@@ -11,7 +11,6 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import {ReactDatez} from 'react-datez';
 import 'react-datez/dist/css/react-datez.css';
-import eventController from "../../../controllers/eventController";
 import '../../Events/css/filterForm.css';
 
 
@@ -46,7 +45,6 @@ class PopularEvents extends React.Component {
         this.resetFilters = this.resetFilters.bind(this);
         this.remapEventType = this.remapEventType.bind(this);
         this.mapEventType = this.mapEventType.bind(this);
-        this.getData = this.getData.bind(this);
         this.submitFilter = this.submitFilter.bind(this);
         this.getFilterForm = this.getFilterForm.bind(this);
     }
@@ -77,33 +75,13 @@ class PopularEvents extends React.Component {
             },
             gotFilters: false,
         });
-        this.getData();
     }
 
-    getData() {
-        let data = this.state.filters;
-
-        eventController.getEvents(data).then(response => {
-            if (response.status === 'success') {
-                this.setState({
-                    totalCount: response.total_pages,
-                    events: JSON.parse(response.events),
-                    gotFilters: true
-                });
-
-
-            }
-            else {
-                this.setState({
-                    error: response.desc
-                });
-            }
-        });
-
-    }
 
     submitFilter() {
-        this.getData();
+        this.setState({
+            gotFilters:  Math.random()
+        })
     }
 
     onChange(event) {
@@ -378,6 +356,7 @@ class PopularEvents extends React.Component {
                                                       sortBy={'num_participants'}
                                                       mapView={this.state.mapView}
                                                       events={this.state.events}
+                                                      gotFilters={this.state.gotFilters}
                                         />
                                     </div>
                                 </div>

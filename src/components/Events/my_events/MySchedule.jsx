@@ -218,7 +218,7 @@ class MySchedule extends React.Component {
                                 <Link to={`/events/${event.pk}`}><h3
                                     style={{textTransform: 'uppercase'}}>{event.fields.event_title}</h3></Link>
                                 <p><span>Participants: </span>{event.fields.num_participants}</p>
-                                <p><span>Date:</span> {event.fields.event_start_date}</p>
+                                <p><span>Date:</span> {Helpers.dateConvert(event.fields.event_start_date)}</p>
                                 <p><span><i className="fas fa-map-marker-alt"
                                             style={{
                                                 fontSize: '14px',

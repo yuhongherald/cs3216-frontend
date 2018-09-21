@@ -182,24 +182,12 @@ class Event extends React.Component {
                                 {
                                     (this.state.isParticipated || this.state.confirmEvent) ? (
                                         <span style={{textAlign: 'right', paddingTop: '40px'}}> This event has been added <Link
-                                            to="/my_schedule" style={{textDecoration: 'underline'}}>your schedule</Link></span>
+                                            to="/my-schedule" style={{textDecoration: 'underline'}}>your schedule</Link></span>
                                     ) : (
                                         <div></div>
                                     )
                                 }
 
-
-                                {/*<div className="button-share-events col-md-12 pad0">*/}
-                                {/*<button type="button" className="btn btn-info">*/}
-                                {/*<i className="fab fa-twitter"></i> Twitt*/}
-                                {/*</button>*/}
-                                {/*<button type="button" className="btn btn-primary">*/}
-                                {/*<i className="far fa-thumbs-up"></i> Like*/}
-                                {/*</button>*/}
-                                {/*<button type="button" className="btn btn-danger">*/}
-                                {/*<i className="fab fa-google-plus-g"></i>*/}
-                                {/*</button>*/}
-                                {/*</div>*/}
                             </div>
                         </div>
                     </div>

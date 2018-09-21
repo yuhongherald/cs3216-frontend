@@ -143,8 +143,8 @@
 }
 
 .pagination >.active > a {
-    background-color: #FF5A5F;
-    border-color: #FF5A5F
+    background-color: #FF5A5F !important;
+    border-color: #FF5A5F !important
 }
 
 ._1ejbzasf {
@@ -328,4 +328,34 @@
         transform: scale(1, 1);
     }
 }
+
+a.undefined {
+    background-color: #FF5A5F
+}
+
+.cnyXj {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px 5px 20px 5px;
+}
+
+.cnyXj input {
+    font-family: Helvetica Neue;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: none;
+}
+
+.rdatez input {
+    font-family: Helvetica Neue;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+}
+
+.hjXGpB {
+    font-size: 1.0em !important;
+}
+
 
