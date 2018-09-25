@@ -221,7 +221,7 @@ class AllEvents extends React.Component {
                                             </label></div>
                                         </div>
                                         <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                    value={this.state.event_start_date} required/>
+                                                    value={this.formatDate(this.state.startDate)} required/>
                                     </div>
                                     <div className="_1k6rf4u" style={{width: "50%"}}>
                                         <div>
@@ -231,7 +231,7 @@ class AllEvents extends React.Component {
                                             </label></div>
                                         </div>
                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                    value={this.state.event_end_date} required/>
+                                                    value={this.formatDate(this.state.endDate)} required/>
                                     </div>
 
 
