@@ -22,13 +22,13 @@ class Index extends React.Component {
             filters: {
                 address: 'Bedok',
                 event_type: 'Choose an option',
-                event_start_date: '',
-                event_end_date: '',
+                event_start_date: this.formatDate(new Date()),
+                event_end_date: this.formatDate(new Date()),
                 page_limit: 10,
                 page_num: 1
             },
-            startDate: new Date('09/12/2018'),
-            endDate: new Date('9/20/2018'),
+            startDate: new Date(),
+            endDate: new Date(),
             events: false,
             search: "",
             value: ""
@@ -290,7 +290,7 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                                    value={this.state.startDate}
+                                                                    value={this.state.event_start_date}
                                                                     style={{width: '160px'}} required/>
                                                     </div>
                                                     <div className="_1k6rf4u" style={{width: '50%'}}>
@@ -301,7 +301,7 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                                    value={this.state.endDate} style={{width: '165px'}}
+                                                                    value={this.state.event_end_date} style={{width: '165px'}}
                                                                     required/>
                                                     </div>
 
