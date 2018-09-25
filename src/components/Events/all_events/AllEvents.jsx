@@ -21,16 +21,16 @@ class AllEvents extends React.Component {
         super(props);
         this.state = {
             events: false,
+            startDate: new Date(),
+            endDate: new Date(),
             filters: {
                 address: '',
                 event_type: '',
-                event_start_date: '',
-                event_end_date: '',
+                event_start_date: this.formatDate(new Date()),
+                event_end_date: this.formatDate(new Date()),
                 page_limit: 10,
                 page_num: 1
             },
-            startDate: new Date('09/12/2018'),
-            endDate: new Date('9/20/2018'),
             mapView: false,
             isPaneOpen: false,
             gotFilters: false
@@ -147,6 +147,9 @@ class AllEvents extends React.Component {
     }
 
     changeEndDate(date) {
+        if (this.state.startDate > date) {
+            date = this.state.startDate;
+        }
         const filters = this.state.filters;
         filters['event_end_date'] = this.formatDate(date) + " 00:00";
         this.setState({
@@ -218,7 +221,7 @@ class AllEvents extends React.Component {
                                             </label></div>
                                         </div>
                                         <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                    value={this.state.startDate} required/>
+                                                    value={this.formatDate(this.state.startDate)} required/>
                                     </div>
                                     <div className="_1k6rf4u" style={{width: "50%"}}>
                                         <div>
@@ -228,7 +231,7 @@ class AllEvents extends React.Component {
                                             </label></div>
                                         </div>
                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                    value={this.state.endDate} required/>
+                                                    value={this.formatDate(this.state.endDate)} required/>
                                     </div>
 
 
@@ -244,7 +247,7 @@ class AllEvents extends React.Component {
                                 <Dropdown
                                     options={options} onChange={this.onSelect}
                                     value={this.mapEventType(this.state.filters.event_type)}
-                                    placeholder="Select an option" required/>
+                                    placeholder="Choose an option" required/>
 
                             </div>
                         </div>
