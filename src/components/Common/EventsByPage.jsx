@@ -52,8 +52,8 @@ class EventsByPage extends React.Component {
             page_num: this.state.activePage.toString()
         };
 
-        if (!this.isEmpty(this.state.filters)) {
-            let filters = this.state.filters;
+        if (!this.isEmpty(this.props.filters)) {
+            let filters = this.props.filters;
             data = Object.assign(filters, data);
         }
 

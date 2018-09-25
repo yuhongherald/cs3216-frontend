@@ -25,7 +25,9 @@ class Index extends React.Component {
                 event_start_date: '',
                 event_end_date: '',
                 page_limit: 10,
-                page_num: 1
+                page_num: 1,
+                lat: '',
+                lng: ''
             },
             startDate: new Date('09/12/2018'),
             endDate: new Date('9/20/2018'),
@@ -50,12 +52,18 @@ class Index extends React.Component {
 
     handleSelectSuggest(suggest) {
         let filters = this.state.filters;
-        console.log(suggest);
         filters['address'] = suggest.formatted_address;
+        console.log(suggest.geometry.viewport)
+        filters['lng'] = this.calculateCoordinate(suggest.geometry.viewport.b.b, suggest.geometry.viewport.b.f).toFixed(6);
+        filters['lat'] = this.calculateCoordinate(suggest.geometry.viewport.f.b, suggest.geometry.viewport.f.f).toFixed(6);
         this.setState({
             search: "",
             filters: filters
         })
+    }
+
+    calculateCoordinate(c1, c2){
+        return (c1 + c2)/2
     }
 
     resetFilters() {
@@ -72,6 +80,7 @@ class Index extends React.Component {
 
 
     submitFilter() {
+        console.log(this.state.filters);
         this.setState({
             gotFilters:  Math.random()
         })

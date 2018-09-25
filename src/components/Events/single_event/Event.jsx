@@ -109,11 +109,39 @@ class Event extends React.Component {
             <img className="_154ar5hp" id="marqueeImage"
                  alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
                  sizes="100vw"
+                 width="400"
                  src={`http://54.169.251.138/media/${file}`}
                  height="300px"
                  srcSet="">
             </img>
         )
+    }
+
+    renderButton(event_status) {
+        console.log(event_status)
+        if (event_status === 1) {
+            return (
+                <button type="button" className="schedule-button"
+                        onClick={this.onOpenConfirmModal}>Register
+                </button>
+            )
+        }
+        else if (event_status === 2){
+            return (
+                <button type="button" className="schedule-button"
+                        style={{backgroundColor: '#FF5A5F' }}>Full
+                        </button>
+            )
+        }
+        else if (event_status === 3){
+            return (
+                <button type="button" className="schedule-button"
+                        style={{backgroundColor: '#FF5A5F' }}>Ended
+                </button>
+            )
+        }
+
+
     }
 
 
@@ -129,7 +157,7 @@ class Event extends React.Component {
             let event = this.state.event;
             console.log(event);
             return (
-                <div id="section-aboutus" className="section-eventsdetails">
+                <div id="section-aboutus" className="section-eventsdetails" style={{backgroundColor: '#eeeeee'}}>
                     <Modal open={this.state.openConfirmModal} onClose={this.onCloseConfirmModal} center
                            className="popup centred">
                         <span className="yes-reply centred"></span>
@@ -169,7 +197,7 @@ class Event extends React.Component {
                                 }}>Participants: {event.fields.num_participants}</p>
                                 <p style={{
                                     textAlign: 'left',
-                                    padding: '20px 0px 20px 0px',
+                                    padding: '20px 0px 0px 0px',
                                     color: '#484848',
                                     fontWeight: 'bold'
                                 }}>Description</p>
@@ -178,6 +206,43 @@ class Event extends React.Component {
                                     {event.fields.event_desc}
                                 </p>
                                 <div style={{height: '20px'}}></div>
+                                <p style={{
+                                    textAlign: 'left',
+                                    padding: '20px 0px 10px 0px',
+                                    color: '#484848',
+                                    fontWeight: 'bold'
+                                }}>Comments</p>
+                                <div className="comments">
+                                    <div className="comment-wrap">
+
+                                        <div className="comment-block">
+                                            <form action="">
+                                                <textarea name="" id="" cols="30" rows="3"
+                                                          placeholder="Add comment...">
+                                                </textarea>
+                                                <button type="button" className="submit-comment" style={{width: "50% !important", float: 'right'}}>Submit
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                    <div className="comment-wrap">
+                                        <div className="comment-block">
+                                            <p className="comment-text">Lorem ipsum dolor sit amet, consectetur
+                                                adipisicing elit. Iusto temporibus iste nostrum dolorem natus recusandae
+                                                incidunt voluptatum. Eligendi voluptatum ducimus architecto tempore,
+                                                quaerat explicabo veniam fuga corporis totam.</p>
+                                            <div className="bottom-comment">
+                                                <div className="comment-date">Aug 23, 2014 @ 10:32 AM</div>
+                                                <ul className="comment-actions">
+                                                    <li className="reply" style={{color: '#FF5A5F', fontWeight: 'bold'}}>Reply</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 {
                                     (this.state.isParticipated || this.state.confirmEvent) ? (
@@ -204,9 +269,7 @@ class Event extends React.Component {
                         ) : (
                             <div className="_hauh0a">
                                 <div style={{width: '108px', float: 'right', paddingBottom: '20px'}}>
-                                    <button type="button" className="schedule-button"
-                                            onClick={this.onOpenConfirmModal}>Register
-                                    </button>
+                                    {this.renderButton(event.fields.state)}
                                 </div>
                             </div>
                         )

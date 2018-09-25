@@ -8,6 +8,9 @@ import '../css/Events.css';
 import TextField from '@material-ui/core/TextField';
 import eventController from '../../../controllers/eventController.js';
 import {browserHistory} from 'react-router';
+import ReactGoogleMapLoader from "react-google-maps-loader";
+import ReactGooglePlacesSuggest from "react-google-places-suggest";
+
 
 
 class CreateEvent extends React.Component {
@@ -17,18 +20,22 @@ class CreateEvent extends React.Component {
         this.state = {
             data: {
                 title: '',
-                location: '',
+                address: '',
                 description: '',
                 category: 'Choose an option',
                 maxQuota: 20,
                 startTime: '00:00',
-                endTime: '00:00'
+                endTime: '00:00',
+                lat: '',
+                lng: ''
             },
             file: '',
             imagePreviewUrl: '',
             error: false,
             submissionSuccess: false,
-            submissionError: false
+            submissionError: false,
+            search: "",
+            value: ""
         }
         this.handleClick = this.handleClick.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -40,6 +47,27 @@ class CreateEvent extends React.Component {
         this.handleImageChange = this.handleImageChange.bind(this);
         this.remapEventType = this.remapEventType.bind(this);
     }
+
+    handleInputChange(e) {
+        this.setState({search: e.target.value, value: e.target.value})
+    }
+
+    handleSelectSuggest(suggest) {
+        let filters = this.state.data;
+        filters['address'] = suggest.formatted_address;
+        console.log(suggest.geometry.viewport);
+        filters['lng'] = this.calculateCoordinate(suggest.geometry.viewport.b.b, suggest.geometry.viewport.b.f).toFixed(6).toString();
+        filters['lat'] = this.calculateCoordinate(suggest.geometry.viewport.f.b, suggest.geometry.viewport.f.f).toFixed(6).toString();
+        this.setState({
+            search: "",
+            filters: filters
+        })
+    }
+
+    calculateCoordinate(c1, c2){
+        return (c1 + c2)/2
+    }
+
 
     handleImageChange(e) {
         e.preventDefault();
@@ -107,7 +135,7 @@ class CreateEvent extends React.Component {
     }
 
     formatDate(date) {
-        return new Date(date).toISOString().substr(0, 10);
+        return date.slice(0,10)
     }
 
     handleClick(event) {
@@ -120,9 +148,12 @@ class CreateEvent extends React.Component {
             "event_start_date": this.formatDate(this.state.startDate) + " " + this.state.data.startTime,
             "event_end_date": this.formatDate(this.state.endDate) + " " + this.state.data.endTime,
             "is_open_ended": "1",
-            "postal_code": this.state.data.location,
-            "image": this.state.file
+            "address": this.state.data.address,
+            "image": this.state.file,
+            'lat': this.state.data.lat,
+            'lng': this.state.data.lng
         };
+        console.log(postData);
         eventController.createEvent(postData).then(response => {
             console.log(response);
             if (response.status === 'success') {
@@ -188,9 +219,33 @@ class CreateEvent extends React.Component {
                                     <label className="control-label">LOCATION
                                         <span>*</span>
                                     </label>
-                                    <input type="text" className="form-control" id="formInput113" name="location"
-                                           onChange={this.onChange}
-                                           value={this.state.data.location} required/>
+                                    {/*<input type="text" className="form-control" id="formInput113" name="location"*/}
+                                           {/*onChange={this.onChange}*/}
+                                           {/*value={this.state.data.location} required/>*/}
+                                    <ReactGoogleMapLoader
+                                        params={{
+                                            key: "AIzaSyD6VsUPahFrXaNhkUjOeKnlFgPUyT-l36k",
+                                            libraries: "places,geocode",
+                                        }}
+                                        render={googleMaps =>
+                                            googleMaps && (
+                                                <div>
+                                                    <ReactGooglePlacesSuggest
+                                                        autocompletionRequest={{input: this.state.search}}
+                                                        googleMaps={googleMaps}
+                                                        onSelectSuggest={this.handleSelectSuggest.bind(this)}
+                                                    >
+                                                        <input
+                                                            type="text"
+                                                            value={this.state.value}
+                                                            placeholder="Search a location"
+                                                            onChange={this.handleInputChange.bind(this)}
+                                                        />
+                                                    </ReactGooglePlacesSuggest>
+                                                </div>
+                                            )
+                                        }
+                                    />
                                 </div>
                             </div>
                             <div className="col-md-3 col-phone">

@@ -6,6 +6,7 @@ import Modal from 'react-responsive-modal';
 import ParticipantsList from "./ParticipantsList.jsx";
 import Views from "./Views.jsx";
 import Helpers from "../../../modules/Helpers";
+import eventController from "../../../controllers/eventController";
 
 class MyEvents extends React.Component {
 
@@ -13,13 +14,79 @@ class MyEvents extends React.Component {
         super(props);
         this.state = {
             events: false,
-            open: false
+            open: false,
+            openClosingModal: false,
+            openDeletingModal: false,
+            currentEvent: false
 
         };
         this.readImage = this.readImage.bind(this);
         this.mapEventCategory = this.mapEventCategory.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.onCloseClosingModal = this.onCloseClosingModal.bind(this);
+        this.onOpenClosingModal = this.onOpenClosingModal.bind(this);
+        this.onClickConfirm = this.onClickConfirm.bind(this);
+        this.onCloseDeletingModal = this.onCloseDeletingModal.bind(this);
+        this.onOpenDeletingModal = this.onOpenDeletingModal.bind(this);
+        this.onClickDeleteConfirm = this.onClickDeleteConfirm.bind(this);
+
+    }
+
+    onOpenDeletingModal(id) {
+        this.setState({
+            openDeletingModal: true,
+            currentEvent: id
+        });
+    }
+
+    onCloseDeletingModal() {
+        this.setState({openDeletingModal: false});
+    }
+
+    onClickDeleteConfirm() {
+        let postData = {
+            eid: this.state.currentEvent
+        };
+        eventController.deleteEvent(postData).then(response => {
+            if (response.status === 'success') {
+                this.getData();
+                setTimeout(this.onCloseDeletingModal(), 2000);
+            }
+            else {
+                this.setState({
+                    error: response.desc
+                });
+            }
+        });
+    }
+
+    onOpenClosingModal(id){
+        this.setState({
+            openClosingModal: true,
+            currentEvent: id
+        });
+    }
+
+    onCloseClosingModal(){
+        this.setState({openClosingModal: false});
+    }
+
+    onClickConfirm(){
+        let postData = {
+            eid: this.state.currentEvent
+        };
+        eventController.closeEvent(postData).then(response => {
+            if (response.status === 'success') {
+                this.getData();
+                setTimeout(this.onCloseClosingModal(), 2000);
+            }
+            else {
+                this.setState({
+                    error: response.desc
+                });
+            }
+        });
     }
 
     openModal(id, title) {
@@ -42,11 +109,22 @@ class MyEvents extends React.Component {
     getData() {
         userController.eventCreated().then(response => {
             if (response.status === 'success') {
-                this.setState({
-                    eventTitle: JSON.parse(response.events)[0].fields.event_title,
-                    currentEvent: JSON.parse(response.events)[0].pk,
-                    events: JSON.parse(response.events),
-                });
+                console.log(response.events)
+
+                if (JSON.parse(response.events)[0]){
+                    this.setState({
+                        eventTitle: JSON.parse(response.events)[0].fields.event_title,
+                        currentEvent: JSON.parse(response.events)[0].pk,
+                        events: JSON.parse(response.events),
+                    });
+                }
+                else {
+                    this.setState({
+                        eventTitle: null,
+                        currentEvent: null,
+                        events: [],
+                    });
+                }
             }
             else {
                 this.setState({
@@ -134,10 +212,34 @@ class MyEvents extends React.Component {
 
                                             }}></i></span>{event.fields.address}</p>
 
-                                <div style={{width: '80px', float: 'right', paddingBottom: '20px'}}>
-                                    <button type="button" className="schedule-button">Edit
-                                    </button>
-                                </div>
+                                {
+                                    event.fields.state !== 3 ? (
+                                        <div>
+                                            <div style={{width: '120px', float: 'left', paddingBottom: '20px'}}>
+                                                <button type="button" className="close-event-button"  onClick={() => this.onOpenClosingModal(event.pk)}>Close event
+                                                </button>
+                                            </div>
+                                            <div style={{width: '60px', float: 'right', paddingBottom: '20px'}}>
+                                                <button type="button" className="delete-button" onClick={() => this.onOpenDeletingModal(event.pk)} ><i className="far fa-trash-alt"
+                                                                                                     style={{fontSize: '18px', color: "FF5A5F", padding: '0px 0px'}}></i>
+                                                </button>
+                                            </div>
+                                            <div style={{width: '40px', float: 'right', paddingBottom: '20px'}}>
+                                                <button type="button" className="schedule-button"><i className="fas fa-edit"
+                                                                                                     style={{fontSize: '18px', color: "FF5A5F", padding: '0px 0px'}}></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <div style={{width: '80px', float: 'right', paddingBottom: '20px'}}>
+                                                <button type="button" className="schedule-button">Ended
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -147,6 +249,53 @@ class MyEvents extends React.Component {
 
             return (
                 <div>
+                    <Modal open={this.state.openClosingModal} onClose={this.onCloseClosingModal} center
+                           className="popup centred">
+                        <span className="yes-reply centred"></span>
+                        <span className="no-reply centred"></span>
+                        <p>Are you sure you want to CLOSE the event? </p>
+                        <div className="button yes transition" style={{float: 'right'}}
+                             onClick={this.onClickConfirm}>Confirm
+                        </div>
+                        <div className="button no transition" style={{float: 'right'}}
+                             onClick={this.onCloseConfirmModal}>Cancel
+                        </div>
+                        <div className="error-message"
+                             style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
+                            {
+                                this.state.error ? (
+                                    <div>{this.state.error}. Please try again</div>
+                                ) : (
+                                    <div></div>
+                                )
+                            }
+                        </div>
+
+                    </Modal>
+
+                    <Modal open={this.state.openDeletingModal} onClose={this.onCloseDeletingModal} center
+                           className="popup centred">
+                        <span className="yes-reply centred"></span>
+                        <span className="no-reply centred"></span>
+                        <p>Are you sure you want to DELETE the event? </p>
+                        <div className="button yes transition" style={{float: 'right'}}
+                             onClick={this.onClickDeleteConfirm}>Confirm
+                        </div>
+                        <div className="button no transition" style={{float: 'right'}}
+                             onClick={this.onCloseConfirmModal}>Cancel
+                        </div>
+                        <div className="error-message"
+                             style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
+                            {
+                                this.state.error ? (
+                                    <div>{this.state.error}. Please try again</div>
+                                ) : (
+                                    <div></div>
+                                )
+                            }
+                        </div>
+
+                    </Modal>
                     <div>
                         <h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>
                     </div>

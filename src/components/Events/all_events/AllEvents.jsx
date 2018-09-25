@@ -26,8 +26,8 @@ class AllEvents extends React.Component {
                 event_type: '',
                 event_start_date: '',
                 event_end_date: '',
-                page_limit: 10,
-                page_num: 1
+                page_limit: "10",
+                page_num: "1"
             },
             startDate: new Date('09/12/2018'),
             endDate: new Date('9/20/2018'),
@@ -71,11 +71,14 @@ class AllEvents extends React.Component {
     resetFilters() {
         this.setState({
             filters: {
-                page_limit: 10,
-                page_num: 1
-            },
-            gotFilters: false
-        });
+                page_limit: "10",
+                page_num: "1",
+                address: '',
+                event_type: '',
+                event_start_date: '',
+                event_end_date: '',
+            }
+        })
     }
 
 
@@ -91,8 +94,7 @@ class AllEvents extends React.Component {
         const filters = this.state.filters;
         filters[field] = event.target.value;
         this.setState({
-            filters: filters,
-            gotFilters: true
+            filters: filters
         });
     }
 
@@ -126,14 +128,13 @@ class AllEvents extends React.Component {
     onSelect(e) {
         const filters = this.state.filters;
         filters['event_type'] = this.remapEventType(e.value);
-        console.log(filters);
         this.setState({
             filters: filters
         });
     }
 
     formatDate(date) {
-        return new Date(date).toISOString().substr(0, 10);
+        return date.slice(0, 10);
     }
 
     changeStartDate(date) {
@@ -336,6 +337,7 @@ class AllEvents extends React.Component {
                                                           sortBy={'event_start_date'}
                                                           mapView={this.state.mapView}
                                                           events={this.state.events}
+                                                          gotFilters={this.state.gotFilters}
                                             />
                                         </div>
                                     </div>

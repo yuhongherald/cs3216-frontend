@@ -5,6 +5,7 @@ import '../my_events/css/Schedule.css';
 import Helpers from "../../../modules/Helpers";
 import Modal from 'react-responsive-modal';
 import eventController from "../../../controllers/eventController";
+import ReactStars from 'react-stars'
 
 class MySchedule extends React.Component {
 
@@ -16,10 +17,14 @@ class MySchedule extends React.Component {
                 one: true,
                 two: false,
                 three: false,
-                four: false
+                four: false,
+                five: false
             },
+            rating: false,
+            rated: false,
             unFilteredEvents: false,
             openConfirmModal: false,
+            openRatingModal: false,
             error: false,
             currentEvent: false
         }
@@ -33,14 +38,19 @@ class MySchedule extends React.Component {
         this.getEventInWeeks = this.getEventInWeeks.bind(this);
         this.resetEvents = this.resetEvents.bind(this);
         this.getEventInMonths = this.getEventInMonths.bind(this);
+        this.onOpenRatingModal = this.onOpenRatingModal.bind(this);
+        this.onCloseRatingModal = this.onCloseRatingModal.bind(this);
+        this.submitRating = this.submitRating.bind(this);
+        this.ratingChanged = this.ratingChanged.bind(this);
+        this.getCompletedEvents = this.getCompletedEvents.bind(this);
     }
 
-    getTodayEvents(){
-        if (this.state.events){
+    getTodayEvents() {
+        if (this.state.events) {
             let todayEvents = [];
             this.state.events.forEach(event => {
                 let eventDate = new Date(Helpers.dateConvert(event.fields.event_start_date));
-                if (Helpers.isToday(eventDate)){
+                if (Helpers.isToday(eventDate)) {
                     todayEvents.push(event)
                 }
             });
@@ -52,11 +62,11 @@ class MySchedule extends React.Component {
     }
 
     getEventInWeeks() {
-        if (this.state.unFilteredEvents){
+        if (this.state.unFilteredEvents) {
             let thisWeekEvents = [];
             this.state.unFilteredEvents.forEach(event => {
                 let eventDate = new Date(Helpers.dateConvert(event.fields.event_start_date));
-                if (Helpers.isInWeek(eventDate)){
+                if (Helpers.isInWeek(eventDate)) {
                     thisWeekEvents.push(event)
                 }
             });
@@ -68,11 +78,11 @@ class MySchedule extends React.Component {
 
 
     getEventInMonths() {
-        if (this.state.unFilteredEvents){
+        if (this.state.unFilteredEvents) {
             let thisMonthEvents = [];
             this.state.unFilteredEvents.forEach(event => {
                 let eventDate = new Date(Helpers.dateConvert(event.fields.event_start_date));
-                if (Helpers.isInMonth(eventDate)){
+                if (Helpers.isInMonth(eventDate)) {
                     thisMonthEvents.push(event)
                 }
             });
@@ -83,21 +93,48 @@ class MySchedule extends React.Component {
     }
 
     resetEvents() {
-        if (this.state.unFilteredEvents){
+        if (this.state.unFilteredEvents) {
             this.setState({
                 events: this.state.unFilteredEvents
             });
         }
     }
 
-    toggleFilter(e){
+
+    getCompletedEvents() {
+        console.log('completed')
+        userController.eventParticipated().then(response => {
+            if (response.status === 'success') {
+                if (response.events === null) {
+                    this.setState({
+                        events: []
+                    });
+                }
+                else {
+                    let events = JSON.parse(response.events).filter(function (event) {
+                        return event.fields.state === 3
+                    });
+                    this.setState({
+                        events: events
+                    });
+                }
+            }
+            else {
+                this.setState({
+                    error: response.desc
+                });
+            }
+        });
+    }
+
+    toggleFilter(e) {
         const newObj = {
             [e.target.id]: !this.state.toggle[e.target.id]
         };
         this.setState({
             toggle: newObj
         });
-        if (e.target.id === 'one'){
+        if (e.target.id === 'one') {
             this.resetEvents();
         }
         else if (e.target.id === 'two') {
@@ -109,15 +146,31 @@ class MySchedule extends React.Component {
         else if (e.target.id === 'four') {
             this.getEventInMonths();
         }
+        else if (e.target.id === 'five') {
+            this.getCompletedEvents();
+        }
     }
 
     getData() {
         userController.eventParticipated().then(response => {
             if (response.status === 'success') {
-                this.setState({
-                    events: JSON.parse(response.events),
-                    unFilteredEvents: JSON.parse(response.events)
-                });
+                if (response.events === null) {
+                    this.setState({
+                        events: [],
+                        unFilteredEvents: []
+                    });
+                }
+                else {
+                    let events = JSON.parse(response.events).filter(function (event) {
+                        return event.fields.state === 1
+                    });
+                    console.log(events);
+                    let unFilterEvents = JSON.parse(response.events);
+                    this.setState({
+                        events: events,
+                        unFilteredEvents: unFilterEvents
+                    });
+                }
             }
             else {
                 this.setState({
@@ -142,14 +195,14 @@ class MySchedule extends React.Component {
         }
     }
 
-    mapEventCategory(event){
+    mapEventCategory(event) {
         let mapList = {
             "0": "arts",
             "1": "food",
             "2": "sports",
             "3": "social"
         };
-        if (event in mapList){
+        if (event in mapList) {
             return mapList[event];
         }
     }
@@ -166,23 +219,65 @@ class MySchedule extends React.Component {
         this.setState({openConfirmModal: false});
     };
 
-   onClickConfirm(){
-       let postData = {
-           eid: this.state.currentEvent,
-           op_type: 2
-       };
-       eventController.participateEvent(postData).then(response => {
-           if (response.status === 'success') {
-               this.getData();
-               setTimeout(this.onCloseConfirmModal(), 2000);
-           }
-           else {
-               this.setState({
-                   error: response.desc
-               });
-           }
-       });
-   }
+    onOpenRatingModal(id) {
+        this.setState({
+            openRatingModal: true,
+            currentEvent: id
+        });
+
+    };
+
+    onCloseRatingModal() {
+        this.setState({openRatingModal: false});
+    };
+
+    ratingChanged(newRating) {
+        this.setState({
+            rating: newRating
+        })
+    }
+
+    submitRating() {
+        if (this.state.rating) {
+            let postData = {
+                eid: this.state.currentEvent,
+                rating: this.state.rating
+            }
+            eventController.postRating(postData).then(response => {
+                if (response.status === 'success') {
+                    console.log('rated successfully');
+                    this.setState({
+                        rated: true
+                    })
+                }
+                else {
+                    this.setState({
+                        error: response.desc
+                    });
+                }
+            });
+
+        }
+    }
+
+
+    onClickConfirm() {
+        let postData = {
+            eid: this.state.currentEvent,
+            op_type: 2
+        };
+        eventController.participateEvent(postData).then(response => {
+            if (response.status === 'success') {
+                this.getData();
+                setTimeout(this.onCloseConfirmModal(), 2000);
+            }
+            else {
+                this.setState({
+                    error: response.desc
+                });
+            }
+        });
+    }
 
     componentDidMount() {
         this.getData();
@@ -231,8 +326,26 @@ class MySchedule extends React.Component {
 
                                             }}></i></span>{event.fields.address}</p>
 
-                                <div style={{width: '120px', float: 'right', paddingBottom: '20px'}}>
-                                    <button type="button" className="schedule-button" onClick={() => this.onOpenConfirmModal(event.pk)}>Unparticipating
+                                {
+                                    event.state === 3 && !this.state.rated? (
+                                        <div style={{width: '120px', float: 'left', paddingBottom: '20px'}}>
+                                            <button type="button" className="rate-button"
+                                                    onClick={() => this.onOpenRatingModal(event.pk)}>Rate
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <div></div>
+                                    )
+                                }
+
+                                <div style={{
+                                    width: '120px',
+                                    float: 'right',
+                                    paddingBottom: '20px',
+                                    display: 'inline-block'
+                                }}>
+                                    <button type="button" className="schedule-button"
+                                            onClick={() => this.onOpenConfirmModal(event.pk)}>Unparticipating
                                     </button>
                                 </div>
                             </div>
@@ -256,9 +369,44 @@ class MySchedule extends React.Component {
                         <div className="button no transition" style={{float: 'right'}}
                              onClick={this.onCloseConfirmModal}>Cancel
                         </div>
-                        <div className="error-message" style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
+                        <div className="error-message"
+                             style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
                             {
-                                this.state.error ?(
+                                this.state.error ? (
+                                    <div>{this.state.error}. Please try again</div>
+                                ) : (
+                                    <div></div>
+                                )
+                            }
+                        </div>
+
+                    </Modal>
+
+                    <Modal open={this.state.openRatingModal} onClose={this.onCloseRatingModal} center
+                           className="popup centred">
+                        <span className="yes-reply centred"></span>
+                        <span className="no-reply centred"></span>
+                        <p>Please help us rate the event </p>
+                        <div style={{paddingLeft: '100px', marginBottom: '20px'}}>
+                            <ReactStars count={5}
+                                        value={this.state.rating}
+                                        onChange={this.ratingChanged}
+                                        size={28}
+                                        color2={'rgb(0, 132, 137)'}
+                            />
+                        </div>
+
+                        <div className="button yes transition" style={{float: 'right'}}
+                             onClick={this.submitRating}>Submit
+                        </div>
+                        <div className="button no transition" style={{float: 'right'}}
+                             onClick={this.onCloseRatingModal}>Cancel
+                        </div>
+
+                        <div className="error-message"
+                             style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
+                            {
+                                this.state.error ? (
                                     <div>{this.state.error}. Please try again</div>
                                 ) : (
                                     <div></div>
@@ -268,10 +416,21 @@ class MySchedule extends React.Component {
 
                     </Modal>
                     <div style={{display: 'flex', flexDirection: 'row', margin: '20px 0px 20px 10px'}}>
-                        <div className={this.state.toggle.one ? 'filter-active' : 'filter-inactive'} id="one" onClick={this.toggleFilter}>All</div>
-                        <div className={this.state.toggle.two ? 'filter-active' : 'filter-inactive'} id="two" onClick={this.toggleFilter}>Today</div>
-                        <div className={this.state.toggle.three ? 'filter-active' : 'filter-inactive'} id="three" onClick={this.toggleFilter}>This week</div>
-                        <div  className={this.state.toggle.four ? 'filter-active' : 'filter-inactive'}  id="four" onClick={this.toggleFilter}>This month</div>
+                        <div className={this.state.toggle.one ? 'filter-active' : 'filter-inactive'} id="one"
+                             onClick={this.toggleFilter}>All
+                        </div>
+                        <div className={this.state.toggle.two ? 'filter-active' : 'filter-inactive'} id="two"
+                             onClick={this.toggleFilter}>Today
+                        </div>
+                        <div className={this.state.toggle.three ? 'filter-active' : 'filter-inactive'} id="three"
+                             onClick={this.toggleFilter}>This week
+                        </div>
+                        <div className={this.state.toggle.four ? 'filter-active' : 'filter-inactive'} id="four"
+                             onClick={this.toggleFilter}>This month
+                        </div>
+                        <div className={this.state.toggle.five ? 'incomplete' : 'complete'} id="five"
+                             onClick={this.toggleFilter}>Attended
+                        </div>
                     </div>
                     <div>
                         {listOfEvents}
@@ -284,10 +443,21 @@ class MySchedule extends React.Component {
             return (
                 <div>
                     <div style={{display: 'flex', flexDirection: 'row', margin: '20px 0px 20px 10px'}}>
-                        <div className={this.state.toggle.one ? 'filter-active' : 'filter-inactive'} id="one" onClick={this.toggleFilter}>All</div>
-                        <div className={this.state.toggle.two ? 'filter-active' : 'filter-inactive'} id="two" onClick={this.toggleFilter}>Today</div>
-                        <div className={this.state.toggle.three ? 'filter-active' : 'filter-inactive'} id="three" onClick={this.toggleFilter}>This week</div>
-                        <div  className={this.state.toggle.four ? 'filter-active' : 'filter-inactive'}  id="four" onClick={this.toggleFilter}>This month</div>
+                        <div className={this.state.toggle.one ? 'filter-active' : 'filter-inactive'} id="one"
+                             onClick={this.toggleFilter}>All
+                        </div>
+                        <div className={this.state.toggle.two ? 'filter-active' : 'filter-inactive'} id="two"
+                             onClick={this.toggleFilter}>Today
+                        </div>
+                        <div className={this.state.toggle.three ? 'filter-active' : 'filter-inactive'} id="three"
+                             onClick={this.toggleFilter}>This week
+                        </div>
+                        <div className={this.state.toggle.four ? 'filter-active' : 'filter-inactive'} id="four"
+                             onClick={this.toggleFilter}>This month
+                        </div>
+                        <div className={this.state.toggle.five ? 'complete' : 'incomplete'} id="five"
+                             onClick={this.toggleFilter}>Attended
+                        </div>
                     </div>
                     <div style={{height: '1000px', color: 'rgb(255, 90, 95)'}}>Oops! We cannot find any event</div>
                 </div>

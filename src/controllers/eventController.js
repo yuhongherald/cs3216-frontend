@@ -52,8 +52,10 @@ eventController.createEvent = (data) => {
     formData.append('event_start_date', data.event_start_date);
     formData.append('event_end_date', data.event_end_date);
     formData.append('is_open_ended', data.is_open_ended);
-    formData.append('postal_code', data.postal_code);
+    formData.append('address', data.address);
     formData.append('image', data.image);
+    formData.append('lat', data.lat);
+    formData.append('lng', data.lng);
     console.log(formData);
     let response = axios({
         url: endPoint + '/api/v1/event/create_event/',
@@ -132,6 +134,61 @@ eventController.getParticipants = (data) => {
 eventController.getClickRecords = (data) => {
    return axios.post(endPoint + '/api/v1/event/history_record/', {
         eid: data.eid
+    })
+        .then(function (response) {
+            // handle success
+            return response.data
+        })
+        .catch(function (error) {
+            // handle error
+            return {
+                status: 'failed',
+                desc: error
+            }
+        });
+}
+
+eventController.postRating = (data) => {
+    return axios.post(endPoint + '/api/v1/event/rate/', {
+        eid: data.eid,
+        rating: data.rating
+    })
+        .then(function (response) {
+            // handle success
+            return response.data
+        })
+        .catch(function (error) {
+            // handle error
+            return {
+                status: 'failed',
+                desc: error
+            }
+        });
+}
+
+eventController.closeEvent = (data) => {
+    console.log(data);
+    return axios.post(endPoint + '/api/v1/event/close/', {
+        eid: data.eid
+    })
+        .then(function (response) {
+            // handle success
+            return response.data
+        })
+        .catch(function (error) {
+            // handle error
+            return {
+                status: 'failed',
+                desc: error
+            }
+        });
+}
+
+eventController.deleteEvent = (data) => {
+    return axios.delete(endPoint + '/api/v1/event/delete/', {
+        data: {
+            eid: data.eid
+        }
     })
         .then(function (response) {
             // handle success
