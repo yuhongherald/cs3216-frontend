@@ -218,7 +218,7 @@ class AllEvents extends React.Component {
                                             </label></div>
                                         </div>
                                         <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                    value={this.state.startDate} required/>
+                                                    value={this.formatDate(this.state.startDate)} required/>
                                     </div>
                                     <div className="_1k6rf4u" style={{width: "50%"}}>
                                         <div>
@@ -228,7 +228,7 @@ class AllEvents extends React.Component {
                                             </label></div>
                                         </div>
                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                    value={this.state.endDate} required/>
+                                                    value={this.formatDate(this.state.endDate)} required/>
                                     </div>
 
 
@@ -244,7 +244,7 @@ class AllEvents extends React.Component {
                                 <Dropdown
                                     options={options} onChange={this.onSelect}
                                     value={this.mapEventType(this.state.filters.event_type)}
-                                    placeholder="Select an option" required/>
+                                    placeholder="Choose an option" required/>
 
                             </div>
                         </div>
