@@ -35,7 +35,9 @@ class CreateEvent extends React.Component {
             submissionSuccess: false,
             submissionError: false,
             search: "",
-            value: ""
+            value: "",
+            startDate: new Date(),
+
         }
         this.handleClick = this.handleClick.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -276,7 +278,7 @@ class CreateEvent extends React.Component {
                                     </label>    
                                 </div>
                                 <ReactDatez position="right" name="dateInput" handleChange={this.changeStartDate}
-                                                value={this.state.startDate} required/>
+                                                value={this.formatDate(this.state.startDate)} required/>
                             </div>
 
                             <div className="col-md-3 col-phone">
@@ -286,7 +288,7 @@ class CreateEvent extends React.Component {
                                     <TextField
                                         id="time"
                                         type="time"
-                                        defaultValue="07:30"
+                                        //defaultValue="07:30"
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
@@ -307,7 +309,7 @@ class CreateEvent extends React.Component {
                                     </label>   
                                 </div>
                                 <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                value={this.state.endDate}/>
+                                                value={this.formatDate(this.state.endDate)}/>
                             </div>
 
 
@@ -318,7 +320,7 @@ class CreateEvent extends React.Component {
                                     <TextField
                                         id="time"
                                         type="time"
-                                        defaultValue="07:30"
+                                        //defaultValue="07:30"
                                         InputLabelProps={{
                                             shrink: true,
                                         }}

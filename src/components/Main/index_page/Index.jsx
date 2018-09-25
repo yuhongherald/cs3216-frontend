@@ -22,15 +22,15 @@ class Index extends React.Component {
             filters: {
                 address: 'Bedok',
                 event_type: 'Choose an option',
-                event_start_date: '',
-                event_end_date: '',
+                event_start_date: this.formatDate(new Date()),
+                event_end_date: this.formatDate(new Date()),
                 page_limit: 10,
                 page_num: 1,
                 lat: '',
                 lng: ''
             },
-            startDate: new Date('09/12/2018'),
-            endDate: new Date('9/20/2018'),
+            startDate: new Date(),
+            endDate: new Date(),
             events: false,
             search: "",
             value: ""
@@ -70,8 +70,12 @@ class Index extends React.Component {
         this.setState({
             filters: {
                 page_limit: 10,
-                page_num: 1
+                page_num: 1,
+                event_start_date: this.formatDate(new Date()),
+                event_end_date: this.formatDate(new Date())
             },
+            startDate: new Date(),
+            endDate: new Date(),
             gotFilters: false,
             events: false,
             value: ""
@@ -268,7 +272,9 @@ class Index extends React.Component {
                                                                     <ReactGooglePlacesSuggest
                                                                         autocompletionRequest={{input: this.state.search}}
                                                                         googleMaps={googleMaps}
-                                                                        onSelectSuggest={this.handleSelectSuggest.bind(this)}
+                                                                        onSelectSuggest={() => {
+                                                                            this.handleSelectSuggest.bind(this);
+                                                                        }}
                                                                     >
                                                                         <input
                                                                             type="text"
@@ -299,7 +305,7 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                                    value={this.state.startDate}
+                                                                    value={this.formatDate(this.state.startDate)}
                                                                     style={{width: '160px'}} required/>
                                                     </div>
                                                     <div className="_1k6rf4u" style={{width: '50%'}}>
@@ -310,7 +316,7 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                                    value={this.state.endDate} style={{width: '165px'}}
+                                                                    value={this.formatDate(this.state.endDate)} style={{width: '165px'}}
                                                                     required/>
                                                     </div>
 
@@ -327,7 +333,7 @@ class Index extends React.Component {
                                                 <Dropdown
                                                     options={options} onChange={this.onSelect}
                                                     value={this.mapEventType(this.state.filters.event_type)}
-                                                    placeholder="Select an option" required/>
+                                                    placeholder="Choose an option" required/>
 
                                             </div>
                                         </div>
