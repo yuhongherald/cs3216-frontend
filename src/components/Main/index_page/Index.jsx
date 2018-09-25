@@ -316,7 +316,7 @@ class Index extends React.Component {
                                                             </label></div>
                                                         </div>
                                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                                    value={this.formatDate(this.state.endDate)} style={{width: '165px'}}
+                                                                    value={this.state.endDate} style={{width: '165px'}}
                                                                     required/>
                                                     </div>
 

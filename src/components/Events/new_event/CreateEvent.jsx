@@ -278,7 +278,7 @@ class CreateEvent extends React.Component {
                                     </label>    
                                 </div>
                                 <ReactDatez position="right" name="dateInput" handleChange={this.changeStartDate}
-                                                value={this.formatDate(this.state.startDate)} required/>
+                                                value={this.state.startDate} required/>
                             </div>
 
                             <div className="col-md-3 col-phone">
@@ -309,7 +309,7 @@ class CreateEvent extends React.Component {
                                     </label>   
                                 </div>
                                 <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                value={this.formatDate(this.state.endDate)}/>
+                                                value={this.state.endDate}/>
                             </div>
 
 

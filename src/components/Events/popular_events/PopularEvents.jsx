@@ -133,7 +133,7 @@ class PopularEvents extends React.Component {
     }
 
     formatDate(date) {
-        return new Date(date).toISOString().substr(0, 10);
+        return date.slice(0,10);
     }
 
     changeStartDate(date) {
