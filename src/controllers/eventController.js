@@ -237,5 +237,41 @@ eventController.confirmCancel = (data) => {
         });
 }
 
+eventController.editEvent = (data) => {
+    let putData = {
+        event_title: data.event_title,
+        event_desc: data.event_desc,
+        max_quota: data.max_quota,
+        event_type: data.event_type,
+        event_start_date: data.event_start_date,
+        event_end_date: data.event_end_date,
+        is_open_ended: data.is_open_ended,
+        address: data.address,
+        lat: data.lat,
+        lng: data.lng
+    };
+    let response = axios({
+        url: endPoint + '/api/v1/event/modify_event/',
+        method: 'PUT',
+        data: putData,
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data'
+        }
+    }).then(function (response) {
+        // handle success
+        return response.data
+    }).catch(function (error) {
+        // handle error
+        return {
+            status: 'failed',
+            desc: error
+        }
+    });
+    return response;
+};
+
 
 export default eventController;
+
+

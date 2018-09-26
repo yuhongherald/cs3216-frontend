@@ -22,15 +22,15 @@ class Index extends React.Component {
             filters: {
                 address: 'Bedok',
                 event_type: 'Choose an option',
-                event_start_date: this.formatDate(new Date()),
-                event_end_date: this.formatDate(new Date()),
+                event_start_date: "",
+                event_end_date: "",
                 page_limit: 10,
                 page_num: 1,
                 lat: '',
                 lng: ''
             },
-            startDate: new Date(),
-            endDate: new Date(),
+            startDate: "",
+            endDate: "",
             events: false,
             search: "",
             value: ""
@@ -53,14 +53,17 @@ class Index extends React.Component {
     handleSelectSuggest(suggest) {
         let filters = this.state.filters;
         filters['address'] = suggest.formatted_address;
-        console.log(suggest.geometry.viewport)
-        filters['lng'] = this.calculateCoordinate(suggest.geometry.viewport.b.b, suggest.geometry.viewport.b.f).toFixed(6);
-        filters['lat'] = this.calculateCoordinate(suggest.geometry.viewport.f.b, suggest.geometry.viewport.f.f).toFixed(6);
+        this.setState({
+            value: suggest.formatted_address
+        });
+        filters['lng'] = this.calculateCoordinate(suggest.geometry.viewport.b.b, suggest.geometry.viewport.b.f).toFixed(6).toString();
+        filters['lat'] = this.calculateCoordinate(suggest.geometry.viewport.f.b, suggest.geometry.viewport.f.f).toFixed(6).toString();
         this.setState({
             search: "",
             filters: filters
         })
     }
+
 
     calculateCoordinate(c1, c2){
         return (c1 + c2)/2
@@ -138,7 +141,7 @@ class Index extends React.Component {
     }
 
     formatDate(date) {
-        return new Date(date).toISOString().substr(0, 10);
+        return date.slice(0,10)
     }
 
     changeStartDate(date) {
@@ -253,14 +256,7 @@ class Index extends React.Component {
                                                                                               htmlFor="magic-carpet-koan-search-bar">
                                                         <small className="_fhlaevk">WHERE</small>
 
-                                                    </label></div>
-                                                    {/*<input type="text" className="form-control big-form"*/}
-                                                    {/*id="formInput113" name="address"*/}
-                                                    {/*onChange={this.onInputChange}*/}
-                                                    {/*value={this.state.filters.address} required*/}
-                                                    {/*style={{marginBottom: '20px'}}*/}
-                                                    {/*/>*/}
-
+                                                    </label></div>s
                                                     <ReactGoogleMapLoader
                                                         params={{
                                                             key: "AIzaSyD6VsUPahFrXaNhkUjOeKnlFgPUyT-l36k",
@@ -272,9 +268,7 @@ class Index extends React.Component {
                                                                     <ReactGooglePlacesSuggest
                                                                         autocompletionRequest={{input: this.state.search}}
                                                                         googleMaps={googleMaps}
-                                                                        onSelectSuggest={() => {
-                                                                            this.handleSelectSuggest.bind(this);
-                                                                        }}
+                                                                        onSelectSuggest={this.handleSelectSuggest.bind(this)}
                                                                     >
                                                                         <input
                                                                             type="text"
@@ -380,8 +374,6 @@ class Index extends React.Component {
                         </div>
                     )
                 }
-
-
             </div>
         )
     }

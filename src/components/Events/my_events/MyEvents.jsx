@@ -7,6 +7,7 @@ import ParticipantsList from "./ParticipantsList.jsx";
 import Views from "./Views.jsx";
 import Helpers from "../../../modules/Helpers";
 import eventController from "../../../controllers/eventController";
+import EditEvent from "./EditEvent.jsx";
 
 class MyEvents extends React.Component {
 
@@ -17,6 +18,7 @@ class MyEvents extends React.Component {
             open: false,
             openClosingModal: false,
             openDeletingModal: false,
+            openEditingModal: false,
             currentEvent: false,
             toggle: {
                 one: true,
@@ -38,6 +40,8 @@ class MyEvents extends React.Component {
         this.onOpenDeletingModal = this.onOpenDeletingModal.bind(this);
         this.onClickDeleteConfirm = this.onClickDeleteConfirm.bind(this);
         this.toggleFilter = this.toggleFilter.bind(this);
+        this.onOpenEditingModal = this.onOpenEditingModal.bind(this);
+        this.onCloseEditingModal = this.onCloseEditingModal.bind(this);
     }
 
     onOpenDeletingModal(id) {
@@ -46,6 +50,20 @@ class MyEvents extends React.Component {
             currentEvent: id
         });
     }
+
+    onOpenEditingModal(event) {
+        this.setState({
+           editedEvent: event,
+            openEditingModal: true
+        });
+    }
+
+    onCloseEditingModal() {
+        this.setState({
+            openEditingModal: false
+        })
+    }
+
 
     toggleFilter(e) {
         const newObj = {
@@ -61,9 +79,9 @@ class MyEvents extends React.Component {
             })
         }
         else if (e.target.id === 'two') {
-           this.setState({
-               events: this.state.endedEvents
-           })
+            this.setState({
+                events: this.state.endedEvents
+            })
         }
     }
 
@@ -88,18 +106,18 @@ class MyEvents extends React.Component {
         });
     }
 
-    onOpenClosingModal(id){
+    onOpenClosingModal(id) {
         this.setState({
             openClosingModal: true,
             currentEvent: id
         });
     }
 
-    onCloseClosingModal(){
+    onCloseClosingModal() {
         this.setState({openClosingModal: false});
     }
 
-    onClickConfirm(){
+    onClickConfirm() {
         let postData = {
             eid: this.state.currentEvent
         };
@@ -136,7 +154,7 @@ class MyEvents extends React.Component {
     getData() {
         userController.eventCreated().then(response => {
             if (response.status === 'success') {
-                if (JSON.parse(response.events)[0]){
+                if (JSON.parse(response.events)[0]) {
                     this.setState({
                         eventTitle: JSON.parse(response.events)[0].fields.event_title,
                         currentEvent: JSON.parse(response.events)[0].pk,
@@ -211,6 +229,7 @@ class MyEvents extends React.Component {
             )
         }
         else if (this.state.events && this.state.events[0]) {
+
             let events = this.state.events;
             const listOfEvents = events.map((event) =>
                 <div key={event.pk} className="row" style={{marginBottom: '-40px'}}>
@@ -228,10 +247,12 @@ class MyEvents extends React.Component {
                                 <Link to={`/events/${event.pk}`}><h3
                                     style={{textTransform: 'uppercase'}}>{event.fields.event_title}</h3></Link>
                                 <p><span>Participants: </span>{event.fields.num_participants}
-                                    <button type="button" className="participant-list" ref={event.pk} onClick={() => this.openModal(event.pk, event.fields.event_title)}>See the list
+                                    <button type="button" className="participant-list" ref={event.pk}
+                                            onClick={() => this.openModal(event.pk, event.fields.event_title)}>See the
+                                        list
                                     </button>
                                 </p>
-                                <Views eid={event.pk} />
+                                <Views eid={event.pk}/>
                                 <p><span>Date: </span>{Helpers.dateConvert(event.fields.event_start_date)}</p>
                                 <p><span><i className="fas fa-map-marker-alt"
                                             style={{
@@ -249,17 +270,22 @@ class MyEvents extends React.Component {
                                     event.fields.state !== 3 ? (
                                         <div>
                                             <div style={{width: '120px', float: 'left', paddingBottom: '20px'}}>
-                                                <button type="button" className="close-event-button"  onClick={() => this.onOpenClosingModal(event.pk)}>Close event
+                                                <button type="button" className="close-event-button"
+                                                        onClick={() => this.onOpenClosingModal(event.pk)}>Close event
                                                 </button>
                                             </div>
                                             <div style={{width: '60px', float: 'right', paddingBottom: '20px'}}>
-                                                <button type="button" className="delete-button" onClick={() => this.onOpenDeletingModal(event.pk)} ><i className="far fa-trash-alt"
-                                                                                                     style={{fontSize: '18px', color: "FF5A5F", padding: '0px 0px'}}></i>
+                                                <button type="button" className="delete-button"
+                                                        onClick={() => this.onOpenDeletingModal(event.pk)}><i
+                                                    className="far fa-trash-alt"
+                                                    style={{fontSize: '18px', color: "FF5A5F", padding: '0px 0px'}}></i>
                                                 </button>
                                             </div>
                                             <div style={{width: '40px', float: 'right', paddingBottom: '20px'}}>
-                                                <button type="button" className="delete-button"><i className="fas fa-edit"
-                                                                                                     style={{fontSize: '18px', color: "FF5A5F", padding: '0px 0px'}}></i>
+                                                <button type="button" className="delete-button"
+                                                        onClick={() => this.onOpenEditingModal(event)}><i
+                                                    className="fas fa-edit"
+                                                    style={{fontSize: '18px', color: "FF5A5F", padding: '0px 0px'}}></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -279,7 +305,6 @@ class MyEvents extends React.Component {
 
                 </div>
             );
-
 
 
             return (
@@ -308,6 +333,37 @@ class MyEvents extends React.Component {
                         </div>
 
                     </Modal>
+
+
+                    {
+                        this.state.editedEvent ? (
+                            <Modal open={this.state.openEditingModal} onClose={this.onCloseEditingModal} center
+                                   className="popup centred">
+                                <EditEvent
+                                    eid={this.state.editedEvent.pk}
+                                    event_title={this.state.editedEvent.fields.event_title}
+                                    address={this.state.editedEvent.fields.address}
+                                    event_desc={this.state.editedEvent.fields.event_desc}
+                                    event_type={this.state.editedEvent.fields.event_type}
+                                    max_quota={this.state.editedEvent.fields.max_quota}
+                                    event_start_time={this.state.editedEvent.fields.event_start_date.split(" ")[1]}
+                                    event_end_time={this.state.editedEvent.fields.event_end_date.split(" ")[1]}
+                                    event_start_date={this.state.editedEvent.fields.event_start_date.split(" ")[0]}
+                                    event_end_date={this.state.editedEvent.fields.event_end_date.split(" ")[0]}
+                                    lat={this.state.editedEvent.fields.lat}
+                                    lng={this.state.editedEvent.fields.lng}
+                                />
+                                <div className="button no transition" style={{float: 'right'}}
+                                     onClick={this.onCloseEditingModal}>Close
+                                </div>
+
+                            </Modal>
+                        ) : (
+                            <div></div>
+                        )
+                    }
+
+
                     <div>
                         <h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>
                     </div>
