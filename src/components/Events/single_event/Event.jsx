@@ -4,6 +4,7 @@ import '../css/Event.css';
 import Auth from "../../../modules/Auth";
 import {browserHistory} from "react-router";
 import eventController from "../../../controllers/eventController";
+import Comments from "../../Comments/Comments.jsx";
 import {Link} from "react-router";
 
 
@@ -212,37 +213,8 @@ class Event extends React.Component {
                                     color: '#484848',
                                     fontWeight: 'bold'
                                 }}>Comments</p>
-                                <div className="comments">
-                                    <div className="comment-wrap">
 
-                                        <div className="comment-block">
-                                            <form action="">
-                                                <textarea name="" id="" cols="30" rows="3"
-                                                          placeholder="Add comment...">
-                                                </textarea>
-                                                <button type="button" className="submit-comment" style={{width: "50% !important", float: 'right'}}>Submit
-                                                </button>
-                                            </form>
-
-                                        </div>
-                                    </div>
-
-                                    <div className="comment-wrap">
-                                        <div className="comment-block">
-                                            <p className="comment-text">Lorem ipsum dolor sit amet, consectetur
-                                                adipisicing elit. Iusto temporibus iste nostrum dolorem natus recusandae
-                                                incidunt voluptatum. Eligendi voluptatum ducimus architecto tempore,
-                                                quaerat explicabo veniam fuga corporis totam.</p>
-                                            <div className="bottom-comment">
-                                                <div className="comment-date">Aug 23, 2014 @ 10:32 AM</div>
-                                                <ul className="comment-actions">
-                                                    <li className="reply" style={{color: '#FF5A5F', fontWeight: 'bold'}}>Reply</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <Comments eid={this.props.params.eventID}/>
 
                                 {
                                     (this.state.isParticipated || this.state.confirmEvent) ? (
