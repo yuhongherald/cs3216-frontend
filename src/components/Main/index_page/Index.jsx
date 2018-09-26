@@ -256,7 +256,7 @@ class Index extends React.Component {
                                                                                               htmlFor="magic-carpet-koan-search-bar">
                                                         <small className="_fhlaevk">WHERE</small>
 
-                                                    </label></div>s
+                                                    </label></div>
                                                     <ReactGoogleMapLoader
                                                         params={{
                                                             key: "AIzaSyD6VsUPahFrXaNhkUjOeKnlFgPUyT-l36k",
