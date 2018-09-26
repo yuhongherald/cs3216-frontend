@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-const endPoint = 'http://boredgowhere.live';
+const endPoint = 'https://boredgowhere.live';
 
 let eventController = {};
 
@@ -206,6 +206,23 @@ eventController.deleteEvent = (data) => {
         data: {
             eid: data.eid
         }
+    })
+        .then(function (response) {
+            // handle success
+            return response.data
+        })
+        .catch(function (error) {
+            // handle error
+            return {
+                status: 'failed',
+                desc: error
+            }
+        });
+}
+
+eventController.confirmCancel = (data) => {
+    return axios.post(endPoint + '/api/v1/user/confirm_cancel/', {
+        eid: data.eid
     })
         .then(function (response) {
             // handle success

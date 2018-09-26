@@ -49,6 +49,8 @@ class MySchedule extends React.Component {
         this.ratingChanged = this.ratingChanged.bind(this);
         this.getCompletedEvents = this.getCompletedEvents.bind(this);
         this.onOpenConfirmCancel = this.onOpenConfirmCancel.bind(this);
+        this.onClickConfirmCancel = this.onClickConfirmCancel.bind(this);
+        this.onCloseConfirmCancel = this.onCloseConfirmCancel.bind(this);
     }
 
     onOpenConfirmCancel(event) {
@@ -56,6 +58,33 @@ class MySchedule extends React.Component {
            openConfirmCancel: true,
            currentEvent: event
        })
+    }
+
+    onCloseConfirmCancel() {
+        this.setState({
+            openConfirmCancel: false
+        })
+    }
+
+    onClickConfirmCancel() {
+        if (this.state.currentEvent) {
+            let postData = {
+                eid: this.state.currentEvent,
+            };
+            eventController.confirmCancel(postData).then(response => {
+                if (response.status === 'success') {
+                    this.getData();
+                    this.onCloseConfirmCancel();
+
+                }
+                else {
+                    this.setState({
+                        error: response.desc
+                    });
+                }
+            });
+
+        }
     }
 
     onClosePendingEvents() {
@@ -204,7 +233,7 @@ class MySchedule extends React.Component {
     readImage(file) {
         if (file) {
             return (
-                <img style={{width: '100%', height: '250px'}} src={`http://54.169.251.138/media/${file}`}/>
+                <img style={{width: '100%', height: '250px'}} src={`https://boredgowhere.live/media/${file}`}/>
             )
         }
         else {
@@ -299,6 +328,52 @@ class MySchedule extends React.Component {
         });
     }
 
+    renderPendingEvents(events){
+        if(events && events[0]){
+            return events.map((event) =>
+                <div key={event.pk} className="row" style={{marginBottom: '-40px'}}>
+                    <div className="item col-md-4">
+                        <Link to={`/events/${event.pk}`}>
+                            {this.readImage(event.fields.image)}
+                        </Link>
+                        <div className="col-md-12 events-description eventslistartist-grid">
+                            <span className="country-label"
+                                  style={{
+                                      textTransform: 'uppercase',
+                                      backgroundColor: "#FF5A5F"
+                                  }}>{this.mapEventCategory(event.fields.event_type)}</span>
+                            <div className="events-text">
+                                <Link to={`/events/${event.pk}`}><h3
+                                    style={{textTransform: 'uppercase'}}>{event.fields.event_title}</h3></Link>
+                                <p><span>Date: </span>{Helpers.dateConvert(event.fields.event_start_date)}</p>
+                                <p><span><i className="fas fa-map-marker-alt"
+                                            style={{
+                                                fontSize: '14px',
+                                                padding: '2px 3px 2px 3px',
+                                                color: 'rgb(0, 132, 137)',
+                                                borderRadius: '50%',
+                                                backgroundColor: 'white',
+                                                border: '1px solid #ccc',
+                                                margin: '0px 13px 0px 5px'
+
+                                            }}></i></span>{event.fields.address}</p>
+
+
+                                <div style={{width: '120px', float: 'left', paddingBottom: '20px'}}>
+                                    <button type="button" className="close-event-button"  onClick={() => this.onOpenConfirmCancel(event.pk)}>Confirm Cancel
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            )
+
+        }
+    }
+
     componentDidMount() {
         this.getData();
     }
@@ -317,7 +392,6 @@ class MySchedule extends React.Component {
         }
         else if (this.state.events && this.state.events[0]) {
             let events = this.state.events;
-            console.log(events);
             const listOfEvents = events.map((event) =>
                 <div key={event.pk} className="row" style={{marginBottom: '-40px'}}>
                     <div className="item col-md-4">
@@ -394,51 +468,8 @@ class MySchedule extends React.Component {
                 </div>
             );
 
-            if(this.state.pendingEvents && this.state.pendingEvents[0]){
-                let pendingEvents = this.state.pendingEvents;
-                let listOfPendingEvents = pendingEvents.map((event) =>
-                    <div key={event.pk} className="row" style={{marginBottom: '-40px'}}>
-                        <div className="item col-md-4">
-                            <Link to={`/events/${event.pk}`}>
-                                {this.readImage(event.fields.image)}
-                            </Link>
-                            <div className="col-md-12 events-description eventslistartist-grid">
-                            <span className="country-label"
-                                  style={{
-                                      textTransform: 'uppercase',
-                                      backgroundColor: "#FF5A5F"
-                                  }}>{this.mapEventCategory(event.fields.event_type)}</span>
-                                <div className="events-text">
-                                    <Link to={`/events/${event.pk}`}><h3
-                                        style={{textTransform: 'uppercase'}}>{event.fields.event_title}</h3></Link>
-                                    <Views eid={event.pk} />
-                                    <p><span>Date: </span>{Helpers.dateConvert(event.fields.event_start_date)}</p>
-                                    <p><span><i className="fas fa-map-marker-alt"
-                                                style={{
-                                                    fontSize: '14px',
-                                                    padding: '2px 3px 2px 3px',
-                                                    color: 'rgb(0, 132, 137)',
-                                                    borderRadius: '50%',
-                                                    backgroundColor: 'white',
-                                                    border: '1px solid #ccc',
-                                                    margin: '0px 13px 0px 5px'
-
-                                                }}></i></span>{event.fields.address}</p>
 
 
-                                    <div style={{width: '120px', float: 'left', paddingBottom: '20px'}}>
-                                        <button type="button" className="close-event-button"  onClick={() => this.onOpenConfirmCancel(event.pk)}>Close event
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                )
-
-            }
 
             return (
 
@@ -447,7 +478,8 @@ class MySchedule extends React.Component {
                         this.state.pendingEvents && this.state.pendingEvents[0] ? (
                             <Modal open={this.state.openPendingEvents} onClose={this.onClosePendingEvents} center
                                    className="popup centred">
-                                <div>{listOfPendingEvents}</div>
+                                <p style={{fontSize: '16px', fontWeight: 'bold'}}>THESE EVENTS HAVE BEEN CANCELLED</p>
+                                <div>{this.renderPendingEvents(this.state.pendingEvents)}</div>
                             </Modal>
                         ) : (
                             <div></div>
@@ -458,12 +490,12 @@ class MySchedule extends React.Component {
                            className="popup centred">
                         <span className="yes-reply centred"></span>
                         <span className="no-reply centred"></span>
-                        <p>Are you sure you want to confirm tt? </p>
+                        <p>Are you sure you want to confirm it? </p>
                         <div className="button yes transition" style={{float: 'right'}}
-                             onClick={this.onClickConfirm}>Confirm
+                             onClick={this.onClickConfirmCancel}>Confirm
                         </div>
                         <div className="button no transition" style={{float: 'right'}}
-                             onClick={this.onCloseConfirmModal}>Cancel
+                             onClick={this.onCloseConfirmCancel}>Cancel
                         </div>
                         <div className="error-message"
                              style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
@@ -586,7 +618,48 @@ class MySchedule extends React.Component {
 
         else if (!this.state.events[0] && this.state.events) {
             return (
+
                 <div>
+                    {
+                        this.state.pendingEvents && this.state.pendingEvents[0] ? (
+                            <Modal open={this.state.openPendingEvents} onClose={this.onClosePendingEvents} center
+                                   className="popup centred">
+                                <p style={{fontSize: '16px', fontWeight: 'bold'}}>THESE EVENTS HAVE BEEN CANCELLED</p>
+                                <div>{this.renderPendingEvents(this.state.pendingEvents)}</div>
+                            </Modal>
+                        ) : (
+                            <div></div>
+                        )
+                    }
+
+
+                    <Modal open={this.state.openConfirmCancel} onClose={this.onCloseConfirmCancel} center
+                           className="popup centred">
+                        <span className="yes-reply centred"></span>
+                        <span className="no-reply centred"></span>
+                        <p>Are you sure you want to confirm it? </p>
+                        <div className="button yes transition" style={{float: 'right'}}
+                             onClick={this.onClickConfirmCancel}>Confirm
+                        </div>
+                        <div className="button no transition" style={{float: 'right'}}
+                             onClick={this.onCloseConfirmCancel}>Cancel
+                        </div>
+                        <div className="error-message"
+                             style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
+                            {
+                                this.state.error ? (
+                                    <div>{this.state.error}. Please try again</div>
+                                ) : (
+                                    <div></div>
+                                )
+                            }
+                        </div>
+
+                    </Modal>
+
+
+
+
                     <div style={{display: 'flex', flexDirection: 'row', margin: '20px 0px 20px 10px'}}>
                         <div className={this.state.toggle.one ? 'filter-active' : 'filter-inactive'} id="one"
                              onClick={this.toggleFilter}>All

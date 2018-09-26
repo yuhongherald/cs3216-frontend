@@ -171,7 +171,7 @@ class MyEvents extends React.Component {
     readImage(file) {
         if (file) {
             return (
-                <img style={{width: '100%', height: '250px'}} src={`http://54.169.251.138/media/${file}`}/>
+                <img style={{width: '100%', height: '250px'}} src={`https://boredgowhere.live/media/${file}`}/>
             )
         }
         else {
@@ -258,7 +258,7 @@ class MyEvents extends React.Component {
                                                 </button>
                                             </div>
                                             <div style={{width: '40px', float: 'right', paddingBottom: '20px'}}>
-                                                <button type="button" className="register-button"><i className="fas fa-edit"
+                                                <button type="button" className="delete-button"><i className="fas fa-edit"
                                                                                                      style={{fontSize: '18px', color: "FF5A5F", padding: '0px 0px'}}></i>
                                                 </button>
                                             </div>

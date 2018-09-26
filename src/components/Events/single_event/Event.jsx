@@ -110,7 +110,7 @@ class Event extends React.Component {
                  alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
                  sizes="100vw"
                  width="400"
-                 src={`http://54.169.251.138/media/${file}`}
+                 src={`https://boredgowhere.live/media/${file}`}
                  height="300px"
                  srcSet="">
             </img>
