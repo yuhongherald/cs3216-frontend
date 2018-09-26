@@ -17,7 +17,14 @@ class MyEvents extends React.Component {
             open: false,
             openClosingModal: false,
             openDeletingModal: false,
-            currentEvent: false
+            currentEvent: false,
+            toggle: {
+                one: true,
+                two: false
+            },
+            activeEvents: [],
+            endedEvents: [],
+            pendingEvents: false
 
         };
         this.readImage = this.readImage.bind(this);
@@ -30,7 +37,7 @@ class MyEvents extends React.Component {
         this.onCloseDeletingModal = this.onCloseDeletingModal.bind(this);
         this.onOpenDeletingModal = this.onOpenDeletingModal.bind(this);
         this.onClickDeleteConfirm = this.onClickDeleteConfirm.bind(this);
-
+        this.toggleFilter = this.toggleFilter.bind(this);
     }
 
     onOpenDeletingModal(id) {
@@ -38,6 +45,26 @@ class MyEvents extends React.Component {
             openDeletingModal: true,
             currentEvent: id
         });
+    }
+
+    toggleFilter(e) {
+        const newObj = {
+            [e.target.id]: !this.state.toggle[e.target.id]
+        };
+        this.setState({
+            toggle: newObj
+        });
+        if (e.target.id === 'one') {
+            // this.resetEvents();
+            this.setState({
+                events: this.state.activeEvents
+            })
+        }
+        else if (e.target.id === 'two') {
+           this.setState({
+               events: this.state.endedEvents
+           })
+        }
     }
 
     onCloseDeletingModal() {
@@ -109,14 +136,20 @@ class MyEvents extends React.Component {
     getData() {
         userController.eventCreated().then(response => {
             if (response.status === 'success') {
-                console.log(response.events)
-
                 if (JSON.parse(response.events)[0]){
                     this.setState({
                         eventTitle: JSON.parse(response.events)[0].fields.event_title,
                         currentEvent: JSON.parse(response.events)[0].pk,
-                        events: JSON.parse(response.events),
-                    });
+                        events: JSON.parse(response.events).filter(function (event) {
+                            return event.fields.state === 1
+                        }),
+                        activeEvents: JSON.parse(response.events).filter(function (event) {
+                            return event.fields.state === 1
+                        }),
+                        endedEvents: JSON.parse(response.events).filter(function (event) {
+                            return event.fields.state === 3
+                        })
+                    })
                 }
                 else {
                     this.setState({
@@ -225,7 +258,7 @@ class MyEvents extends React.Component {
                                                 </button>
                                             </div>
                                             <div style={{width: '40px', float: 'right', paddingBottom: '20px'}}>
-                                                <button type="button" className="schedule-button"><i className="fas fa-edit"
+                                                <button type="button" className="register-button"><i className="fas fa-edit"
                                                                                                      style={{fontSize: '18px', color: "FF5A5F", padding: '0px 0px'}}></i>
                                                 </button>
                                             </div>
@@ -233,7 +266,7 @@ class MyEvents extends React.Component {
                                     ) : (
                                         <div>
                                             <div style={{width: '80px', float: 'right', paddingBottom: '20px'}}>
-                                                <button type="button" className="schedule-button">Ended
+                                                <button type="button" className="register-button">Ended
                                                 </button>
                                             </div>
                                         </div>
@@ -247,31 +280,10 @@ class MyEvents extends React.Component {
                 </div>
             );
 
+
+
             return (
                 <div>
-                    <Modal open={this.state.openClosingModal} onClose={this.onCloseClosingModal} center
-                           className="popup centred">
-                        <span className="yes-reply centred"></span>
-                        <span className="no-reply centred"></span>
-                        <p>Are you sure you want to CLOSE the event? </p>
-                        <div className="button yes transition" style={{float: 'right'}}
-                             onClick={this.onClickConfirm}>Confirm
-                        </div>
-                        <div className="button no transition" style={{float: 'right'}}
-                             onClick={this.onCloseConfirmModal}>Cancel
-                        </div>
-                        <div className="error-message"
-                             style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
-                            {
-                                this.state.error ? (
-                                    <div>{this.state.error}. Please try again</div>
-                                ) : (
-                                    <div></div>
-                                )
-                            }
-                        </div>
-
-                    </Modal>
 
                     <Modal open={this.state.openDeletingModal} onClose={this.onCloseDeletingModal} center
                            className="popup centred">
@@ -299,6 +311,18 @@ class MyEvents extends React.Component {
                     <div>
                         <h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>
                     </div>
+
+                    <div>
+                        <div style={{display: 'flex', flexDirection: 'row', margin: '20px 0px 20px 10px'}}>
+                            <div className={this.state.toggle.one ? 'filter-active' : 'filter-inactive'} id="one"
+                                 onClick={this.toggleFilter}>Active
+                            </div>
+                            <div className={this.state.toggle.two ? 'filter-active' : 'filter-inactive'} id="two"
+                                 onClick={this.toggleFilter}>Ended
+                            </div>
+                        </div>
+
+                    </div>
                     <div>
                         {listOfEvents}
                     </div>
@@ -312,7 +336,24 @@ class MyEvents extends React.Component {
 
         else if (!this.state.events[0] && this.state.events) {
             return (
-                <div style={{height: '1000px', color: 'rgb(255, 90, 95)'}}>Oops! We cannot find any event</div>
+                <div>
+                    <div>
+                        <h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>
+                    </div>
+
+                    <div>
+                        <div style={{display: 'flex', flexDirection: 'row', margin: '20px 0px 20px 10px'}}>
+                            <div className={this.state.toggle.one ? 'filter-active' : 'filter-inactive'} id="one"
+                                 onClick={this.toggleFilter}>Active
+                            </div>
+                            <div className={this.state.toggle.two ? 'filter-active' : 'filter-inactive'} id="two"
+                                 onClick={this.toggleFilter}>Ended
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{height: '1000px', color: 'rgb(255, 90, 95)'}}>Oops! We cannot find any event</div>
+                </div>
             )
         }
         else if (this.state.error) {

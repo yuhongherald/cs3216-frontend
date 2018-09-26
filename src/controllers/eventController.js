@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-const endPoint = 'http://54.169.251.138';
+const endPoint = 'http://boredgowhere.live';
 
 let eventController = {};
 
@@ -134,6 +134,23 @@ eventController.getParticipants = (data) => {
 eventController.getClickRecords = (data) => {
    return axios.post(endPoint + '/api/v1/event/history_record/', {
         eid: data.eid
+    })
+        .then(function (response) {
+            // handle success
+            return response.data
+        })
+        .catch(function (error) {
+            // handle error
+            return {
+                status: 'failed',
+                desc: error
+            }
+        });
+}
+
+eventController.getViewCounts = (data) => {
+    return axios.get(endPoint + '/api/v1/event/views-count/', {
+        params: data
     })
         .then(function (response) {
             // handle success

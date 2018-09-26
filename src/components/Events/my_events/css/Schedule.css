@@ -115,6 +115,41 @@
     color: #FF5A5F !important;
 }
 
+.register-button {
+    cursor: pointer !important;
+    display: inline-block !important;
+    margin: 0px !important;
+    position: relative !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    -webkit-transition-property: background, border-color, color !important;
+    -moz-transition-property: background, border-color, color !important;
+    transition-property: background, border-color, color !important;
+    -webkit-transition-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+    -webkit-transition-timing-function: ease-out !important;
+    transition-timing-function: ease-out !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    font-size: 12px !important;
+    line-height: 22px !important;
+    letter-spacing: normal !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    text-transform: undefined !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-weight: 800 !important;
+    border-width: 2px !important;
+    border-style: solid !important;
+    min-width: 77.6656314599949x6px !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    box-shadow: none !important;
+    background: #FF5A5F;
+    border-color: transparent;
+    color: #ffffff !important;
+}
+
 .close-event-button {
     cursor: pointer !important;
     display: inline-block !important;

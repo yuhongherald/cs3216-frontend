@@ -121,21 +121,21 @@ class Event extends React.Component {
         console.log(event_status)
         if (event_status === 1) {
             return (
-                <button type="button" className="schedule-button"
+                <button type="button" className="register-button"
                         onClick={this.onOpenConfirmModal}>Register
                 </button>
             )
         }
         else if (event_status === 2){
             return (
-                <button type="button" className="schedule-button"
+                <button type="button" className="register-button"
                         style={{backgroundColor: '#FF5A5F' }}>Full
-                        </button>
+                </button>
             )
         }
         else if (event_status === 3){
             return (
-                <button type="button" className="schedule-button"
+                <button type="button" className="register-button"
                         style={{backgroundColor: '#FF5A5F' }}>Ended
                 </button>
             )
@@ -258,7 +258,7 @@ class Event extends React.Component {
                     </div>
 
                     {
-                        (this.state.isParticipated || this.state.confirmEvent) ? (
+                        (this.state.isParticipated || this.state.confirmEvent) && event.fields.state !== 3 ? (
                             <div className="_hauh0a">
                                 <div style={{width: '130px', float: 'right', paddingBottom: '20px'}}>
                                     <button type="button" className="_qy64md green">Participating
