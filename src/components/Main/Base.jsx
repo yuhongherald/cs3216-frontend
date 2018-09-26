@@ -30,6 +30,13 @@ class Base extends React.Component {
             }
 
         });
+
+        $('#bs-example-navbar-collapse-1').click(function () {
+            if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+                $('#bs-example-navbar-collapse-1').removeClass("in")
+            }
+
+        });
     }
 
     componentWillUnmount() {
@@ -43,6 +50,8 @@ class Base extends React.Component {
             }
 
         });
+
+
     }
 
     render() {
@@ -53,7 +62,7 @@ class Base extends React.Component {
                 <div id="navigation-header">
                     <nav className="navbar navbar-default"  style={{paddingBottom: '10px'}} role="navigation">
                         <div className="container">
-                            <div className="navbar-header">
+                            <div className="navbar-header" id="navbar-header">
                                 <button type="button" className="navbar-toggle" data-toggle="collapse"
                                         data-target="#bs-example-navbar-collapse-1">
                                     <span className="sr-only">Toggle navigation</span>
