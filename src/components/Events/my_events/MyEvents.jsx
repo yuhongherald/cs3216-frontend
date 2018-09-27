@@ -125,7 +125,7 @@ class MyEvents extends React.Component {
         eventController.closeEvent(postData).then(response => {
             if (response.status === 'success') {
                 this.getData();
-                setTimeout(this.onCloseDeletingModal(), 2000);
+                this.onCloseClosingModal();
             }
             else {
                 this.setState({
