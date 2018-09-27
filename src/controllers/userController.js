@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-let endPoint = "http://54.169.251.138";
+let endPoint = "https://boredgowhere.live";
 
 let userController = {};
 

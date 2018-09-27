@@ -121,6 +121,10 @@
     height: 50px;
 }
 
+.MuiFormControl-root-1 {
+    margin-left: 20px !important;
+}
+
 .Dropdown-control {
     height: 50px;
     padding-top: 10px;
@@ -142,9 +146,21 @@
     padding: 20px 5px 20px 5px;
 }
 
+.rdatez-btn {
+    background-color: transparent !important
+}
+
+.rdatez-mobile-close {
+    background-color: transparent !important
+}
+
 .pagination >.active > a {
     background-color: #FF5A5F !important;
     border-color: #FF5A5F !important
+}
+
+#section-contactform .form-group span{
+    color: #0f0f0f !important;
 }
 
 ._1ejbzasf {

@@ -26,10 +26,9 @@ class AllEvents extends React.Component {
             filters: {
                 address: '',
                 event_type: '',
-                event_start_date: this.formatDate(new Date()),
-                event_end_date: this.formatDate(new Date()),
-                page_limit: 10,
-                page_num: 1
+                event_end_date: '',
+                page_limit: "10",
+                page_num: "1"
             },
             mapView: false,
             isPaneOpen: false,
@@ -71,11 +70,14 @@ class AllEvents extends React.Component {
     resetFilters() {
         this.setState({
             filters: {
-                page_limit: 10,
-                page_num: 1
-            },
-            gotFilters: false
-        });
+                page_limit: "10",
+                page_num: "1",
+                address: '',
+                event_type: '',
+                event_start_date: '',
+                event_end_date: '',
+            }
+        })
     }
 
 
@@ -91,8 +93,7 @@ class AllEvents extends React.Component {
         const filters = this.state.filters;
         filters[field] = event.target.value;
         this.setState({
-            filters: filters,
-            gotFilters: true
+            filters: filters
         });
     }
 
@@ -126,14 +127,13 @@ class AllEvents extends React.Component {
     onSelect(e) {
         const filters = this.state.filters;
         filters['event_type'] = this.remapEventType(e.value);
-        console.log(filters);
         this.setState({
             filters: filters
         });
     }
 
     formatDate(date) {
-        return new Date(date).toISOString().substr(0, 10);
+        return date.slice(0, 10);
     }
 
     changeStartDate(date) {
@@ -221,7 +221,7 @@ class AllEvents extends React.Component {
                                             </label></div>
                                         </div>
                                         <ReactDatez name="dateInput" handleChange={this.changeStartDate}
-                                                    value={this.formatDate(this.state.startDate)} required/>
+                                                    value={this.state.startDate} required/>
                                     </div>
                                     <div className="_1k6rf4u" style={{width: "50%"}}>
                                         <div>
@@ -231,7 +231,7 @@ class AllEvents extends React.Component {
                                             </label></div>
                                         </div>
                                         <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                    value={this.formatDate(this.state.endDate)} required/>
+                                                    value={this.state.endDate} required/>
                                     </div>
 
 
@@ -339,6 +339,7 @@ class AllEvents extends React.Component {
                                                           sortBy={'event_start_date'}
                                                           mapView={this.state.mapView}
                                                           events={this.state.events}
+                                                          gotFilters={this.state.gotFilters}
                                             />
                                         </div>
                                     </div>

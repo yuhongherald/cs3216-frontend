@@ -52,8 +52,8 @@ class EventsByPage extends React.Component {
             page_num: this.state.activePage.toString()
         };
 
-        if (!this.isEmpty(this.state.filters)) {
-            let filters = this.state.filters;
+        if (!this.isEmpty(this.props.filters)) {
+            let filters = this.props.filters;
             data = Object.assign(filters, data);
         }
 
@@ -86,7 +86,7 @@ class EventsByPage extends React.Component {
     readImage(file) {
         if (file) {
             return (
-                <img style={{width: '100%', height: '250px'}} src={`http://54.169.251.138/media/${file}`}/>
+                <img style={{width: '100%', height: '250px'}} src={`https://boredgowhere.live/media/${file}`}/>
             )
         }
         else {
@@ -101,7 +101,7 @@ class EventsByPage extends React.Component {
         if (file) {
             return (
                 <img
-                    src={`http://54.169.251.138/media/${file}`}
+                    src={`https://boredgowhere.live/media/${file}`}
                     height="100"
                     width="150"
                     style={{marginRight: '20px', borderRadius: '5px'}}/>

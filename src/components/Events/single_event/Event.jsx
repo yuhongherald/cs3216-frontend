@@ -4,6 +4,7 @@ import '../css/Event.css';
 import Auth from "../../../modules/Auth";
 import {browserHistory} from "react-router";
 import eventController from "../../../controllers/eventController";
+import Comments from "../../Comments/Comments.jsx";
 import {Link} from "react-router";
 
 
@@ -109,11 +110,39 @@ class Event extends React.Component {
             <img className="_154ar5hp" id="marqueeImage"
                  alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
                  sizes="100vw"
-                 src={`http://54.169.251.138/media/${file}`}
+                 width="400"
+                 src={`https://boredgowhere.live/media/${file}`}
                  height="300px"
                  srcSet="">
             </img>
         )
+    }
+
+    renderButton(event_status) {
+        console.log(event_status)
+        if (event_status === 1) {
+            return (
+                <button type="button" className="register-button"
+                        onClick={this.onOpenConfirmModal}>Register
+                </button>
+            )
+        }
+        else if (event_status === 2){
+            return (
+                <button type="button" className="register-button"
+                        style={{backgroundColor: '#FF5A5F' }}>Full
+                </button>
+            )
+        }
+        else if (event_status === 3){
+            return (
+                <button type="button" className="register-button"
+                        style={{backgroundColor: '#FF5A5F' }}>Ended
+                </button>
+            )
+        }
+
+
     }
 
 
@@ -129,7 +158,7 @@ class Event extends React.Component {
             let event = this.state.event;
             console.log(event);
             return (
-                <div id="section-aboutus" className="section-eventsdetails">
+                <div id="section-aboutus" className="section-eventsdetails" style={{backgroundColor: '#eeeeee'}}>
                     <Modal open={this.state.openConfirmModal} onClose={this.onCloseConfirmModal} center
                            className="popup centred">
                         <span className="yes-reply centred"></span>
@@ -169,7 +198,7 @@ class Event extends React.Component {
                                 }}>Participants: {event.fields.num_participants}</p>
                                 <p style={{
                                     textAlign: 'left',
-                                    padding: '20px 0px 20px 0px',
+                                    padding: '20px 0px 0px 0px',
                                     color: '#484848',
                                     fontWeight: 'bold'
                                 }}>Description</p>
@@ -178,6 +207,14 @@ class Event extends React.Component {
                                     {event.fields.event_desc}
                                 </p>
                                 <div style={{height: '20px'}}></div>
+                                <p style={{
+                                    textAlign: 'left',
+                                    padding: '20px 0px 10px 0px',
+                                    color: '#484848',
+                                    fontWeight: 'bold'
+                                }}>Comments</p>
+
+                                <Comments eid={this.props.params.eventID}/>
 
                                 {
                                     (this.state.isParticipated || this.state.confirmEvent) ? (
@@ -193,7 +230,7 @@ class Event extends React.Component {
                     </div>
 
                     {
-                        (this.state.isParticipated || this.state.confirmEvent) ? (
+                        (this.state.isParticipated || this.state.confirmEvent) && event.fields.state !== 3 ? (
                             <div className="_hauh0a">
                                 <div style={{width: '130px', float: 'right', paddingBottom: '20px'}}>
                                     <button type="button" className="_qy64md green">Participating
@@ -204,9 +241,7 @@ class Event extends React.Component {
                         ) : (
                             <div className="_hauh0a">
                                 <div style={{width: '108px', float: 'right', paddingBottom: '20px'}}>
-                                    <button type="button" className="schedule-button"
-                                            onClick={this.onOpenConfirmModal}>Register
-                                    </button>
+                                    {this.renderButton(event.fields.state)}
                                 </div>
                             </div>
                         )
