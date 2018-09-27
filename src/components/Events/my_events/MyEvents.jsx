@@ -53,7 +53,7 @@ class MyEvents extends React.Component {
 
     onOpenEditingModal(event) {
         this.setState({
-           editedEvent: event,
+            editedEvent: event,
             openEditingModal: true
         });
     }
@@ -79,7 +79,9 @@ class MyEvents extends React.Component {
             })
         }
         else if (e.target.id === 'two') {
-            this.getCompletedEvent()
+            this.setState({
+                events: this.state.endedEvents
+            })
         }
     }
 
@@ -116,11 +118,11 @@ class MyEvents extends React.Component {
     }
 
 
-    onClickCloseConfirm(){
+    onClickCloseConfirm() {
         let postData = {
             eid: this.state.currentEvent
         };
-        eventController.deleteEvent(postData).then(response => {
+        eventController.closeEvent(postData).then(response => {
             if (response.status === 'success') {
                 this.getData();
                 setTimeout(this.onCloseDeletingModal(), 2000);
@@ -140,7 +142,7 @@ class MyEvents extends React.Component {
         eventController.closeEvent(postData).then(response => {
             if (response.status === 'success') {
                 this.getData();
-                setTimeout(this.onCloseClosingModal(), 2000);
+                this.onCloseClosingModal();
             }
             else {
                 this.setState({
@@ -179,38 +181,9 @@ class MyEvents extends React.Component {
                         }),
                         activeEvents: JSON.parse(response.events).filter(function (event) {
                             return event.fields.state === 1
-                        })
-                    })
-                }
-                else {
-                    this.setState({
-                        eventTitle: null,
-                        currentEvent: null,
-                        events: [],
-                    });
-                }
-            }
-            else {
-                this.setState({
-                    error: response.desc
-                });
-            }
-        });
-    }
-
-
-    getCompletedEvent() {
-        userController.eventCreated().then(response => {
-            if (response.status === 'success') {
-                if (JSON.parse(response.events)[0]) {
-                    this.setState({
-                        eventTitle: JSON.parse(response.events)[0].fields.event_title,
-                        currentEvent: JSON.parse(response.events)[0].pk,
-                        events: JSON.parse(response.events).filter(function (event) {
-                            return event.fields.state === 3
                         }),
-                        activeEvents: JSON.parse(response.events).filter(function (event) {
-                            return event.fields.state === 1
+                        endedEvents: JSON.parse(response.events).filter(function (event) {
+                            return event.fields.state === 3
                         })
                     })
                 }
@@ -435,7 +408,7 @@ class MyEvents extends React.Component {
 
 
                     {/*<div>*/}
-                        {/*<h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>*/}
+                    {/*<h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>*/}
                     {/*</div>*/}
 
                     <div>
