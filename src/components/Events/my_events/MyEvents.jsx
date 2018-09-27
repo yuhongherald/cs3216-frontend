@@ -21,7 +21,8 @@ class MyEvents extends React.Component {
             currentEvent: false,
             toggle: {
                 one: true,
-                two: false
+                two: false,
+                three: false
             },
             activeEvents: [],
             endedEvents: [],
@@ -81,6 +82,11 @@ class MyEvents extends React.Component {
         else if (e.target.id === 'two') {
             this.setState({
                 events: this.state.endedEvents
+            })
+        }
+        else if (e.target.id === 'three') {
+            this.setState({
+                events: this.state.canceledEvents
             })
         }
     }
@@ -184,6 +190,9 @@ class MyEvents extends React.Component {
                         }),
                         endedEvents: JSON.parse(response.events).filter(function (event) {
                             return event.fields.state === 3
+                        }),
+                        canceledEvents: JSON.parse(response.events).filter(function (event) {
+                            return event.fields.state === -1 || event.fields.state === 0
                         })
                     })
                 }
@@ -419,6 +428,9 @@ class MyEvents extends React.Component {
                             <div className={this.state.toggle.two ? 'filter-active' : 'filter-inactive'} id="two"
                                  onClick={this.toggleFilter}>Ended
                             </div>
+                            <div className={this.state.toggle.three ? 'filter-active' : 'filter-inactive'} id="three"
+                                 onClick={this.toggleFilter}>Canceled
+                            </div>
                         </div>
 
                     </div>
@@ -436,9 +448,9 @@ class MyEvents extends React.Component {
         else if (!this.state.events[0] && this.state.events) {
             return (
                 <div>
-                    <div>
-                        <h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>
-                    </div>
+                    {/*<div>*/}
+                        {/*<h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>*/}
+                    {/*</div>*/}
 
                     <div>
                         <div style={{display: 'flex', flexDirection: 'row', margin: '20px 0px 20px 10px'}}>
@@ -448,10 +460,23 @@ class MyEvents extends React.Component {
                             <div className={this.state.toggle.two ? 'filter-active' : 'filter-inactive'} id="two"
                                  onClick={this.toggleFilter}>Ended
                             </div>
+                            <div className={this.state.toggle.three ? 'filter-active' : 'filter-inactive'} id="three"
+                                 onClick={this.toggleFilter}>Canceled
+                            </div>
                         </div>
                     </div>
 
-                    <div style={{height: '1000px', color: 'rgb(255, 90, 95)'}}>Oops! We cannot find any event</div>
+                    <div style={{color: 'rgb(255, 90, 95)', paddingLeft: '15px'}}>Oops! We cannot find any event.
+                    </div>
+                    {
+                        this.state.toggle.one ? (
+                            <div style={{paddingLeft: '15px'}}><Link to="/events/new">Create a new event now</Link></div>
+
+                        ) : (
+                            <div></div>
+                        )
+                    }
+
                 </div>
             )
         }

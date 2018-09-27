@@ -217,7 +217,7 @@ class Event extends React.Component {
                                 <Comments eid={this.props.params.eventID}/>
 
                                 {
-                                    (this.state.isParticipated || this.state.confirmEvent) ? (
+                                    (this.state.isParticipated || this.state.confirmEvent && Auth.getUserData().uid !== event.fields.event_creator) ? (
                                         <span style={{textAlign: 'right', paddingTop: '40px'}}> This event has been added <Link
                                             to="/my-schedule" style={{textDecoration: 'underline'}}>your schedule</Link></span>
                                     ) : (
@@ -229,23 +229,45 @@ class Event extends React.Component {
                         </div>
                     </div>
 
-                    {
-                        (this.state.isParticipated || this.state.confirmEvent) && event.fields.state !== 3 ? (
-                            <div className="_hauh0a">
-                                <div style={{width: '130px', float: 'right', paddingBottom: '20px'}}>
-                                    <button type="button" className="_qy64md green">Participating
-                                    </button>
-                                </div>
-                            </div>
+                    <div className="_hauh0a">
+                        {
+                            !Auth.getUserData()  ? (
+                                <div style={{paddingLeft: '10px'}}><Link to="/login">Please sign in to register or see event status</Link></div>
+                            ) : (
+                                <div>
+                                    {
+                                        Auth.getUserData().uid !== event.fields.event_creator ? (
+                                        <div>
+                                            {
+                                                (this.state.isParticipated || this.state.confirmEvent) && event.fields.state !== 3 ? (
 
-                        ) : (
-                            <div className="_hauh0a">
-                                <div style={{width: '108px', float: 'right', paddingBottom: '20px'}}>
-                                    {this.renderButton(event.fields.state)}
+                                                    <div style={{width: '130px', float: 'right', paddingBottom: '20px'}}>
+                                                        <button type="button" className="_qy64md green">Participating
+                                                        </button>
+                                                    </div>
+
+
+                                                ) : (
+                                                    <div style={{width: '108px', float: 'right', paddingBottom: '20px'}}>
+                                                        {this.renderButton(event.fields.state)}
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                        ) : (
+                                         <div>
+                                             <div style={{paddingLeft: '10px'}}>You are the creator of this event</div>
+                                             <div style={{paddingLeft: '10px'}}><Link to="/login">Manage your events</Link></div>
+
+                                         </div>
+                                        )
+                                }
                                 </div>
-                            </div>
-                        )
-                    }
+
+                            )
+                        }
+
+                    </div>
 
                 </div>
             )
