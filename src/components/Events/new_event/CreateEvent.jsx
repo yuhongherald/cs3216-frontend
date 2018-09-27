@@ -11,8 +11,6 @@ import {browserHistory} from 'react-router';
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
 
-
-
 class CreateEvent extends React.Component {
 
     constructor(props) {
@@ -36,7 +34,8 @@ class CreateEvent extends React.Component {
             submissionError: false,
             search: "",
             value: "",
-            startDate: new Date(),
+            startDate: new Date().toJSON(),
+            endDate: new Date().toJSON()
 
         }
         this.handleClick = this.handleClick.bind(this);
@@ -54,7 +53,7 @@ class CreateEvent extends React.Component {
         console.log(e.target.value);
         this.setState({
             search: e.target.value,
-            value:  e.target.value
+            value: e.target.value
         })
     }
 
@@ -73,8 +72,8 @@ class CreateEvent extends React.Component {
         })
     }
 
-    calculateCoordinate(c1, c2){
-        return (c1 + c2)/2
+    calculateCoordinate(c1, c2) {
+        return (c1 + c2) / 2
     }
 
 
@@ -113,14 +112,14 @@ class CreateEvent extends React.Component {
         });
     }
 
-    remapEventType(event){
+    remapEventType(event) {
         let mapList = {
             "arts": "0",
             "food": "1",
             "sports": "2",
             "social": "3"
         };
-        if (event in mapList){
+        if (event in mapList) {
             return mapList[event];
         }
     }
@@ -144,7 +143,7 @@ class CreateEvent extends React.Component {
     }
 
     formatDate(date) {
-        return date.slice(0,10)
+        return date.slice(0, 10)
     }
 
     handleClick(event) {
@@ -162,7 +161,6 @@ class CreateEvent extends React.Component {
             'lat': this.state.data.lat,
             'lng': this.state.data.lng
         };
-        console.log(postData);
         eventController.createEvent(postData).then(response => {
             console.log(response);
             if (response.status === 'success') {
@@ -279,10 +277,10 @@ class CreateEvent extends React.Component {
                                 <div className="form-group">
                                     <label className="control-label">START DATE
                                         <span>*</span>
-                                    </label>    
+                                    </label>
                                 </div>
                                 <ReactDatez position="right" name="dateInput" handleChange={this.changeStartDate}
-                                                value={this.state.startDate} required/>
+                                            value={this.state.startDate} required/>
                             </div>
 
                             <div className="col-md-3 col-phone">
@@ -310,10 +308,10 @@ class CreateEvent extends React.Component {
                                 <div className="form-group">
                                     <label className="control-label">END DATE
                                         <span>*</span>
-                                    </label>   
+                                    </label>
                                 </div>
                                 <ReactDatez name="dateInput" handleChange={this.changeEndDate}
-                                                value={this.state.endDate}/>
+                                            value={this.state.endDate}/>
                             </div>
 
 
@@ -357,8 +355,7 @@ class CreateEvent extends React.Component {
                                 ) : (
                                     <div></div>
                                 )}
-                                <button className="btn btn-warning pull-right btn-subscribe"
-                                        onClick={this.handleClick}>CREATE EVENT
+                                <button onClick={this.handleClick}>CREATE EVENT
                                 </button>
                             </div>
                         </form>

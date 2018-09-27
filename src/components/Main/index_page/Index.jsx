@@ -29,8 +29,8 @@ class Index extends React.Component {
                 lat: '',
                 lng: ''
             },
-            startDate: "",
-            endDate: "",
+            startDate: new Date().toJSON(),
+            endDate: new Date().toJSON(),
             events: false,
             search: "",
             value: ""
@@ -74,11 +74,11 @@ class Index extends React.Component {
             filters: {
                 page_limit: 10,
                 page_num: 1,
-                event_start_date: this.formatDate(new Date()),
-                event_end_date: this.formatDate(new Date())
+                event_start_date: this.formatDate(new Date().toJSON()),
+                event_end_date: this.formatDate(new Date().toJSON())
             },
-            startDate: new Date(),
-            endDate: new Date(),
+            startDate: new Date().toJSON(),
+            endDate: new Date().toJSON(),
             gotFilters: false,
             events: false,
             value: ""
