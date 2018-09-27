@@ -2201,3 +2201,48 @@ textarea:focus, input:focus, .uneditable-input:focus, select:focus{
         background-color: #f55692;
     }
 }
+@media only screen and (max-width: 1199px){
+    .searchbar-column {
+        width: 50%;
+    }
+    .searchbar-btn {
+        width: 100%;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    .events-description {
+        width: 95%;
+    }
+
+    .latest-event > .owl-nav {
+        margin-top: -485px;
+    }
+    .latest-event > .owl-nav > .owl-prev, .latest-event > .owl-nav > .owl-next{
+        position: absolute;
+    }
+    .latest-event > .owl-nav > .owl-prev{
+        margin-left: -40px;
+    }
+    .latest-event > .owl-nav > .owl-next {
+        margin-left: 10px;
+    }
+    .imagegallery-item{
+    	float: left;
+    	padding: 0px 7.5px 7px 0;
+  	}
+    #section-lestblog .content-left span {
+        left: 5px;
+        margin-top: 20px;
+        position: absolute;
+    }
+    .section-eventsdetails > .container > #list-view > .the-artist-horizontal > .text-slider3{
+    	margin-left: 0;
+    	width: 100%;
+	}
+	.section-eventsdetails > .container > #list-view > .the-artist-horizontal > .contents{
+    	margin-top: 130px;
+    	display: inline-block;
+  	}
+}

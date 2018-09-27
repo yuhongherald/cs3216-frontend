@@ -10,6 +10,8 @@ class Auth {
 
     }
 
+
+
     /**
      * Check if a user is authenticated - check if a token is saved in session Storage
      *

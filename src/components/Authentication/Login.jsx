@@ -37,7 +37,7 @@ class Login extends React.Component {
                     user: {
                         username: response.username,
                         password: response.password,
-                        uuid: response.uuid
+                        uid: response.uid
                     },
                     isSignIn: true
                 });
@@ -131,24 +131,24 @@ class Login extends React.Component {
                         <Link to="/login" className="active" id="login-box-link" style={{'textAlign': 'left', width: '35%'}}>Login</Link>
                         <Link to="/signup" id="signup-box-link" style={{'textAlign': 'left', width: '50%'}}>Sign Up</Link>
                     </div>
-                    <div className="social-login">
-                        <FacebookLogin
-                            appId={FACEBOOK_APP_ID}
-                            fields="name,email,picture"
-                            callback={this.responseFacebook}
-                        />
+                    {/*<div className="social-login">*/}
+                        {/*<FacebookLogin*/}
+                            {/*appId={FACEBOOK_APP_ID}*/}
+                            {/*fields="name,email,picture"*/}
+                            {/*callback={this.responseFacebook}*/}
+                        {/*/>*/}
 
-                        <div className="or" style={{display: 'inline-block'}}>OR</div>
+                        {/*<div className="or" style={{display: 'inline-block'}}>OR</div>*/}
 
-                        <GoogleLogin
-                            clientId={GOOGLE_CLIENT_ID}
-                            buttonText="Login with Google"
-                            onSuccess={this.responseGoogle}
-                            onFailure={this.responseGoogle}
-                            style={googleLogin}
-                        />
+                        {/*<GoogleLogin*/}
+                            {/*clientId={GOOGLE_CLIENT_ID}*/}
+                            {/*buttonText="Login with Google"*/}
+                            {/*onSuccess={this.responseGoogle}*/}
+                            {/*onFailure={this.responseGoogle}*/}
+                            {/*style={googleLogin}*/}
+                        {/*/>*/}
 
-                    </div>
+                    {/*</div>*/}
 
 
 
