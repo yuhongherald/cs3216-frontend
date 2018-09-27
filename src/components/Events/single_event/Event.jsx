@@ -257,7 +257,7 @@ class Event extends React.Component {
                                         ) : (
                                          <div>
                                              <div style={{paddingLeft: '10px'}}>You are the creator of this event</div>
-                                             <div style={{paddingLeft: '10px'}}><Link to="/login">Manage your events</Link></div>
+                                             <div style={{paddingLeft: '10px'}}><Link to="/manage-events">Manage your events</Link></div>
 
                                          </div>
                                         )
