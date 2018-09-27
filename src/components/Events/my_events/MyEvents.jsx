@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import {events} from '../..//Events/data.js';
 import userController from "../../../controllers/userController";
 import {Link} from 'react-router';
 import Modal from 'react-responsive-modal';
