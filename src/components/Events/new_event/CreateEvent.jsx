@@ -356,7 +356,7 @@ class CreateEvent extends React.Component {
                                 ) : (
                                     <div></div>
                                 )}
-                                <button onClick={this.handleClick}>CREATE EVENT
+                                <button className="create-event" onClick={this.handleClick}>CREATE EVENT
                                 </button>
                             </div>
                         </form>
