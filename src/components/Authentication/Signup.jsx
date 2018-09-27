@@ -75,7 +75,7 @@ class Signup extends React.Component {
     verify() {
         let postData = {
             user_token: this.state.user_token.toString(),
-            uid: this.state.uid.toString()
+            uid: this.state.uid//.toString()
         }
         userController.confirmAccount(postData).then(response => {
             if (response.status === 'success') {

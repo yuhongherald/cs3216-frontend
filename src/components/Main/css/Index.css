@@ -38,3 +38,30 @@
 .light{
     font-weight: normal;
 }
+
+button.rdatez-btn, button.rdatez-mobile-close svg {
+    background-color: rgb(255, 90, 95) !important;
+    border-color: transparent !important;
+    padding: 0px !important;
+}
+
+button.rdatez-mobile-close svg {
+    border-radius: 50%;
+    fill: transparent;
+}
+
+button.rdatez-btn svg path, button.rdatez-mobile-close svg path {
+    stroke: #fff;
+}
+
+button.rdatez-btn svg path {
+    stroke-width: 2px;
+}
+
+button.rdatez-mobile-close svg path {
+    stroke-width: 1px;
+}
+
+button.rdatez-mobile-close svg path:nth-child(2) {
+    stroke: transparent;
+}
