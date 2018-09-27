@@ -31,12 +31,12 @@ class Events extends React.Component {
 
     render() {
         return (
-            <div style={{marginTop: '20px'}}>
+            <div style={{marginTop: '180px'}}>
                 <div id="section-contentblogs" className="section-artistlist">
                     <div className="container">
                         <div className="row" style={{marginTop: '0px'}}>
                             <div className="col-md-12 artistlist-title">
-                                <h3 style={{display: 'inline-block', float: 'left'}}>Latest events</h3>
+                                <h2 style={{display: 'inline-block', float: 'left'}}>Latest events</h2>
                                 <span style={{display: 'inline-block', float: 'right', marginTop: '20px'}}><Link to="/popular_events" style={{color: '#8f939c'}}><span className="viewAll">View all</span> <i className="fas fa-chevron-right" style={{fontSize: '1em', padding: '0px 0px 0px 10px'}}></i> </Link></span>
                             </div>
 
