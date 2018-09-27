@@ -82,7 +82,7 @@ class Base extends React.Component {
                                 </Link>
                             </div>
                             <span className="pull-right search-btn"><span>
-                            <Link to={`/`} style={{color: 'rgb(0, 132, 137)', paddingRight: '20px'}}> Browse</Link></span></span>
+                            <Link to={`/`} style={{color: 'rgb(0, 132, 137)', paddingRight: '20px'}}> Explore</Link></span></span>
 
                         </div>
                         {/*Navbar, keep the logic*/}

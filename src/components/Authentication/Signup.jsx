@@ -212,6 +212,15 @@ class Signup extends React.Component {
                                 <p>Already have an account? <Link to={'/login'}>Log in</Link></p>
                             </div>
                         </form>
+
+                        {
+                            this.state.error ? (
+                                <div style={{color: 'red'}}>{this.state.error}</div>
+                            ) : (
+                                <div></div>
+                            )
+                        }
+
                     </div>
                 </div>
             )
