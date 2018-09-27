@@ -77,11 +77,6 @@ body{
 a:hover, a:active, a:focus{    text-decoration: none !important; }
 button:active {outline: none !important;border: none !important;} 
 button:focus, button,
-textarea:focus, input:focus, .uneditable-input:focus, select:focus{
-    border-color: rgba(128, 128, 128, 128) !important;
-    box-shadow: 0 0px 0px rgba(128, 128, 128, 128) inset, 0 0 0px rgba(128, 128, 128, 128) !important;
-    outline: 0 none !important;
-}
 
 /*===================
  *    03.NAVBAR     *
@@ -102,93 +97,7 @@ textarea:focus, input:focus, .uneditable-input:focus, select:focus{
     padding: 10px 20px 0px 30px;
 }
 
-/*===================
- *    06.CONTENTS   *
- ===================*/
- /* 1 PAGE HOME */
-
-/* 1.2 Section Upcoming Events*/
-#section-upcomingevents{
-    background-image: url('assets/images/upcomingevents-bg.jpg');
-    background-repeat: no-repeat;
-    background-size: auto;
-    margin-bottom: 85px;
-}
-#section-upcomingevents h1{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    color: #202020;
-    position: relative;
-    margin-top: 113px;
-    font-weight: 400;
-}
-#section-upcomingevents h1:before{
-    content: "";
-    position: absolute;
-    width: 91px;
-    height: 163%;
-    bottom: 0;
-    top: -20px;
-    margin: auto;
-    right: 0;
-    left: 0;
-    border-top: 2px solid #f55692;
-}
-#section-upcomingevents > .container > div > p{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    color: #555;
-    text-transform: uppercase;
-    margin-top: 16px;
-}
-.upcoming-events-carousel{
-    margin-top: 260px;
-}
-#section-upcomingevents > .container > .owl-carousel > .owl-stage-outer > .owl-stage > .owl-item > .item{
-    padding: 0 10px;
-}
-.upcoming-events-carousel > .owl-nav{
-    margin-top: -272px;
-    position: absolute;
-    width: 100%;
-}
-.upcoming-events-carousel > .owl-nav > .owl-prev{
-    float: left;
-    margin-left: -65px;
-    color: #202020;
-    border-radius: 25px;
-    padding: 6px 9px;
-    background-color: transparent;
-    border: 1px solid #d1d1d2;
-}
-.upcoming-events-carousel > .owl-nav > .owl-prev:hover, .upcoming-events-carousel > .owl-nav > .owl-next:hover{
-    background-color: #f55692;
-    border: 1px solid #fff;
-}
-.upcoming-events-carousel > .owl-nav > .owl-next{
-    float: right;
-    margin-right: -65px;
-    color: #202020;
-    border-radius: 25px;
-    padding: 6px 9px;
-    background-color: transparent;
-    border: 1px solid #d1d1d2;
-}
-.upcoming-events-carousel > .owl-dots{
-    display: none;
-}
-.events-description{
-    background-color: #fff;
-    margin-top: -25px;
-	padding-left: 25px;
-    width: 339px;
-    float: right;
-    margin-bottom: 85px;
-    -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
-}
-.events-description > .country-label{
+.country-label{
     font-family: 'Montserrat', sans-serif;
     font-size: 12px; /* Edited */
     color: #fff;
@@ -198,51 +107,9 @@ textarea:focus, input:focus, .uneditable-input:focus, select:focus{
     margin-top: -13px;
     position: absolute;
 }
-.events-description h3{
-   	color: #202020;
-   	font-family: 'Montserrat', sans-serif;
-   	font-weight: 500;
-   	font-size: 14px;
-}
-.events-description > p{
-    color: #202020 !important;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
-}
-.events-description .icon-background{
-    color: transparent;
-}
-.events-description .icon-border, .events-description .icon-color{
-    color: #f55692;
-}
-.events-description > .events-text{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-#section-upcomingevents > .container > .btn-viewallevents{
-    margin-top: -50px;
-    padding-right: 0px;
-    z-index: 3;
-
-}
-#section-upcomingevents > .container > .btn-viewallevents > a{
-    color: #9d9d9d;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px; /* Edited */
-    padding: 5px 14px;
-    transition: all 0.2s ease;
-    background-color: transparent;
-    border: 1px solid #cdcdcd;
-}
-#section-upcomingevents > .container > .btn-viewallevents > a > i{
-    margin-right: 12px;
-}
-#section-upcomingevents > .container > .btn-viewallevents > a:hover{
-    color: #fff;
-    background-color: #f55692;
-    border: 1px solid #fff;
-    transition: all 0.2s ease;
-}
+/*===================
+ *    06.CONTENTS   *
+ ===================*/
 /*-----------------------*/
 .btn-viewallpost{
     margin-top: -60px;
@@ -269,6 +136,10 @@ textarea:focus, input:focus, .uneditable-input:focus, select:focus{
     transition: all 0.2s ease;
 }
 /*-----------------------*/
+.events-text {
+    padding: 30px 0px;
+}
+
 .events-text > p > span{
     font-weight: 600;
 }
@@ -735,167 +606,6 @@ textarea:focus, input:focus, .uneditable-input:focus, select:focus{
 	height: 365px;
 }
 
-/* 2.4 Sidebar Events Details*/
-/* 2.4.1 Sidebar Information*/
-.sidebar-eventsdetails h3{
-	font-family: 'Montserrat', sans-serif;
-    font-size: 21px;
-    margin-top: 10px;
-    margin-bottom: 35px;
-}
-
-.artist-information h4{
-	font-family: 'Montserrat', sans-serif;
-    font-size: 14px; /* Edited */
-    margin-top: 0px;
-
-}
-.artist-information h5{
-	font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
-    margin-top: 15px;
-    font-weight: 100;
-    margin-left: 60px;
-}
-.artist-information .country-label{
-    padding: 3px 10px;
-    margin-top: 0px; /* Edited */
-    float: left;
-    position: relative;
-    background-color: #9560f5;
-}
-.artist-information h6 {
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: -25px;
-    margin-top: 43px;
-    font-weight: 700;
-}
-.artist-information p span {
-    font-family: 'Montserrat', sans-serif;
-    font-style: none;
-    font-weight: 700;
-}
-.artist-information .lists {
-    margin-top: 10px !important;
-    margin-bottom: -5px;
-}
-.artist-information .address {
-    margin-top: 15px !important;
-}
-/* 2.4.2 Sidebar Artist Live*/
-.artist-live{
-    margin-top: 100px;
-}
-.artist-live .events-description{
-    margin-top: 0px;
-    margin-bottom: 40px !important;
-    width: 100%;
-}
-.artist-live .events-description .events-text{
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.artist-live .events-description .events-text h3{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    margin-top: 0px;
-    font-weight: 600;
-}
-.artist-live .events-description .events-text p{
-    font-family: 'Open Sans', sans-serif;
-    color: #202020 !important;
-    margin-top: -25px !important;
-}
-.artist-live .events-description .events-text span{
-    font-family: 'Open Sans', sans-serif;
-    color: #f55692;
-}
-.artist-live .events-description > a > .btn-icons {
-    margin-top: -75px;
-    margin-right: 24px;
-}
-.btn_artistlive{
-    position: absolute;
-    top: 45px;
-    float: right;
-    right: 0;
-    margin-right: 25px;
-}
-.btn_artistlive a{
-    text-align: center;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    border: 2px solid #f55692;
-    border-radius: 100%;
-    margin-right: 10px; /*space between*/
-} 
-.btn_artistlive a i{
-    font-size: 15px;
-    margin-top: 7px;
-    color: #f55692;
-    font-weight: 800;
-    margin-left: 2px;
-}
-.btn_artistlive a:hover {
-    background-color:#f55692;
-    border: 1px solid #f55692;
-} 
-.btn_artistlive a:hover i{
-  	color:#fff;
-}
-/* 2.4.3 Sidebar Artist Events Sidebar*/
-.artist-events-sidebar{
-    margin-top: 20px;
-}
-.artist-events-sidebar a{
-    color: #202020;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px; /* Edited */
-    transition: all 0.2s ease;
-}
-.artist-events-sidebar a:hover{
-    color: #f55692;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-.artist-events-sidebar a li{
-   	margin-bottom:9px;
-}
-/* 2.4.4 Sidebar Events Manager*/
-.address-eventmanager{
-    margin-top: 47px;
-}
-.address-eventmanager p span {
-    font-family: 'Montserrat', sans-serif;
-    font-style: none;
-    font-weight: 700;
-}
-.address-eventmanager .lists {
-    margin-top: 10px !important;
-    margin-bottom: 0;
-    padding-bottom: 2px;
-}
-.address-eventmanager h3 {
-    margin-top: -5px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 17px; /* Edited */
-}
-.address-eventmanager h4 {
-    margin-top: -2px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px; /* Edited */
-    margin-bottom: 23px;
-}
-.address-eventmanager .address {
-    margin-top: 15px !important;
-    border:5px solid #eaeff2;
-    padding: 30px 25px 23px 25px;
-}
-.address-eventmanager .social-links {
-    margin-top: 20px !important;
-    
-}
 /* 3 PAGE EVENTS GRID */
 .eventslistartist-grid{
 	width: 242px;
@@ -1137,230 +847,9 @@ textarea:focus, input:focus, .uneditable-input:focus, select:focus{
 .section-artistlist > .container > .row > .artistlist-title{
     margin-bottom: 53px;
 	margin-top: 41px;
-} 
+}
 .section-artistlist .content-right h4 {
     margin-bottom: 10px !important;
-}
-#section-lestblog > .container > .content-left > .text-center h1{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    color: #202020;
-    position: relative;
-    margin-top: 10px;
-    font-weight: 400;
-}
-#section-lestblog > .container > .content-left > .text-center h1:before{
-    content: "";
-    position: absolute;
-    width: 91px;
-    height: 163%;
-    bottom: 0;
-    top: -20px;
-    margin: auto;
-    right: 0;
-    left: 0;
-    border-top: 2px solid #f55692;
-}
-#section-lestblog > .container > .content-left > .text-center p{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    color: #555;
-    text-transform: uppercase;
-    margin-top: 16px;
-}
-#section-lestblog .content-left h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 17px;
-    margin-top: 35px;
-}
-#section-lestblog .content-left h5 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    margin-top: 27px;
-}
-#section-lestblog .content-left span {
-    padding: 2px 7px;
-    background-color: #14c757;
-    border-radius: 4px;
-    color: #fff;
-    margin-left: 10px;
-}
-#section-lestblog .content-left p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px; /* Edited */
-    margin-top: 24px;
-    margin-bottom: 55px;
-    line-height: 1.8;
-    color: #2e2e2e;
-}
-/*Slider Text 3*/
-.text-slider3{
-    color: #202020;
-    margin-top: -136px;
-    position: absolute;
-    margin-left: -40px;
-    background-color: #fff;
-    width: 700px;
-    padding: 0px 0px 10px 28px;
-    text-align: left;
-}
-.text-slider3 h3{
-    font-family: 'Montserrat', sans-serif !important;
-    font-size: 21px !important;
-    margin-top: 30px !important;
-    font-weight: 400 !important;
-}
-.text-slider3 p{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    color: #2e2e2e;
-}
-.text-slider3 p span{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    color: #202020;
-    font-weight: 600;
-}
- .country-label{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    color: #fff;
-    background-color: #f55692;
-    padding: 5px 10px;
-    border-radius: 3px;
-    margin-top: -13px;
-    position: absolute;
-}
-.text-slider3 h3, .text-slider3 .country-label,
-.text-slider3 .address, .text-slider3 p,
-.text-slider3 .pricing{
-    float: left;
-}
-.text-slider3 .pricing{
-    margin-top: -40px;
-    float: right;
-    width: 91px;
-    color: #fff;
-    text-align: center;
-    height: 0;
-    border-right: 50px solid #f55692;
-    border-top: 0px solid transparent;
-    border-left: 20px solid transparent;
-    border-bottom: 60px solid #f55692;
-}
-.text-slider3 .pricing i{
-    font-size: 11px;
-    margin-top: 12px;
-    position: absolute;
-}
-.text-slider3 .pricing h1{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 26px;
-    margin-top: 8px;
-    margin-left: 17px;
-}
-.text-slider3 .pricing p{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px; /* Edited */
-    font-weight: 600;
-    color: #fff;
-    float: none;
-    margin-top: -7px;
-    position: absolute;
-    margin-left: 0px; /* Edited */
-}
-.text-slider3 .address{
-    margin-top: 30px;
-    margin-left: 20px;
-    color: #f55692;
-}
-/*Slider Text 4*/
-.swiper-slide > .text-slide {
-    position: absolute;
-    z-index: 2;
-    color: #fff;
-    margin-top: 113px;
-}
-.text-slider4{
-    color: #202020;
-    position: absolute;
-    margin-left: -40px;
-    background-color: #fff;
-    width: 700px;
-    padding: 0px 0px 10px 28px;
-    text-align: left;
-    top: 74px;
-}
-.text-slider4 h3{
-    font-family: 'Montserrat', sans-serif !important;
-    font-size: 21px !important;
-    margin-top: 30px !important;
-    font-weight: 400 !important;
-}
-.text-slider4 p{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    color: #2e2e2e;
-}
-.text-slider4 p span{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    color: #202020;
-    font-weight: 600;
-}
- .country-label{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px; /* Edited */
-    color: #fff;
-    background-color: #f55692;
-    padding: 5px 10px;
-    border-radius: 3px;
-    margin-top: -13px;
-    position: absolute;
-}
-.text-slider4 h3, .text-slider4 .country-label,
-.text-slider4 .address, .text-slider4 p,
-.text-slider4 .pricing{
-    float: left;
-}
-.text-slider4 .pricing{
-    margin-top: -40px;
-    float: right;
-    width: 91px;
-    color: #fff;
-    text-align: center;
-    height: 0;
-    border-right: 50px solid #f55692;
-    border-top: 0px solid transparent;
-    border-left: 20px solid transparent;
-    border-bottom: 60px solid #f55692;
-}
-.text-slider4 .pricing i{
-    font-size: 11px;
-    margin-top: 12px;
-    position: absolute;
-}
-.text-slider4 .pricing h1{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 26px;
-    margin-top: 8px;
-    margin-left: 17px;
-}
-.text-slider4 .pricing p{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px; /* Edited */
-    font-weight: 600; /* Edited */
-    color: #fff;
-    float: none;
-    margin-top: -7px;
-    position: absolute;
-    margin-left: 0px; /* Edited */
-}
-.text-slider4 .address{
-    margin-top: 30px;
-    margin-left: 20px;
-    color: #f55692;
-    font-size: 14px;
 }
 
 /* 9.PAGE BLOG */
@@ -1594,41 +1083,6 @@ textarea:focus, input:focus, .uneditable-input:focus, select:focus{
     .pagination-section{
         margin-top: 50px;
     }
-    /* Text Slider 3*/
-    .text-slider3 {
-        color: #202020;
-        margin-top: -180px;
-        position: absolute;
-        margin-left: 0px;
-        background-color: #fff;
-        width: 550px;
-        padding: 0px 0px 10px 28px;
-    }
-    .text-slider3 .pricing {
-        margin-top: -95px;
-        float: left;
-    }
-    .text-slider3 h3, .text-slider3 .address,
-    .text-slider3 p{
-        float: none;
-        margin-left: 110px;
-    }
-    /* Text Slider 4*/
-    .text-slider4 {
-        margin-top: -100px;
-        margin-left: 0px;
-        width: 550px;
-        padding: 0px 0px 10px 28px;
-    }
-    .text-slider4 .pricing {
-        margin-top: -95px;
-        float: left;
-    }
-    .text-slider4 h3, .text-slider4 .address,
-    .text-slider4 p{
-        float: none;
-        margin-left: 110px;
-    }
     /*-------------*/
     .sidebar-location {
         margin-bottom: 130px;
@@ -1652,8 +1106,4 @@ textarea:focus, input:focus, .uneditable-input:focus, select:focus{
 	.section-eventsdetails > .container > #list-view > .the-artist-horizontal > .contents {
 	    margin-top: 160px;
 	}
-  	.swiper-slide > .text-slide {
-      	left: 0 !important;
-      	width: 100%;
-  	}
 }

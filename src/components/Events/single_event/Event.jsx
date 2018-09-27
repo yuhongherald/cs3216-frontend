@@ -215,7 +215,7 @@ class Event extends React.Component {
                                 }}>Comments</p>
 
                                 <Comments eid={this.props.params.eventID}/>
-
+                                <div style={{height: '100px'}}></div>
                                 {
                                     (this.state.isParticipated || this.state.confirmEvent) ? (
                                         <span style={{textAlign: 'right', paddingTop: '40px'}}> This event has been added <Link
