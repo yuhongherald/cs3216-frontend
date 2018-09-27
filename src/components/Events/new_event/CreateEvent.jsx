@@ -5,6 +5,7 @@ import 'react-datez/dist/css/react-datez.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import '../css/Events.css';
+import './css/CreateEvent.css';
 import TextField from '@material-ui/core/TextField';
 import eventController from '../../../controllers/eventController.js';
 import {browserHistory} from 'react-router';
