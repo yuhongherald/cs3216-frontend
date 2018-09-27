@@ -343,20 +343,9 @@ class MySchedule extends React.Component {
                                       backgroundColor: "#FF5A5F"
                                   }}>{this.mapEventCategory(event.fields.event_type)}</span>
                             <div className="events-text">
-                                <Link to={`/events/${event.pk}`}><h3
+                                <Link to={`/registration/${event.pk}/${event.fields.event_title}`}><h3
                                     style={{textTransform: 'uppercase'}}>{event.fields.event_title}</h3></Link>
                                 <p><span>Date: </span>{Helpers.dateConvert(event.fields.event_start_date)}</p>
-                                <p><span><i className="fas fa-map-marker-alt"
-                                            style={{
-                                                fontSize: '14px',
-                                                padding: '2px 3px 2px 3px',
-                                                color: 'rgb(0, 132, 137)',
-                                                borderRadius: '50%',
-                                                backgroundColor: 'white',
-                                                border: '1px solid #ccc',
-                                                margin: '0px 13px 0px 5px'
-
-                                            }}></i></span>{event.fields.address}</p>
 
 
                                 <div style={{width: '120px', float: 'left', paddingBottom: '20px'}}>
@@ -420,6 +409,7 @@ class MySchedule extends React.Component {
                                                 margin: '0px 13px 0px 5px'
 
                                             }}></i></span>{event.fields.address}</p>
+                                <p style={{fontSize: '18px'}}><Link to={`/registration/${event.pk}/${event.fields.event_title}`}>Your e-ticket</Link></p>
 
                                 {
                                     event.fields.state === 3 ? (
