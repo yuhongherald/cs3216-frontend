@@ -470,9 +470,6 @@ figure.figure2.hover:after {
 .navbar {
     margin-bottom: 0px;
 }
-.navbar-right{
-    margin-right: 68px;
-}
 .navbar-default {
     background-color: transparent;
     border-color: transparent;
@@ -483,8 +480,7 @@ figure.figure2.hover:after {
     font-family: 'Raleway', sans-serif !important;
     color: #202020 !important;
     font-size: 14px; /* Edited */
-    font-weight: 700;
-    padding: 10px 35px;
+    padding: 10px 20px 0px 30px;
 }
 .search-btn{
     margin-top:12px;
@@ -2646,10 +2642,13 @@ figure.figure2.hover:after {
     padding: 11px 20px;
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
-    background-color: #ff7300;
+    background-color: rgb(255, 90, 95);
+	font-weight: bold;
     margin-top: 15px;
     border-radius: 3px;
     transition: all 0.2s ease;
+	float: right;
+	color: white
 }
 #section-contactform form button:hover{
     background-color: #2e2e2e;

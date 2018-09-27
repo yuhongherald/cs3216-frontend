@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 const styles = {
     navbar: {
-        color: '#FF5A5F',
+        color: 'rgb(255, 90, 95',
         paddingTop: '10px'
     }
 };
@@ -32,6 +32,13 @@ class Base extends React.Component {
         });
 
         $('#bs-example-navbar-collapse-1').click(function () {
+            if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
+                $('#bs-example-navbar-collapse-1').removeClass("in")
+            }
+
+        });
+
+        $('#navbar-header').click(function () {
             if ($('#bs-example-navbar-collapse-1').css('display') == "block") {
                 $('#bs-example-navbar-collapse-1').removeClass("in")
             }
@@ -82,16 +89,22 @@ class Base extends React.Component {
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             {Auth.isUserAuthenticated() ? (
                                 <ul className="nav navbar-nav navbar-right">
-                                    <li style={styles.navbar}>
-                                        <i className="fas fa-user" aria-hidden="true"></i>
-                                        {Auth.getUserData().username}
-                                    </li>
-                                    <li><Link to={`/my-schedule`}> My schedule</Link></li>
-                                    <li><Link to={`/manage-events`}> Manage events</Link></li>
                                     <li><Link to={`/events/new`}>
                                         <button className="create-event">Create events</button>
                                     </Link></li>
-                                    <li><Link to={`/logout`}>Log out</Link></li>
+                                    <li style={styles.navbar}>
+                                        <Link id="navbar-user">{Auth.getUserData().username}
+                                            <i className="fas fa-user" style={{display: 'inline-block', float: 'right', padding: '0px 0px', fontSize: '24px', fontWeight: 'lighter'}}></i>
+                                        </Link>
+                                    </li>
+                                    <li><Link to={`/my-schedule`}> My schedule
+                                        <i className="fas fa-calendar-alt navbar-icon light" style={{display: 'inline-block', float: 'right', padding: '0px 0px', fontSize: '24px', color: '#ddd !important'}}></i></Link></li>
+                                    <li><Link to={`/manage-events`}> Manage events
+                                        <i className="fas fa-map-pin navbar-icon" style={{display: 'inline-block', float: 'right', padding: '0px 0px', fontSize: '24px', color: '#ddd !important'}}></i>
+                                    </Link></li>
+                                    <li><Link to={`/logout`}>Log out
+                                        <i className="fas fa-sign-out-alt navbar-icon" style={{display: 'inline-block', float: 'right', padding: '0px 0px', fontSize: '24px', color: '#ddd !important'}}></i>
+                                    </Link></li>
                                 </ul>
                             ) : (
                                 <ul className="nav navbar-nav navbar-right">

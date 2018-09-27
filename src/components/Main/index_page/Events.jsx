@@ -36,7 +36,7 @@ class Events extends React.Component {
                     <div className="container">
                         <div className="row" style={{marginTop: '0px'}}>
                             <div className="col-md-12 artistlist-title">
-                                <h3 style={{display: 'inline-block', float: 'left'}}>Popular Events</h3>
+                                <h3 style={{display: 'inline-block', float: 'left'}}>Latest events</h3>
                                 <span style={{display: 'inline-block', float: 'right', marginTop: '20px'}}><Link to="/popular_events" style={{color: '#8f939c'}}><span className="viewAll">View all</span> <i className="fas fa-chevron-right" style={{fontSize: '1em', padding: '0px 0px 0px 10px'}}></i> </Link></span>
                             </div>
 
@@ -63,7 +63,7 @@ class Events extends React.Component {
                             </div>
 
                             <div className="col-md-12 artistlist-title-second">
-                                <h3 style={{display: 'inline-block', float: 'left'}}>Latest events</h3>
+                                <h3 style={{display: 'inline-block', float: 'left'}}>Popular events</h3>
                                 <span style={{display: 'inline-block', float: 'right', marginTop: '20px'}}><Link to="/events" style={{color: '#8f939c'}}><span className="viewAll">View all</span> <i className="fas fa-chevron-right" style={{fontSize: '1em', padding: '0px 0px 0px 10px'}}></i> </Link></span>
                             </div>
 

@@ -1357,9 +1357,6 @@ figure.figure2.hover:after {
 .navbar {
     margin-bottom: 0px;
 }
-.navbar-right{
-    margin-right: 68px;
-}
 .navbar-default {
     background-color: transparent;
     border-color: transparent;
@@ -1371,7 +1368,7 @@ figure.figure2.hover:after {
     color: #202020 !important;
     font-size: 14px; /* Edited */
     font-weight: 700;
-    padding: 10px 35px;
+    padding: 10px 0px 10px 30px;
 }
 .search-btn{
     margin-top:12px;

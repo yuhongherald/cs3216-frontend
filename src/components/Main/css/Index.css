@@ -23,3 +23,18 @@
 }
 
 
+#navbar-user {
+    color: rgb(255, 90, 95) !important
+}
+
+.navbar-collapse {
+    padding-left: 0px !important;
+}
+
+.navbar-icon {
+    color: rgb(72, 72, 72) !important;
+}
+
+.light{
+    font-weight: normal;
+}

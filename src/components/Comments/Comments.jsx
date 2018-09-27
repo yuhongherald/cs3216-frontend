@@ -83,13 +83,15 @@ class Comments extends React.Component {
         if (this.state.comments && this.state.comments[0]) {
             let comments = this.state.comments;
             let listComments = comments.map((comment) =>
-                <div>
-                    <p className="comment-text" style={{marginLeft: '10px'}}>{comment.fields.content}</p>
-                    <div className="bottom-comment">
-                        <div className="comment-date">{this.formatDate(comment.fields.create_time)}</div>
-                        {/*<ul className="comment-actions">*/}
-                        {/*<li className="reply" style={{color: '#FF5A5F', fontWeight: 'bold'}}>Reply</li>*/}
-                        {/*</ul>*/}
+                <div className="comment-wrap">
+                    <div className="comment-block">
+                        <p className="comment-text">{comment.fields.content}</p>
+                        <div className="bottom-comment">
+                            <div className="comment-date">{this.formatDate(comment.fields.create_time)}</div>
+                            {/*<ul className="comment-actions">*/}
+                            {/*<li className="reply" style={{color: '#FF5A5F', fontWeight: 'bold'}}>Reply</li>*/}
+                            {/*</ul>*/}
+                        </div>
                     </div>
                 </div>
 
@@ -98,7 +100,6 @@ class Comments extends React.Component {
                 <div>
                     <div className="comments">
                         <div className="comment-wrap">
-
                             <div className="comment-block">
                                 <form>
                                     <textarea name="" id="" cols="30" rows="3"
@@ -113,11 +114,8 @@ class Comments extends React.Component {
                             </div>
                         </div>
 
-                        <div className="comment-wrap">
-                            <div className="comment-block">
-                                {listComments}
-                            </div>
-                        </div>
+                        {listComments}
+
                     </div>
                 </div>
             )

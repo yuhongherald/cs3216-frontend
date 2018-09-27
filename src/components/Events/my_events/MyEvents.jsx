@@ -364,9 +364,9 @@ class MyEvents extends React.Component {
                     }
 
 
-                    <div>
-                        <h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>
-                    </div>
+                    {/*<div>*/}
+                        {/*<h4 style={{padding: "10px 10px 10px 10px"}}>Manage my events</h4>*/}
+                    {/*</div>*/}
 
                     <div>
                         <div style={{display: 'flex', flexDirection: 'row', margin: '20px 0px 20px 10px'}}>

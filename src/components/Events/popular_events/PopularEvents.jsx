@@ -12,7 +12,8 @@ import 'react-dropdown/style.css';
 import {ReactDatez} from 'react-datez';
 import 'react-datez/dist/css/react-datez.css';
 import '../../Events/css/filterForm.css';
-
+import ReactGoogleMapLoader from "react-google-maps-loader";
+import ReactGooglePlacesSuggest from "react-google-places-suggest";
 
 class PopularEvents extends React.Component {
 
@@ -20,19 +21,22 @@ class PopularEvents extends React.Component {
         super(props);
         this.state = {
             events: false,
+            startDate: new Date().toJSON(),
+            endDate: new Date().toJSON(),
             filters: {
                 address: '',
                 event_type: '',
-                event_start_date: '',
                 event_end_date: '',
                 page_limit: "10",
-                page_num: "1"
+                page_num: "1",
+                lat: '',
+                lng: ''
             },
-            startDate: new Date('09/12/2018'),
-            endDate: new Date('9/20/2018'),
             mapView: false,
             isPaneOpen: false,
-            gotFilters: false
+            gotFilters: false,
+            search: "",
+            value: ""
         };
         this.closeMapView = this.closeMapView.bind(this);
         this.openMapView = this.openMapView.bind(this);
@@ -48,6 +52,34 @@ class PopularEvents extends React.Component {
         this.submitFilter = this.submitFilter.bind(this);
         this.getFilterForm = this.getFilterForm.bind(this);
     }
+
+    handleInputChange(e) {
+        this.setState({
+            search: e.target.value,
+            value: e.target.value
+        })
+    }
+
+    handleSelectSuggest(suggest) {
+        let filters = this.state.filters;
+        filters['address'] = suggest.formatted_address;
+        this.setState({
+            value: suggest.formatted_address
+        });
+        console.log(suggest.geometry.viewport);
+        filters['lng'] = this.calculateCoordinate(suggest.geometry.viewport.b.b, suggest.geometry.viewport.b.f).toFixed(6).toString();
+        filters['lat'] = this.calculateCoordinate(suggest.geometry.viewport.f.b, suggest.geometry.viewport.f.f).toFixed(6).toString();
+        this.setState({
+            search: "",
+            filters: filters
+        })
+    }
+
+
+    calculateCoordinate(c1, c2) {
+        return (c1 + c2) / 2
+    }
+
 
     openSlidingPane() {
         this.setState({
@@ -76,7 +108,11 @@ class PopularEvents extends React.Component {
                 event_type: '',
                 event_start_date: '',
                 event_end_date: '',
-            }
+                lng: '',
+                lat: ''
+            },
+            search: "",
+            value: ""
         })
     }
 
@@ -133,7 +169,7 @@ class PopularEvents extends React.Component {
     }
 
     formatDate(date) {
-        return date.slice(0,10);
+        return date.slice(0, 10);
     }
 
     changeStartDate(date) {
@@ -147,6 +183,9 @@ class PopularEvents extends React.Component {
     }
 
     changeEndDate(date) {
+        if (this.state.startDate > date) {
+            date = this.state.startDate;
+        }
         const filters = this.state.filters;
         filters['event_end_date'] = this.formatDate(date) + " 00:00";
         this.setState({
@@ -196,11 +235,29 @@ class PopularEvents extends React.Component {
                                         <small className="_fhlaevk">WHERE</small>
 
                                     </label></div>
-                                    <input type="text" className="form-control big-form"
-                                           id="formInput113" name="address"
-                                           onChange={this.onChange}
-                                           value={this.state.filters.address} required
-                                           style={{marginBottom: "20px"}}
+                                    <ReactGoogleMapLoader
+                                        params={{
+                                            key: "AIzaSyD6VsUPahFrXaNhkUjOeKnlFgPUyT-l36k",
+                                            libraries: "places,geocode",
+                                        }}
+                                        render={googleMaps =>
+                                            googleMaps && (
+                                                <div>
+                                                    <ReactGooglePlacesSuggest
+                                                        autocompletionRequest={{input: this.state.search}}
+                                                        googleMaps={googleMaps}
+                                                        onSelectSuggest={this.handleSelectSuggest.bind(this)}
+                                                    >
+                                                        <input
+                                                            type="text"
+                                                            value={this.state.value}
+                                                            placeholder="Search a location"
+                                                            onChange={this.handleInputChange.bind(this)}
+                                                        />
+                                                    </ReactGooglePlacesSuggest>
+                                                </div>
+                                            )
+                                        }
                                     />
                                 </div>
                             </div>
@@ -244,7 +301,7 @@ class PopularEvents extends React.Component {
                                 <Dropdown
                                     options={options} onChange={this.onSelect}
                                     value={this.mapEventType(this.state.filters.event_type)}
-                                    placeholder="Select an option" required/>
+                                    placeholder="Choose an option" required/>
 
                             </div>
                         </div>
@@ -256,7 +313,6 @@ class PopularEvents extends React.Component {
             </div>
         </div>;
     }
-
 
 
     componentDidMount() {
