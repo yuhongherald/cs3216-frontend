@@ -184,7 +184,6 @@ eventController.postRating = (data) => {
 }
 
 eventController.closeEvent = (data) => {
-    console.log(data);
     return axios.post(endPoint + '/api/v1/event/close/', {
         eid: data.eid
     })
@@ -251,7 +250,7 @@ eventController.editEvent = (data) => {
         lng: data.lng
     };
     let response = axios({
-        url: endPoint + '/api/v1/event/modify_event/',
+        url: endPoint + '/api/v1/event/modify/',
         method: 'PUT',
         data: putData,
         headers: {

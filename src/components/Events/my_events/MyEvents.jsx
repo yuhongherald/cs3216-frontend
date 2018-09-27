@@ -35,6 +35,7 @@ class MyEvents extends React.Component {
         this.onCloseClosingModal = this.onCloseClosingModal.bind(this);
         this.onOpenClosingModal = this.onOpenClosingModal.bind(this);
         this.onClickConfirm = this.onClickConfirm.bind(this);
+        this.onClickCloseConfirm = this.onClickCloseConfirm.bind(this);
         this.onCloseDeletingModal = this.onCloseDeletingModal.bind(this);
         this.onOpenDeletingModal = this.onOpenDeletingModal.bind(this);
         this.onClickDeleteConfirm = this.onClickDeleteConfirm.bind(this);
@@ -92,10 +93,10 @@ class MyEvents extends React.Component {
         let postData = {
             eid: this.state.currentEvent
         };
-        eventController.deleteEvent(postData).then(response => {
+        eventController.closeEvent(postData).then(response => {
             if (response.status === 'success') {
                 this.getData();
-                setTimeout(this.onCloseDeletingModal(), 2000);
+                setTimeout(this.onCloseClosingModal(), 2000);
             }
             else {
                 this.setState({
@@ -114,6 +115,24 @@ class MyEvents extends React.Component {
 
     onCloseClosingModal() {
         this.setState({openClosingModal: false});
+    }
+
+
+    onClickCloseConfirm(){
+        let postData = {
+            eid: this.state.currentEvent
+        };
+        eventController.deleteEvent(postData).then(response => {
+            if (response.status === 'success') {
+                this.getData();
+                setTimeout(this.onCloseDeletingModal(), 2000);
+            }
+            else {
+                this.setState({
+                    error: response.desc
+                });
+            }
+        });
     }
 
     onClickConfirm() {
@@ -266,7 +285,7 @@ class MyEvents extends React.Component {
                                             }}></i></span>{event.fields.address}</p>
 
                                 {
-                                    event.fields.state !== 3 ? (
+                                    event.fields.state !== 3 && event.fields.state !== 0 && event.fields.state !== -1 ? (
                                         <div>
                                             <div style={{width: '120px', float: 'left', paddingBottom: '20px'}}>
                                                 <button type="button" className="close-event-button"
@@ -309,11 +328,36 @@ class MyEvents extends React.Component {
             return (
                 <div>
 
+                    <Modal open={this.state.openClosingModal} onClose={this.onCloseClosingModal} center
+                           className="popup centred">
+                        <span className="yes-reply centred"></span>
+                        <span className="no-reply centred"></span>
+                        <p>Are you sure you want to CLOSE the event? </p>
+                        <div className="button yes transition" style={{float: 'right'}}
+                             onClick={this.onClickCloseConfirm}>Confirm
+                        </div>
+                        <div className="button no transition" style={{float: 'right'}}
+                             onClick={this.onCloseClosingModal}>Cancel
+                        </div>
+                        <div className="error-message"
+                             style={{display: 'block', marginTop: '60px', textAlign: 'center'}}>
+                            {
+                                this.state.error ? (
+                                    <div>{this.state.error}. Please try again</div>
+                                ) : (
+                                    <div></div>
+                                )
+                            }
+                        </div>
+
+                    </Modal>
+
                     <Modal open={this.state.openDeletingModal} onClose={this.onCloseDeletingModal} center
                            className="popup centred">
                         <span className="yes-reply centred"></span>
                         <span className="no-reply centred"></span>
-                        <p>Are you sure you want to DELETE the event? </p>
+                        <p>Are you sure you want to CANCEL the event? </p>
+                        <p>All participants will be notified </p>
                         <div className="button yes transition" style={{float: 'right'}}
                              onClick={this.onClickDeleteConfirm}>Confirm
                         </div>
