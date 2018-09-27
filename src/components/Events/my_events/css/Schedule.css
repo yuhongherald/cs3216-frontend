@@ -181,7 +181,7 @@
     padding-left: 0px !important;
     box-shadow: none !important;
     background: #FF5A5F;
-    border-color: transparent;
+    border-color: transparent !important;
     color: #ffffff !important;
 }
 
@@ -216,7 +216,7 @@
     padding-left: 0px !important;
     box-shadow: none !important;
     background: transparent;
-    border-color: transparent;
+    border-color: transparent !important;
     color: #FF5A5F !important;
 }
 
