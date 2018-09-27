@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import '../Events/css/Events.css';
-//import '../Events/css/style.css';
 import {events} from '../Events/data.js';
 import axios from 'axios';
 

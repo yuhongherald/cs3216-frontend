@@ -140,6 +140,9 @@ class EditEvent extends React.Component {
     }
 
     handleClick(event) {
+        // turn off first
+        return;
+
         event.preventDefault();
         let postData = {
             "eid": this.props.eid,

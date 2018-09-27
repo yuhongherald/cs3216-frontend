@@ -107,6 +107,7 @@ class MyEvents extends React.Component {
     }
 
     onOpenClosingModal(id) {
+        console.log(id);
         this.setState({
             openClosingModal: true,
             currentEvent: id
