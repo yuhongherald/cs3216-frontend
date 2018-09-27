@@ -77,14 +77,16 @@ class Base extends React.Component {
                                     <span className="icon-bar"></span>
                                     <span className="icon-bar"></span>
                                 </button>
-                                <Link to="/" className="navbar-brand" style={{paddingTop: '28px', fontWeight: 'bold'}}>
+                                <Link to="/" className="navbar-brand" style={{paddingTop: '25px', paddingLeft: '10px', fontWeight: 'bold'}}>
+                                    <span><img src="http://i64.tinypic.com/ve9g2f.png" width="30" height="30" border="0" /></span>
                                     <span style={{color: '#FF5A5F', marginRight: '3px'}}>bored</span><span style={{color: '#000'}}>gowhere</span>
                                 </Link>
                             </div>
                             <span className="pull-right search-btn"><span>
-                            <Link to={`/`} style={{color: 'rgb(0, 132, 137)', paddingRight: '20px'}}> Explore</Link></span></span>
+                            <Link to={`/`} style={{color: 'rgb(0, 132, 137)', paddingRight: '10px'}}> Explore</Link></span></span>
 
                         </div>
+
                         {/*Navbar, keep the logic*/}
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             {Auth.isUserAuthenticated() ? (

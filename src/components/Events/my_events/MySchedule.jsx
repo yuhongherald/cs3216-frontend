@@ -410,7 +410,7 @@ class MySchedule extends React.Component {
 
                                             }}></i></span>{event.fields.address}</p>
                                 <p style={{fontSize: '18px'}}><Link to={`/registration/${event.pk}/${event.fields.event_title}`}>Your e-ticket</Link></p>
-
+x
                                 {
                                     event.fields.state === 3 ? (
                                         <div style={{width: '120px', float: 'left', paddingBottom: '20px'}}>
