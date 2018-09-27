@@ -14,6 +14,7 @@ import 'react-datez/dist/css/react-datez.css';
 import '../../Events/css/filterForm.css';
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
+import EventMap from "../../Main/index_page/EventMap";
 
 
 class AllEvents extends React.Component {
@@ -409,15 +410,7 @@ class AllEvents extends React.Component {
                                         </button>
                                     </div>
                                     <div id="locations-view" className="tab-pane fade active in" role="tabpanel">
-                                        <EventsByPage activePage={this.state.activePage}
-                                                      eventLimit="null"
-                                                      pagination={true}
-                                                      filters={this.state.filters}
-                                                      sortBy={'event_start_date'}
-                                                      mapView={this.state.mapView}
-                                                      events={this.state.events}
-                                                      gotFilters={this.state.gotFilters}
-                                        />
+                                       <EventMap/>
                                     </div>
                                 </div>
                             )

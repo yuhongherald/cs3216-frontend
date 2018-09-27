@@ -142,7 +142,7 @@ class MySchedule extends React.Component {
         if (this.state.unFilteredEvents) {
             this.setState({
                 events: this.state.unFilteredEvents.filter(function (event) {
-                    return event.fields.state === 1
+                    return event.fields.state !== -1 || event.fields.state !== 3 || event.fields.state !== 0
                 })
             });
         }
@@ -209,7 +209,7 @@ class MySchedule extends React.Component {
                 }
                 else {
                     let events = JSON.parse(response.events).filter(function (event) {
-                        return event.fields.state === 1
+                        return event.fields.state !== 3 || event.fields.state !== -1 || event.fields.state !== 0
                     });
                     let unFilterEvents = JSON.parse(response.events);
                     this.setState({

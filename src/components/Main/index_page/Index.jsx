@@ -194,8 +194,8 @@ class Index extends React.Component {
                                 <div className="_1yd927w"></div>
                                 <div className="_2o6ibk"><img className="_154ar5hp" id="marqueeImage"
                                                               alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
-                                                              sizes="100vw"
-                                                              width="400px"
+                                                              sizes="20vw"
+                                                              width="100%"
                                                               src="https://cigaguides.thinknewr.com/wp-content/uploads/sites/2/2018/06/Event-Blogging-Strategies.jpg"
                                                               height="200px"
                                                               srcSet="">
