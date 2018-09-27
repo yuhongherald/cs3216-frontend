@@ -31,7 +31,7 @@ class Events extends React.Component {
 
     render() {
         return (
-            <div style={{marginTop: '20px'}}>
+            <div style={{marginTop: '180px'}}>
                 <div id="section-contentblogs" className="section-artistlist">
                     <div className="container">
                         <div className="row" style={{marginTop: '0px'}}>

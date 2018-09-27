@@ -79,9 +79,7 @@ class MyEvents extends React.Component {
             })
         }
         else if (e.target.id === 'two') {
-            this.setState({
-                events: this.state.endedEvents
-            })
+            this.getCompletedEvent()
         }
     }
 
@@ -181,9 +179,38 @@ class MyEvents extends React.Component {
                         }),
                         activeEvents: JSON.parse(response.events).filter(function (event) {
                             return event.fields.state === 1
-                        }),
-                        endedEvents: JSON.parse(response.events).filter(function (event) {
+                        })
+                    })
+                }
+                else {
+                    this.setState({
+                        eventTitle: null,
+                        currentEvent: null,
+                        events: [],
+                    });
+                }
+            }
+            else {
+                this.setState({
+                    error: response.desc
+                });
+            }
+        });
+    }
+
+
+    getCompletedEvent() {
+        userController.eventCreated().then(response => {
+            if (response.status === 'success') {
+                if (JSON.parse(response.events)[0]) {
+                    this.setState({
+                        eventTitle: JSON.parse(response.events)[0].fields.event_title,
+                        currentEvent: JSON.parse(response.events)[0].pk,
+                        events: JSON.parse(response.events).filter(function (event) {
                             return event.fields.state === 3
+                        }),
+                        activeEvents: JSON.parse(response.events).filter(function (event) {
+                            return event.fields.state === 1
                         })
                     })
                 }
