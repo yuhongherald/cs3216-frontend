@@ -162,6 +162,7 @@ class Signup extends React.Component {
                                 <TextField
                                     label="Full Name"
                                     name="name"
+                                    placeholder="Ben Leong"
                                     onChange={this.onChange}
                                     value={this.state.user.name}
                                 />
@@ -171,6 +172,7 @@ class Signup extends React.Component {
                                 <TextField
                                     label="Phone number"
                                     name="phone_number"
+                                    placeholder="85152939"
                                     onChange={this.onChange}
                                     value={this.state.user.phone_number}
                                 />
@@ -179,6 +181,7 @@ class Signup extends React.Component {
                             <div className="field-line">
                                 <TextField
                                     label="Username"
+                                    placeholder="Minimum 6 characters"
                                     name="username"
                                     onChange={this.onChange}
                                     value={this.state.user.username}
@@ -189,6 +192,7 @@ class Signup extends React.Component {
                                 <TextField
                                     label="Email"
                                     name="email"
+                                    placeholder="benishandsum129@gmail.com"
                                     onChange={this.onChange}
                                     value={this.state.user.email}
                                 />
@@ -199,6 +203,7 @@ class Signup extends React.Component {
                                     label="Password"
                                     type="password"
                                     name="password"
+                                    placeholder="At least 1 number and 1 special character @#$%&"
                                     onChange={this.onChange}
                                     value={this.state.user.password}
                                 />
