@@ -23,8 +23,8 @@ class Index extends React.Component {
             filters: {
                 address: 'Bedok',
                 event_type: 'Choose an option',
-                event_start_date: "",
-                event_end_date: "",
+                date_begin: "",
+                date_end: "",
                 page_limit: 10,
                 page_num: 1,
                 lat: '',
@@ -75,8 +75,8 @@ class Index extends React.Component {
             filters: {
                 page_limit: 10,
                 page_num: 1,
-                event_start_date: this.formatDate(new Date().toJSON()),
-                event_end_date: this.formatDate(new Date().toJSON())
+                date_begin: this.formatDate(new Date().toJSON()),
+                date_end: this.formatDate(new Date().toJSON())
             },
             startDate: new Date().toJSON(),
             endDate: new Date().toJSON(),
@@ -146,7 +146,7 @@ class Index extends React.Component {
 
     changeStartDate(date) {
         const filters = this.state.filters;
-        filters['event_start_date'] = this.formatDate(date) + " 00:00";
+        filters['date_begin'] = this.formatDate(date) + " 00:00";
         this.setState({
             filters: filters,
             startDate: date
@@ -155,7 +155,7 @@ class Index extends React.Component {
 
     changeEndDate(date) {
         const filters = this.state.filters;
-        filters['event_end_date'] = this.formatDate(date) + " 00:00";
+        filters['date_end'] = this.formatDate(date) + " 00:00";
         this.setState({
             filters: filters,
             endDate: date
