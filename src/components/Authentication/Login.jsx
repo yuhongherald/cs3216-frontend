@@ -1,14 +1,10 @@
 import React from 'react';
 import './css/Login.css';
 import TextField from '@material-ui/core/TextField';
-import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from 'react-google-login';
 import Auth from '../../modules/Auth';
-import {Link} from 'react-router';
+import {browserHistory, Link} from 'react-router';
 import userController from '../../controllers/userController.js';
 import {hashHistory} from 'react-router';
-
-require('dotenv').config();
 
 class Login extends React.Component {
 
@@ -24,8 +20,6 @@ class Login extends React.Component {
         };
         this.getAuth = this.getAuth.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.responseFacebook = this.responseFacebook.bind(this);
-        this.responseGoogle = this.responseGoogle.bind(this);
     }
 
 
@@ -42,7 +36,12 @@ class Login extends React.Component {
                     isSignIn: true
                 });
                 Auth.authenticateUser(this.state.user);
-                hashHistory.goBack();
+                if (this.props.location.state.from === '/signup') {
+                    browserHistory.push('/');
+                }
+                else {
+                    hashHistory.goBack();
+                }
             }
             else {
                 this.setState({
@@ -62,36 +61,6 @@ class Login extends React.Component {
         });
     }
 
-    responseFacebook(response) {
-        this.setState({
-            'isSignIn': true
-        });
-
-        let authData = {
-            'username': response.name,
-            'email': response.email,
-            'token': response.accessToken
-        };
-
-        Auth.authenticateUser(authData);
-        setTimeout(hashHistory.goBack(), 1000);
-    }
-
-    responseGoogle(response) {
-        console.log(response);
-
-        this.setState({
-            'isSignIn': true
-        });
-
-        let authData = {
-            'username': response.w3.ig,
-            'email': response.w3.U3,
-            'token': response.Zi.access_token
-        };
-        Auth.authenticateUser(authData);
-        setTimeout(hashHistory.goBack(), 1000);
-    }
 
     componentDidMount() {
     }
@@ -99,57 +68,20 @@ class Login extends React.Component {
     componentWillMount() {
     }
 
-    componentDidUpdate() {
-
-    }
 
     render() {
 
-        let googleLogin = {
-            display: 'inline-block',
-            background: 'rgb(209, 72, 54)',
-            color: 'rgb(255, 255, 255)',
-            width: '140px',
-            paddingTop: '10px',
-            paddingBottom: '10px',
-            borderRadius: '2px',
-            border: '1px solid transparent',
-            fontSize: '12px',
-            fontWeight: 'bold',
-            fontFamily: 'Roboto',
-            opacity: '1.0 !important'
-        }
-
-        const FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
-        const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
         return (
             <div>
                 <h3 style={{textAlign: 'center', 'color': 'rgb(255, 90, 95)', margin: '40px 0px 40px 0px'}}>Please log
                     in</h3>
                 <div className="login-box">
                     <div className="lb-header" style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
-                        <Link to="/login" className="active" id="login-box-link" style={{'textAlign': 'left', width: '35%'}}>Login</Link>
-                        <Link to="/signup" id="signup-box-link" style={{'textAlign': 'left', width: '50%'}}>Sign Up</Link>
+                        <Link to="/login" className="active" id="login-box-link"
+                              style={{'textAlign': 'left', width: '35%'}}>Login</Link>
+                        <Link to="/signup" id="signup-box-link" style={{'textAlign': 'left', width: '50%'}}>Sign
+                            Up</Link>
                     </div>
-                    {/*<div className="social-login">*/}
-                        {/*<FacebookLogin*/}
-                            {/*appId={FACEBOOK_APP_ID}*/}
-                            {/*fields="name,email,picture"*/}
-                            {/*callback={this.responseFacebook}*/}
-                        {/*/>*/}
-
-                        {/*<div className="or" style={{display: 'inline-block'}}>OR</div>*/}
-
-                        {/*<GoogleLogin*/}
-                            {/*clientId={GOOGLE_CLIENT_ID}*/}
-                            {/*buttonText="Login with Google"*/}
-                            {/*onSuccess={this.responseGoogle}*/}
-                            {/*onFailure={this.responseGoogle}*/}
-                            {/*style={googleLogin}*/}
-                        {/*/>*/}
-
-                    {/*</div>*/}
-
 
 
                     <form className="email-login">
@@ -178,7 +110,7 @@ class Login extends React.Component {
 
 
                         {/*<div className="u-form-group">*/}
-                            {/*<a href="#" className="forgot-password">Forgot password?</a>*/}
+                        {/*<a href="#" className="forgot-password">Forgot password?</a>*/}
                         {/*</div>*/}
 
                     </form>

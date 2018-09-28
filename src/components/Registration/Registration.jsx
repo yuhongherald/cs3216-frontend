@@ -18,7 +18,7 @@ class Registration extends React.Component {
         if (this.state.value){
             return (
                 <div style={{padding: '10px', fontSize: '22px'}}>
-                    <p>This is your ticket to <p style={{color: 'rgb(0, 132, 13'}}>{this.props.params.event}</p></p>
+                    <p>This is your ticket to <p style={{color: 'rgb(0, 132, 137'}}>{this.props.params.event}</p></p>
                     <p style={{marginBottom: '10px'}}>Name: {Auth.getUserData().username}</p>
                     <QRCode value={this.state.value}/>
                 </div>

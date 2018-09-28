@@ -110,7 +110,7 @@ class Base extends React.Component {
                                 </ul>
                             ) : (
                                 <ul className="nav navbar-nav navbar-right">
-                                    <li className="nav navbar-left-link"><Link to={`/login`}>Log in</Link></li>
+                                    <li className="nav navbar-left-link"><Link to={{pathname: '/login', state: { from: this.props.location.pathname }}}>Log in</Link></li>
                                     <li className="nav"><Link to={`/signup`}>Sign up</Link></li>
                                 </ul>
 
