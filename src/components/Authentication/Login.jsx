@@ -124,13 +124,14 @@ class Login extends React.Component {
         const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
         return (
             <div>
-                <h3 style={{textAlign: 'center', 'color': 'rgb(255, 90, 95)', margin: '40px 0px 40px 0px'}}>Please log
-                    in</h3>
                 <div className="login-box">
                     <div className="lb-header" style={{width: '100%', display: 'flex', flexDirection: 'row'}}>
                         <Link to="/login" className="active" id="login-box-link" style={{'textAlign': 'left', width: '35%'}}>Login</Link>
                         <Link to="/signup" id="signup-box-link" style={{'textAlign': 'left', width: '50%'}}>Sign Up</Link>
                     </div>
+                    <h2 style={{textAlign: 'left', 'padding-left':'20px', 'color': 'rgb(255, 90, 95)', margin: '40px 0px 40px 0px'}}>Please log
+                        in</h2>
+
                     {/*<div className="social-login">*/}
                         {/*<FacebookLogin*/}
                             {/*appId={FACEBOOK_APP_ID}*/}
