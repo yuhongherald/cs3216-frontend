@@ -9,6 +9,7 @@ import AllEvents from './components/Events/all_events/AllEvents.jsx';
 import Event from './components/Events/single_event/Event.jsx';
 import MyEvents from './components/Events/my_events/MyEvents.jsx';
 import MySchedule from './components/Events/my_events/MySchedule.jsx';
+import Registration from './components/Registration/Registration.jsx';
 import Auth from './modules/Auth';
 
 
@@ -73,6 +74,11 @@ const routes = {
                 path:'/popular_events',
                 exactly: true,
                 component: PopularEvents
+            },
+            {
+                path:'/registration/:eventID/:event',
+                exactly: true,
+                component: Registration
             }
         ]
     }

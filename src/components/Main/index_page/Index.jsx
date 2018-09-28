@@ -65,8 +65,8 @@ class Index extends React.Component {
     }
 
 
-    calculateCoordinate(c1, c2){
-        return (c1 + c2)/2
+    calculateCoordinate(c1, c2) {
+        return (c1 + c2) / 2
     }
 
     resetFilters() {
@@ -89,7 +89,7 @@ class Index extends React.Component {
     submitFilter() {
         console.log(this.state.filters);
         this.setState({
-            gotFilters:  Math.random()
+            gotFilters: Math.random()
         })
     }
 
@@ -141,7 +141,7 @@ class Index extends React.Component {
     }
 
     formatDate(date) {
-        return date.slice(0,10)
+        return date.slice(0, 10)
     }
 
     changeStartDate(date) {
@@ -173,7 +173,6 @@ class Index extends React.Component {
 
     }
 
-
     render() {
 
         const options = [
@@ -194,7 +193,7 @@ class Index extends React.Component {
                                 <div className="_1yd927w"></div>
                                 <div className="_2o6ibk"><img className="_154ar5hp" id="marqueeImage"
                                                               alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
-                                                              sizes="20vw"
+                                                              sizes="1vw"
                                                               width="100%"
                                                               src="https://cigaguides.thinknewr.com/wp-content/uploads/sites/2/2018/06/Event-Blogging-Strategies.jpg"
                                                               height="200px"

@@ -109,11 +109,12 @@ class Event extends React.Component {
         return (
             <img className="_154ar5hp" id="marqueeImage"
                  alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
-                 sizes="100vw"
+                 sizes="1vw"
                  width="400"
                  src={`https://boredgowhere.live/media/${file}`}
                  height="300px"
-                 srcSet="">
+                 srcSet=""
+            >
             </img>
         )
     }
