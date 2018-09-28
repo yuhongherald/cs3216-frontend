@@ -80,31 +80,8 @@ class Login extends React.Component {
                         <Link to="/signup" id="signup-box-link" style={{'textAlign': 'left', width: '50%'}}>Sign
                             Up</Link>
                     </div>
-<<<<<<< HEAD
-                    <h2 style={{textAlign: 'left', 'padding-left':'20px', 'color': 'rgb(255, 90, 95)', margin: '40px 0px 40px 0px'}}>Please log
+                    <h2 style={{textAlign: 'left', 'padding-left': '20px', 'color': 'rgb(255, 90, 95)', margin: '40px 0px 40px 0px'}}>Please log
                         in</h2>
-
-                    {/*<div className="social-login">*/}
-                        {/*<FacebookLogin*/}
-                            {/*appId={FACEBOOK_APP_ID}*/}
-                            {/*fields="name,email,picture"*/}
-                            {/*callback={this.responseFacebook}*/}
-                        {/*/>*/}
-
-                        {/*<div className="or" style={{display: 'inline-block'}}>OR</div>*/}
-
-                        {/*<GoogleLogin*/}
-                            {/*clientId={GOOGLE_CLIENT_ID}*/}
-                            {/*buttonText="Login with Google"*/}
-                            {/*onSuccess={this.responseGoogle}*/}
-                            {/*onFailure={this.responseGoogle}*/}
-                            {/*style={googleLogin}*/}
-                        {/*/>*/}
-
-                    {/*</div>*/}
-
-=======
->>>>>>> a0361ec80376b49641f9af1aea703608049557a5
 
 
                     <form className="email-login">
@@ -151,5 +128,4 @@ class Login extends React.Component {
 }
 
 export default Login;
-
 
