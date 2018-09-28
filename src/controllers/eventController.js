@@ -237,7 +237,9 @@ eventController.confirmCancel = (data) => {
 }
 
 eventController.editEvent = (data) => {
+    console.log(data);
     let putData = {
+        eid: data.eid,
         event_title: data.event_title,
         event_desc: data.event_desc,
         max_quota: data.max_quota,
@@ -255,7 +257,7 @@ eventController.editEvent = (data) => {
         data: putData,
         headers: {
             Accept: 'application/json',
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json'
         }
     }).then(function (response) {
         // handle success

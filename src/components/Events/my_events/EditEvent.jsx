@@ -7,6 +7,7 @@ import '../css/Events.css';
 import TextField from '@material-ui/core/TextField';
 import eventController from '../../../controllers/eventController.js';
 import ReactGoogleMapLoader from "react-google-maps-loader";
+import {browserHistory} from 'react-router';
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
 
 
@@ -20,7 +21,7 @@ class EditEvent extends React.Component {
                 title: this.props.event_title,
                 address: this.props.address,
                 description: this.props.event_desc,
-                category: this.props.event_type,
+                category: this.mapEventType(this.props.event_type),
                 maxQuota: this.props.max_quota,
                 startTime: this.props.event_start_time,
                 endTime: this.props.event_end_time,
@@ -55,7 +56,7 @@ class EditEvent extends React.Component {
         let filters = this.state.data;
         filters['address'] = suggest.formatted_address;
         this.setState({
-            value: suggest.formatted_address
+            address: suggest.formatted_address
         });
         filters['lng'] = this.calculateCoordinate(suggest.geometry.viewport.b.b, suggest.geometry.viewport.b.f).toFixed(6).toString();
         filters['lat'] = this.calculateCoordinate(suggest.geometry.viewport.f.b, suggest.geometry.viewport.f.f).toFixed(6).toString();
@@ -117,6 +118,18 @@ class EditEvent extends React.Component {
         }
     }
 
+    mapEventType(event){
+        let mapList = {
+            "0": "arts",
+            "1": "food",
+            "2": "sports",
+            "3": "social"
+        };
+        if (event in mapList){
+            return mapList[event];
+        }
+    }
+
     changeStartTime(time) {
         this.setState({startTime: time})
     }
@@ -141,7 +154,6 @@ class EditEvent extends React.Component {
 
     handleClick(event) {
         // turn off first
-        return;
 
         event.preventDefault();
         let postData = {
@@ -157,14 +169,12 @@ class EditEvent extends React.Component {
             'lat': this.state.data.lat,
             'lng': this.state.data.lng
         };
-        console.log(postData);
         eventController.editEvent(postData).then(response => {
-            console.log(response);
             if (response.status === 'success') {
                 this.setState({
                     submissionSuccess: true
                 });
-                // browserHistory.push('/');
+                setTimeout(browserHistory.push('/manage-events'), 2000);
             }
             else {
                 this.setState({
@@ -179,6 +189,7 @@ class EditEvent extends React.Component {
 
 
     render() {
+        console.log(this.props);
         const options = [
             {value: 'none', label: 'Choose an option'},
             {value: 'arts', label: 'Arts'},
@@ -238,7 +249,7 @@ class EditEvent extends React.Component {
                                                     >
                                                         <input
                                                             type="text"
-                                                            value={this.state.value}
+                                                            value={this.state.data.address}
                                                             placeholder="Search a location"
                                                             onChange={this.handleInputChange.bind(this)}
                                                         />

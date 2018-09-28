@@ -398,10 +398,10 @@ class MyEvents extends React.Component {
                                     event_desc={this.state.editedEvent.fields.event_desc}
                                     event_type={this.state.editedEvent.fields.event_type}
                                     max_quota={this.state.editedEvent.fields.max_quota}
-                                    event_start_time={this.state.editedEvent.fields.event_start_date.split(" ")[1]}
-                                    event_end_time={this.state.editedEvent.fields.event_end_date.split(" ")[1]}
-                                    event_start_date={this.state.editedEvent.fields.event_start_date.split(" ")[0]}
-                                    event_end_date={this.state.editedEvent.fields.event_end_date.split(" ")[0]}
+                                    event_start_time={Helpers.dateConvert(this.state.editedEvent.fields.event_start_date).split(" ")[1]}
+                                    event_end_time={Helpers.dateConvert(this.state.editedEvent.fields.event_start_date).split(" ")[1]}
+                                    event_start_date={Helpers.dateConvert(this.state.editedEvent.fields.event_start_date).split(" ")[0]}
+                                    event_end_date={Helpers.dateConvert(this.state.editedEvent.fields.event_start_date).split(" ")[0]}
                                     lat={this.state.editedEvent.fields.lat}
                                     lng={this.state.editedEvent.fields.lng}
                                 />

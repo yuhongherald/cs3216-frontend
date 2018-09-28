@@ -11,6 +11,7 @@ import EventsByPage from "../../Common/EventsByPage.jsx";
 import EventMap from "./EventMap.jsx";
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
+import LazyLoad from 'react-lazyload';
 
 
 class Index extends React.Component {
@@ -191,14 +192,15 @@ class Index extends React.Component {
                         <div className="_nplrdyu">
                             <div className="_5rbuw4">
                                 <div className="_1yd927w"></div>
-                                <div className="_2o6ibk"><img className="_154ar5hp" id="marqueeImage"
-                                                              alt="Explore events"
-                                                              sizes="1vw"
-                                                              width="100%"
-                                                              src={require('../../../static/assets/images/explore-events.jpg')}
-                                                              height="200px"
-                                                              >
-                                </img>
+                                <div className="_2o6ibk">
+                                    <LazyLoad>
+                                        <img className="_154ar5hp" id="marqueeImage"
+                                             alt="Explore events"
+                                             sizes="1vw"
+                                             width="100%"
+                                             src={require('../../../static/assets/images/explore-events.jpg')}
+                                             height="200px"/>
+                                    </LazyLoad>
                                 </div>
                                 <div className="_1m05dcv"></div>
                             </div>
