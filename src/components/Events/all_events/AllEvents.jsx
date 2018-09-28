@@ -26,13 +26,8 @@ class AllEvents extends React.Component {
             startDate: new Date().toJSON(),
             endDate: new Date().toJSON(),
             filters: {
-                address: '',
-                event_type: '',
-                event_end_date: '',
                 page_limit: "10",
                 page_num: "1",
-                lat: '',
-                lng: ''
             },
             mapView: false,
             isPaneOpen: false,
@@ -108,8 +103,8 @@ class AllEvents extends React.Component {
                 page_num: "1",
                 address: '',
                 event_type: '',
-                event_start_date: '',
-                event_end_date: '',
+                date_begin: this.formatDate(new Date().toJSON()) + " 00:00",
+                date_end: this.formatDate(new Date().toJSON()) + " 00:00",
                 lng: '',
                 lat: ''
             },
@@ -176,7 +171,7 @@ class AllEvents extends React.Component {
 
     changeStartDate(date) {
         const filters = this.state.filters;
-        filters['event_start_date'] = this.formatDate(date) + " 00:00";
+        filters['date_begin'] = this.formatDate(date) + " 00:00";
         this.setState({
             filters: filters,
             gotFilters: true,
@@ -189,7 +184,7 @@ class AllEvents extends React.Component {
             date = this.state.startDate;
         }
         const filters = this.state.filters;
-        filters['event_end_date'] = this.formatDate(date) + " 00:00";
+        filters['date_end'] = this.formatDate(date) + " 00:00";
         this.setState({
             filters: filters,
             gotFilters: true,
@@ -317,7 +312,6 @@ class AllEvents extends React.Component {
     }
 
 
-
     componentDidMount() {
         Modal.setAppElement(this.el);
     }
@@ -410,7 +404,7 @@ class AllEvents extends React.Component {
                                         </button>
                                     </div>
                                     <div id="locations-view" className="tab-pane fade active in" role="tabpanel">
-                                       <EventMap/>
+                                        <EventMap/>
                                     </div>
                                 </div>
                             )
@@ -420,7 +414,6 @@ class AllEvents extends React.Component {
             </div>
         )
     }
-
 }
 
 export default AllEvents;

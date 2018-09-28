@@ -64,7 +64,7 @@ class Events extends React.Component {
 
                             <div className="col-md-12 artistlist-title-second">
                                 <h3 style={{display: 'inline-block', float: 'left'}}>Popular events</h3>
-                                <span style={{display: 'inline-block', float: 'right', marginTop: '20px'}}><Link to="/events" style={{color: '#8f939c'}}><span className="viewAll">View all</span> <i className="fas fa-chevron-right" style={{fontSize: '1em', padding: '0px 0px 0px 10px'}}></i> </Link></span>
+                                <span style={{display: 'inline-block', float: 'right', marginTop: '20px'}}><Link to="/popular-events" style={{color: '#8f939c'}}><span className="viewAll">View all</span> <i className="fas fa-chevron-right" style={{fontSize: '1em', padding: '0px 0px 0px 10px'}}></i> </Link></span>
                             </div>
 
                             <div style={{clear: 'both'}}></div>
