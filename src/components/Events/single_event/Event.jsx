@@ -6,6 +6,7 @@ import {browserHistory} from "react-router";
 import eventController from "../../../controllers/eventController";
 import Comments from "../../Comments/Comments.jsx";
 import {Link} from "react-router";
+import LazyLoad from 'react-lazyload';
 
 
 // Showing one event details
@@ -107,15 +108,16 @@ class Event extends React.Component {
 
     readImage(file) {
         return (
-            <img className="_154ar5hp" id="marqueeImage"
-                 alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
-                 sizes="1vw"
-                 width="400"
-                 src={`https://boredgowhere.live/media/${file}`}
-                 height="300px"
-                 srcSet=""
-            >
-            </img>
+            <LazyLoad>
+                <img className="_154ar5hp" id="marqueeImage"
+                     alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
+                     sizes="1vw"
+                     width="400"
+                     src={`https://boredgowhere.live/media/${file}`}
+                     height="300px"
+                     srcSet=""
+                />
+            </LazyLoad>
         )
     }
 

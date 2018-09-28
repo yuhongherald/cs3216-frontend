@@ -4,8 +4,7 @@ import eventController from '../../controllers/eventController.js';
 import Pagination from "react-js-pagination";
 import {Link} from 'react-router';
 import Helpers from "../../modules/Helpers";
-
-
+import LazyLoad from 'react-lazyload';
 
 class EventsByPage extends React.Component {
 
@@ -86,13 +85,17 @@ class EventsByPage extends React.Component {
     readImage(file) {
         if (file) {
             return (
-                <img style={{width: '100%', height: '250px'}} src={`https://boredgowhere.live/media/${file}`}/>
+                <LazyLoad>
+                    <img style={{width: '100%', height: '250px'}} src={`https://boredgowhere.live/media/${file}`}/>
+                </LazyLoad>
             )
         }
         else {
             return (
-                <img style={{width: '100%', height: '250px'}}
-                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQhWs2_oaas5sO0iEjtkZKIBG5Civh0-X3Tk1eoO2rnFVLJBdviw"/>
+                <LazyLoad>
+                    <img style={{width: '100%', height: '250px'}}
+                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQhWs2_oaas5sO0iEjtkZKIBG5Civh0-X3Tk1eoO2rnFVLJBdviw"/>
+                </LazyLoad>
             )
         }
     }
@@ -119,14 +122,14 @@ class EventsByPage extends React.Component {
 
     }
 
-    mapEventCategory(event){
+    mapEventCategory(event) {
         let mapList = {
             "0": "arts",
             "1": "food",
             "2": "sports",
             "3": "social"
         };
-        if (event in mapList){
+        if (event in mapList) {
             return mapList[event];
         }
     }
@@ -136,20 +139,20 @@ class EventsByPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(JSON.stringify(this.props.gotFilters) !== JSON.stringify(nextProps.gotFilters)) // Check if it's a new user, you can also use some unique property, like the ID
+        if (JSON.stringify(this.props.gotFilters) !== JSON.stringify(nextProps.gotFilters)) // Check if it's a new user, you can also use some unique property, like the ID
         {
             this.getData();
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState){
+    shouldComponentUpdate(nextProps, nextState) {
         return this.state !== nextState
     }
 
 
     render() {
 
-        if(!this.state.events){
+        if (!this.state.events) {
             return (
                 <div style={{height: '1000px'}}>
                     <div className="guru-loader">
@@ -186,7 +189,10 @@ class EventsByPage extends React.Component {
                             </Link>
                             <div className="col-md-12 events-description eventslistartist-grid">
                                 <span className="country-label"
-                                      style={{textTransform: 'uppercase', backgroundColor: "#FF5A5F"}}>{this.mapEventCategory(event.fields.event_type)}</span>
+                                      style={{
+                                          textTransform: 'uppercase',
+                                          backgroundColor: "#FF5A5F"
+                                      }}>{this.mapEventCategory(event.fields.event_type)}</span>
                                 <div className="events-text">
                                     <Link to={`/events/${event.pk}`}><h3
                                         style={{textTransform: 'uppercase'}}>{event.fields.event_title}</h3></Link>
@@ -216,7 +222,8 @@ class EventsByPage extends React.Component {
                             <div className="event-box" style={{marginBottom: '40px'}}>
                                 <Link to={`/events/${event.pk}`}>{this.readImageSmall(event.fields.image)}</Link>
                                 <p className="event-small-category">{this.mapEventCategory(event.fields.event_type)}</p>
-                                <Link to={`/events/${event.pk}`}><p className="event-small-title">{event.fields.event_title}</p></Link>
+                                <Link to={`/events/${event.pk}`}><p
+                                    className="event-small-title">{event.fields.event_title}</p></Link>
                             </div>
                         </div>
                     </div>
