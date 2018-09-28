@@ -71,7 +71,7 @@ const routes = {
                 component: EventsByCategory
             },
             {
-                path:'/popular_events',
+                path:'/popular-events',
                 exactly: true,
                 component: PopularEvents
             },
