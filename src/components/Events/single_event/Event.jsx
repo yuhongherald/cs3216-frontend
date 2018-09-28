@@ -233,7 +233,7 @@ class Event extends React.Component {
                     <div className="_hauh0a">
                         {
                             !Auth.getUserData()  ? (
-                                <div style={{paddingLeft: '10px'}}><Link to="/login">Please sign in to register or see event status</Link></div>
+                                <div style={{paddingLeft: '10px'}}><Link to={{pathname: '/login', state: { from: this.props.location.pathname }}}>Please sign in to register or see event status</Link></div>
                             ) : (
                                 <div>
                                     {
