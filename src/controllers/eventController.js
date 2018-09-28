@@ -43,7 +43,6 @@ eventController.getEvent = (data) => {
 };
 
 eventController.createEvent = (data) => {
-    console.log(data);
     let formData = new FormData();
     formData.append('event_title', data.event_title);
     formData.append('event_desc', data.event_desc);
@@ -79,7 +78,6 @@ eventController.createEvent = (data) => {
 };
 
 eventController.participateEvent = (data) => {
-    console.log(data);
     let response = axios.post(endPoint + '/api/v1/event/participate/', {
         eid: data.eid,
         op_type: data.op_type
@@ -237,7 +235,6 @@ eventController.confirmCancel = (data) => {
 }
 
 eventController.editEvent = (data) => {
-    console.log(data);
     let putData = {
         eid: data.eid,
         event_title: data.event_title,

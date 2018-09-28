@@ -15,13 +15,13 @@ class EventsByPage extends React.Component {
             error: false,
             activePage: 1,
             totalCount: 300,
-            totalPages: 1,
             sortBy: this.props.sortBy,
             filters: this.props.filters,
             smallView: this.props.smallView,
             mapView: this.props.mapView,
             imagePreviewUrl: '',
-            gotFilters: this.props.gotFilters
+            gotFilters: this.props.gotFilters,
+            fullEventList: []
         };
         this.getData = this.getData.bind(this);
         this.handlePageChange = this.handlePageChange.bind(this);
@@ -31,10 +31,18 @@ class EventsByPage extends React.Component {
 
     }
 
+    paginate (array, page_size, page_number) {
+        --page_number; // because pages logically start with 1, but technically with 0
+        return array.slice(page_number * page_size, (page_number + 1) * page_size);
+    }
+
     handlePageChange(pageNumber) {
         this.setState({
             activePage: pageNumber
         });
+        this.setState({
+            events: this.paginate(this.state.fullEventList, 10, pageNumber)
+        })
     }
 
     isEmpty(obj) {
@@ -47,7 +55,7 @@ class EventsByPage extends React.Component {
 
     getData() {
         let data = {
-            page_limit: "10",
+            page_limit: "100",
             page_num: this.state.activePage.toString()
         };
 
@@ -60,14 +68,16 @@ class EventsByPage extends React.Component {
             if (response.status === 'success') {
                 if (response.events === null) {
                     this.setState({
-                        totalCount: response.total_pages,
-                        events: []
+                        totalCount: 0,
+                        events: [],
+                        fullEventList: []
                     });
                 }
                 else {
                     this.setState({
-                        totalCount: response.total_pages,
-                        events: JSON.parse(response.events)
+                        totalCount: JSON.parse(response.events).length,
+                        fullEventList: JSON.parse(response.events),
+                        events: this.paginate(JSON.parse(response.events), 10, this.state.activePage)
                     });
                 }
 
@@ -85,14 +95,14 @@ class EventsByPage extends React.Component {
     readImage(file) {
         if (file) {
             return (
-                <LazyLoad>
+                <LazyLoad height={0}>
                     <img style={{width: '100%', height: '250px'}} src={`https://boredgowhere.live/media/${file}`}/>
                 </LazyLoad>
             )
         }
         else {
             return (
-                <LazyLoad>
+                <LazyLoad height={0}>
                     <img style={{width: '100%', height: '250px'}}
                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQhWs2_oaas5sO0iEjtkZKIBG5Civh0-X3Tk1eoO2rnFVLJBdviw"/>
                 </LazyLoad>
@@ -251,7 +261,7 @@ class EventsByPage extends React.Component {
                                         activePage={this.state.activePage}
                                         itemsCountPerPage={10}
                                         totalItemsCount={this.state.totalCount}
-                                        pageRangeDisplayed={5}
+                                        pageRangeDisplayed={3}
                                         onChange={this.handlePageChange}
                                     />
                                 </div>

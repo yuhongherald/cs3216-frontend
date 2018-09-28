@@ -1,5 +1,4 @@
 import axios from 'axios';
-import eventController from "./eventController";
 
 axios.defaults.withCredentials = true;
 
@@ -8,7 +7,6 @@ const endPoint = 'https://boredgowhere.live';
 let commentController = {};
 
 commentController.createComment = (data) => {
-    console.log(data);
     let postData;
     if (data.rely_to) {
         postData = {
