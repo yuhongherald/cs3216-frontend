@@ -80,6 +80,7 @@ class MyEvents extends React.Component {
             })
         }
         else if (e.target.id === 'two') {
+            console.log(this.state.endedEvents);
             this.setState({
                 events: this.state.endedEvents
             })
@@ -99,7 +100,7 @@ class MyEvents extends React.Component {
         let postData = {
             eid: this.state.currentEvent
         };
-        eventController.closeEvent(postData).then(response => {
+        eventController.deleteEvent(postData).then(response => {
             if (response.status === 'success') {
                 this.getData();
                 setTimeout(this.onCloseClosingModal(), 2000);
