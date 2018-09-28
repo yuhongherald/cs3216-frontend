@@ -50,7 +50,6 @@ class Event extends React.Component {
         };
 
         eventController.getEvent(data).then(response => {
-            console.log(response);
             if (response.status == 'success') {
 
                 this.setState({
@@ -108,7 +107,7 @@ class Event extends React.Component {
 
     readImage(file) {
         return (
-            <LazyLoad>
+            <LazyLoad height={0}>
                 <img className="_154ar5hp" id="marqueeImage"
                      alt="Book unique <a href='/sitemaps/v2' >homes</a> and experiences."
                      sizes="1vw"
@@ -121,19 +120,18 @@ class Event extends React.Component {
         )
     }
 
-    renderButton(event_status) {
-        console.log(event_status)
-        if (event_status === 1) {
+    renderButton(event_status, event_quota) {
+        if (event_status === 1 && event_quota !== -1) {
             return (
                 <button type="button" className="register-button"
                         onClick={this.onOpenConfirmModal}>Register
                 </button>
             )
         }
-        else if (event_status === 2){
+        else if (event_status === 2 || event_quota === -1){
             return (
                 <button type="button" className="register-button"
-                        style={{backgroundColor: '#FF5A5F' }}>Full
+                        style={{backgroundColor: '#FF5A5F' }}>Full quota
                 </button>
             )
         }
@@ -156,10 +154,8 @@ class Event extends React.Component {
 
 
     render() {
-
         if (this.state.event) {
             let event = this.state.event;
-            console.log(event);
             return (
                 <div id="section-aboutus" className="section-eventsdetails" style={{backgroundColor: '#eeeeee'}}>
                     <Modal open={this.state.openConfirmModal} onClose={this.onCloseConfirmModal} center
@@ -252,7 +248,7 @@ class Event extends React.Component {
 
                                                 ) : (
                                                     <div style={{width: '108px', float: 'right', paddingBottom: '20px'}}>
-                                                        {this.renderButton(event.fields.state)}
+                                                        {this.renderButton(event.fields.state, event.fields.max_quota)}
                                                     </div>
                                                 )
                                             }

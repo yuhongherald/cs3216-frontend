@@ -25,7 +25,6 @@ class Comments extends React.Component {
         };
 
         commentController.getComments(data).then(response => {
-            console.log(response);
             if (response.status == 'success') {
                 this.setState({
                     comments: JSON.parse(response.comments)

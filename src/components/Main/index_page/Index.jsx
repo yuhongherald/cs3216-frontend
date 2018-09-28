@@ -88,7 +88,6 @@ class Index extends React.Component {
 
 
     submitFilter() {
-        console.log(this.state.filters);
         this.setState({
             gotFilters: Math.random()
         })
@@ -193,7 +192,7 @@ class Index extends React.Component {
                             <div className="_5rbuw4">
                                 <div className="_1yd927w"></div>
                                 <div className="_2o6ibk">
-                                    <LazyLoad>
+                                    <LazyLoad height={0}>
                                         <img className="_154ar5hp" id="marqueeImage"
                                              alt="Explore events"
                                              sizes="1vw"
